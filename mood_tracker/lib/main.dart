@@ -52,6 +52,8 @@ class _Login extends State<Login> {
                 ),
                 child: Text('Drawer Header'),
               ),
+              margin: const EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
             ),
             const DrawerHeader(
               decoration: BoxDecoration(
