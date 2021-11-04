@@ -44,6 +44,15 @@ class _Login extends State<Login> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
+            Container(
+              height: 10.0,
+              child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+            ),
             const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
