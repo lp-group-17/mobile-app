@@ -45,7 +45,7 @@ class _Login extends State<Login> {
           padding: EdgeInsets.zero,
           children: [
             Container(
-              height: 10.0,
+              height: 100.0,
               child: const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -54,12 +54,6 @@ class _Login extends State<Login> {
               ),
               margin: const EdgeInsets.all(0.0),
               padding: const EdgeInsets.all(0.0),
-            ),
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Drawer Header'),
             ),
             ListTile(
               title: const Text('Item 1'),
