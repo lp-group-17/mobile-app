@@ -44,11 +44,16 @@ class _Login extends State<Login> {
           // Important: Remove any padding from the ListView.
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
+            Container(
+              height: 100.0,
+              child: const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
               ),
-              child: Text('Mood Tracker'),
+              margin: const EdgeInsets.all(0.0),
+              padding: const EdgeInsets.all(0.0),
             ),
             ListTile(
               title: const Text('Calendar'), //includes medication and frequency
@@ -76,7 +81,7 @@ class _Login extends State<Login> {
                 // Then close the drawer
                 Navigator.pop(context);
               },
-            ),     
+            ),
             ListTile(
               title: const Text('Resources'),
               onTap: () {
@@ -85,16 +90,17 @@ class _Login extends State<Login> {
                 // Then close the drawer
                 Navigator.pop(context);
               },
-            ),    
+            ),
             ListTile(
-              title: const Text('Questionairre'), //includes journal entry fill out
+              title:
+                  const Text('Questionairre'), //includes journal entry fill out
               onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
                 Navigator.pop(context);
               },
-            ),    
+            ),
           ],
         ),
       ),
