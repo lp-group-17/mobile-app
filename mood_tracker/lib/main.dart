@@ -11,11 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Mood Tracker',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Login(title: 'Login'),
+      home: const Login(title: 'Home'),
     );
   }
 }
@@ -32,7 +32,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('idk what im changing')),
+      appBar: AppBar(title: Text(widget.title)),
       body: const Center(
         child: Text('My Page!'),
       ),
@@ -48,10 +48,10 @@ class _Login extends State<Login> {
               decoration: BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('Drawer Header'),
+              child: Text('Mood Tracker'),
             ),
             ListTile(
-              title: const Text('Item 1'),
+              title: const Text('Calendar'), //includes medication and frequency
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -60,7 +60,7 @@ class _Login extends State<Login> {
               },
             ),
             ListTile(
-              title: const Text('Item 2'),
+              title: const Text('Journal'),
               onTap: () {
                 // Update the state of the app
                 // ...
@@ -68,6 +68,33 @@ class _Login extends State<Login> {
                 Navigator.pop(context);
               },
             ),
+            ListTile(
+              title: const Text('Expenses/Mood History'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),     
+            ListTile(
+              title: const Text('Resources'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),    
+            ListTile(
+              title: const Text('Questionairre'), //includes journal entry fill out
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),    
           ],
         ),
       ),
