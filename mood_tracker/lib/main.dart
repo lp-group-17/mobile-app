@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -114,6 +115,21 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const Login(title: 'Login'),
+                  ),
+                );
+                // Then close the drawer
+                //Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                  'Test Signup Page'), //includes journal entry fill out
+              onTap: () {
+                // Update the state of the app
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Signup(title: 'Signup'),
                   ),
                 );
                 // Then close the drawer

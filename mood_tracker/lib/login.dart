@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'signup.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -18,7 +19,7 @@ class _Login extends State<Login> {
     const Rect.fromLTWH(50.0, 0.0, 300.0, 70.0),
   );
 
-  bool _passwordVisible = true;
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -150,5 +151,11 @@ class _Login extends State<Login> {
   }
   void signup() {
     // TODO: Go to signup page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Signup(title: 'Signup'),
+      ),
+    );
   }
 }
