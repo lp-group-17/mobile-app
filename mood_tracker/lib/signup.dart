@@ -54,7 +54,7 @@ class _Signup extends State<Signup> {
                       ),
                     ),
                     Text(
-                      "Signup",
+                      "Sign Up",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,

@@ -108,7 +108,7 @@ class _Login extends State<Login> {
                 child: const SizedBox(
                   width: 300,
                   child: Center(
-                    child: Text("Login"),
+                    child: Text("Log In"),
                   ),
                 ),
                 style: ButtonStyle(
@@ -125,7 +125,7 @@ class _Login extends State<Login> {
                 child: const SizedBox(
                   width: 300,
                   child: Center(
-                    child: Text("Sign up"),
+                    child: Text("Sign Up"),
                   ),
                 ),
                 style: ButtonStyle(

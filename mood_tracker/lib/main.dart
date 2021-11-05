@@ -114,7 +114,7 @@ class Home extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Login(title: 'Login'),
+                    builder: (context) => const Login(title: 'Log In'),
                   ),
                 );
                 // Then close the drawer
@@ -129,7 +129,7 @@ class Home extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Signup(title: 'Signup'),
+                    builder: (context) => const Signup(title: 'Sign Up'),
                   ),
                 );
                 // Then close the drawer
