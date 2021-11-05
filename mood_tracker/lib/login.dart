@@ -18,6 +18,8 @@ class _Login extends State<Login> {
     const Rect.fromLTWH(50.0, 0.0, 300.0, 70.0),
   );
 
+  bool _passwordVisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,6 +65,8 @@ class _Login extends State<Login> {
                 child: Column(
                   children: [
                     TextFormField(
+                      enableSuggestions: true,
+                      autocorrect: true,
                       decoration: const InputDecoration(
                           filled: true,
                           // fillColor: Colors.white,
@@ -71,10 +75,28 @@ class _Login extends State<Login> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      decoration: const InputDecoration(
+                      obscureText: !_passwordVisible,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              // Based on passwordVisible state choose the icon
+                              _passwordVisible
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Theme.of(context).primaryColorDark,
+                            ),
+                            onPressed: () {
+                              // Update the state i.e. toogle the state of passwordVisible variable
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
                           filled: true,
                           // fillColor: Colors.white,
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                           labelText: 'Enter your password'),
                     ),
                   ],
