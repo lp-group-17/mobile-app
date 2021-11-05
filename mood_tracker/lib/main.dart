@@ -7,32 +7,24 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static const appTitle = 'Home';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Mood Tracker',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const Login(title: 'Home'),
+    return const MaterialApp(
+      title: appTitle,
+      home: Login(title: appTitle),
     );
   }
 }
 
-class Login extends StatefulWidget {
-  const Login({Key? key, required this.title}) : super(key: key);
-  final String title;
 
-  @override
-  State<Login> createState() => _Login();
-}
-
-class _Login extends State<Login> {
+class Login extends StatelessWidget {
+  const Login({Key? key, title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text('Home')),
       body: const Center(
         child: Text('My Page!'),
       ),
@@ -45,7 +37,7 @@ class _Login extends State<Login> {
           padding: EdgeInsets.zero,
           children: [
             Container(
-              height: 100.0,
+              height: 150.0,
               child: const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -59,49 +51,164 @@ class _Login extends State<Login> {
               title: const Text('Calendar'), //includes medication and frequency
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToCalendar()));
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
             ListTile(
               title: const Text('Journal'),
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToJournal()));
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
             ListTile(
               title: const Text('Expenses/Mood History'),
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToExpenses()));
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('Resources'),
+              title: const Text('Questionnaire'),
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToQuestionnaire()));
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
             ListTile(
               title:
-                  const Text('Questionairre'), //includes journal entry fill out
+                  const Text('Resources'), //includes journal entry fill out
               onTap: () {
                 // Update the state of the app
-                // ...
+                Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ToResources()));
                 // Then close the drawer
-                Navigator.pop(context);
+                //Navigator.pop(context);
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ToJournal extends StatelessWidget {
+  const ToJournal({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Journal goes here"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+class ToCalendar extends StatelessWidget {
+  const ToCalendar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Calendar goes here"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+class ToExpenses extends StatelessWidget {
+  const ToExpenses({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Expenses goes here"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+class ToResources extends StatelessWidget {
+  const ToResources({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Resources goes here"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+class ToQuestionnaire extends StatelessWidget {
+  const ToQuestionnaire({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Questionnaire goes here"),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
         ),
       ),
     );
