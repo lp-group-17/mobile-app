@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,18 +14,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: appTitle,
-      home: Login(title: appTitle),
+      home: Home(title: appTitle),
     );
   }
 }
 
-
-class Login extends StatelessWidget {
-  const Login({Key? key, title}) : super(key: key);
+class Home extends StatelessWidget {
+  const Home({Key? key, title}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
+      appBar: AppBar(title: const Text('Home')),
       body: const Center(
         child: Text('My Page!'),
       ),
@@ -52,8 +52,9 @@ class Login extends StatelessWidget {
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToCalendar()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ToCalendar()));
                 // Then close the drawer
                 //Navigator.pop(context);
               },
@@ -62,9 +63,8 @@ class Login extends StatelessWidget {
               title: const Text('Journal'),
               onTap: () {
                 // Update the state of the app
-                Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToJournal()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const ToJournal()));
                 // Then close the drawer
                 //Navigator.pop(context);
               },
@@ -74,8 +74,9 @@ class Login extends StatelessWidget {
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToExpenses()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ToExpenses()));
                 // Then close the drawer
                 //Navigator.pop(context);
               },
@@ -85,20 +86,36 @@ class Login extends StatelessWidget {
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToQuestionnaire()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ToQuestionnaire()));
                 // Then close the drawer
                 //Navigator.pop(context);
               },
             ),
             ListTile(
-              title:
-                  const Text('Resources'), //includes journal entry fill out
+              title: const Text('Resources'), //includes journal entry fill out
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ToResources()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ToResources()));
+                // Then close the drawer
+                //Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                  'Test Login Page'), //includes journal entry fill out
+              onTap: () {
+                // Update the state of the app
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Login(title: 'Login'),
+                  ),
+                );
                 // Then close the drawer
                 //Navigator.pop(context);
               },
