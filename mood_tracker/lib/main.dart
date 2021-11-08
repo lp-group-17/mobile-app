@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'signup.dart';
+import 'email_verification.dart';
 
 void main() {
   runApp(const MyApp());
@@ -130,6 +131,21 @@ class Home extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const Signup(title: 'Sign Up'),
+                  ),
+                );
+                // Then close the drawer
+                //Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text(
+                  'Test Email Page'), //includes journal entry fill out
+              onTap: () {
+                // Update the state of the app
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Email(title: 'Email'),
                   ),
                 );
                 // Then close the drawer

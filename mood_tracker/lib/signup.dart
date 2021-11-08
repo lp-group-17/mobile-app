@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'email_verification.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.title}) : super(key: key);
@@ -218,5 +219,11 @@ class _Signup extends State<Signup> {
 
   void signup() {
     // TODO: submit form and goto email verification page
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Email(title: 'Email Verification'),
+      ),
+    );
   }
 }
