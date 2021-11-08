@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'signup.dart';
+import 'Cal.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,13 +50,16 @@ class Home extends StatelessWidget {
               padding: const EdgeInsets.all(0.0),
             ),
             ListTile(
-              title: const Text('Calendar'), //includes medication and frequency
+              title: const Text('Calendar'), //includes medication and frequency and editable for appointments and views for medication vs appointments
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ToCalendar()));
+                    builder: (context) => const CalendarPage(title: 'Calendar'),
+                  ),
+                ); //replace whole navigator.push if need to change
+                        //builder: (context) => const Login(title: 'Log In');
                 // Then close the drawer
                 //Navigator.pop(context);
               },
@@ -83,7 +87,7 @@ class Home extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('Questionnaire'),
+              title: const Text('Questionnaire'), //includes input for medication
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
