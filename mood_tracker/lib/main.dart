@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'CalendarFiles/EProvider.dart';
 import 'login.dart';
 import 'signup.dart';
-import 'Cal.dart';
+import 'CalendarFiles/Cal.dart';
 import 'email_verification.dart';
 
 void main() {
@@ -14,12 +16,13 @@ class MyApp extends StatelessWidget {
   static const appTitle = 'Home';
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+    create: (context) => EventProvider(),
+    child: const MaterialApp(
       title: appTitle,
       home: Home(title: appTitle),
-    );
-  }
+    ),
+  );
 }
 
 class Home extends StatelessWidget {
