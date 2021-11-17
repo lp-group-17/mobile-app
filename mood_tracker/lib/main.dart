@@ -5,6 +5,7 @@ import 'login.dart';
 import 'signup.dart';
 import 'CalendarFiles/Cal.dart';
 import 'email_verification.dart';
+import 'QuestFiles/Questions.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,12 +18,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (context) => EventProvider(),
-    child: const MaterialApp(
-      title: appTitle,
-      home: Home(title: appTitle),
-    ),
-  );
+        create: (context) => EventProvider(),
+        child: const MaterialApp(
+          title: appTitle,
+          home: Home(title: appTitle),
+        ),
+      );
 }
 
 class Home extends StatelessWidget {
@@ -94,12 +95,15 @@ class Home extends StatelessWidget {
             ListTile(
               title:
                   const Text('Questionnaire'), //includes input for medication
+              //one long page, each question with a slider and a gradiant. If @ bad make color yellow, if good then green. blue in the middle
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ToQuestionnaire()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Questions(title: 'Calendar'),
+                  ),
+                );
                 // Then close the drawer
                 //Navigator.pop(context);
               },
