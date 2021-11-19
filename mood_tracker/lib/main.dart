@@ -81,7 +81,7 @@ class Home extends StatelessWidget {
               },
             ),
             ListTile(
-              title: const Text('Expenses/Mood History'),
+              title: const Text('Expenses/Mood History'), //drop it
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
