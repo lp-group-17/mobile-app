@@ -35,6 +35,7 @@ class _Signup extends State<Signup> {
                 end: Alignment.bottomLeft,
                 colors: [
                   Colors.deepPurple,
+                  Colors.deepPurple,
                   Colors.indigo,
                 ],
               ),
@@ -75,26 +76,42 @@ class _Signup extends State<Signup> {
                             children: [
                               Flexible(
                                 child: TextFormField(
+                                  style: const TextStyle(color: Colors.white),
                                   enableSuggestions: true,
                                   autocorrect: true,
                                   decoration: const InputDecoration(
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
+                                    ),
                                     filled: true,
                                     // fillColor: Colors.white,
                                     border: OutlineInputBorder(),
                                     labelText: 'First Name',
+                                    labelStyle: TextStyle(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
                               const SizedBox(width: 10),
                               Flexible(
                                 child: TextFormField(
+                                  style: const TextStyle(color: Colors.white),
                                   enableSuggestions: true,
                                   autocorrect: true,
                                   decoration: const InputDecoration(
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
+                                    ),
                                     filled: true,
                                     // fillColor: Colors.white,
                                     border: OutlineInputBorder(),
                                     labelText: 'Last Name',
+                                    labelStyle: TextStyle(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -102,39 +119,57 @@ class _Signup extends State<Signup> {
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             enableSuggestions: true,
                             autocorrect: true,
                             decoration: const InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                               filled: true,
                               // fillColor: Colors.white,
                               border: OutlineInputBorder(),
                               labelText: 'Username',
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             enableSuggestions: true,
                             autocorrect: true,
                             decoration: const InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                               filled: true,
                               // fillColor: Colors.white,
                               border: OutlineInputBorder(),
                               labelText: 'Email',
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             obscureText: !_passwordVisible,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   // Based on passwordVisible state choose the icon
                                   _passwordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Theme.of(context).primaryColorDark,
+                                  color: Colors.white,
                                 ),
                                 onPressed: () {
                                   // Update the state i.e. toogle the state of passwordVisible variable
@@ -147,21 +182,28 @@ class _Signup extends State<Signup> {
                               // fillColor: Colors.white,
                               border: const OutlineInputBorder(),
                               labelText: 'Password',
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 10),
                           TextFormField(
+                            style: const TextStyle(color: Colors.white),
                             obscureText: !_passwordConfirmVisible,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
                               suffixIcon: IconButton(
                                 icon: Icon(
                                   // Based on passwordVisible state choose the icon
                                   _passwordConfirmVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
-                                  color: Theme.of(context).primaryColorDark,
+                                  color: Colors.white,
                                 ),
                                 onPressed: () {
                                   // Update the state i.e. toogle the state of passwordVisible variable
@@ -175,6 +217,9 @@ class _Signup extends State<Signup> {
                               // fillColor: Colors.white,
                               border: const OutlineInputBorder(),
                               labelText: 'Comfirm password',
+                              labelStyle: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
@@ -206,6 +251,7 @@ class _Signup extends State<Signup> {
           Container(
             padding: const EdgeInsets.only(top: 30),
             child: IconButton(
+              color: Colors.white,
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
               onPressed: () {
                 Navigator.pop(context);

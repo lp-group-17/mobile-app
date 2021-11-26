@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'signup.dart';
+import 'home.dart';
+import 'forgot_password.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -30,6 +32,7 @@ class _Login extends State<Login> {
           end: Alignment.bottomLeft,
           colors: [
             Colors.deepPurple,
+            Colors.deepPurple,
             Colors.indigo,
           ],
         ),
@@ -44,8 +47,10 @@ class _Login extends State<Login> {
                 flex: 10,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50, right: 50, top: 30),
-                  child: Image.asset('assets/images/logo/logo.png',
-                      fit: BoxFit.contain),
+                  child: Image.asset(
+                    'assets/images/logo/logo.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
               Text(
@@ -68,37 +73,54 @@ class _Login extends State<Login> {
                     TextFormField(
                       enableSuggestions: true,
                       autocorrect: true,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.white,
                       decoration: const InputDecoration(
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'Enter your username'),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        filled: true,
+                        // fillColor: Colors.white,
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter your username',
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
                       obscureText: !_passwordVisible,
                       enableSuggestions: false,
                       autocorrect: false,
+                      style: const TextStyle(color: Colors.white),
+                      cursorColor: Colors.white,
                       decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Theme.of(context).primaryColorDark,
-                            ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            // Based on passwordVisible state choose the icon
+                            _passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
                           ),
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: const OutlineInputBorder(),
-                          labelText: 'Enter your password'),
+                          onPressed: () {
+                            // Update the state i.e. toogle the state of passwordVisible variable
+                            setState(() {
+                              _passwordVisible = !_passwordVisible;
+                            });
+                          },
+                        ),
+                        filled: true,
+                        border: const OutlineInputBorder(),
+                        labelText: 'Enter your password',
+                        labelStyle: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -136,7 +158,16 @@ class _Login extends State<Login> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              TextButton(
+                onPressed: forgotPassword,
+                child: const Text(
+                  "Forgot password?",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
@@ -148,13 +179,30 @@ class _Login extends State<Login> {
     // TODO:  Check registration status
     //        If verified, goto home page
     //        If not verified, go to email verify page
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Home(title: 'Home'),
+      ),
+      (_) => false,
+    );
   }
+
   void signup() {
     // TODO: Go to signup page
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const Signup(title: 'Signup'),
+      ),
+    );
+  }
+
+  void forgotPassword() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ForgotPassword(title: 'Forgot Password'),
       ),
     );
   }

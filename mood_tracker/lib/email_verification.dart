@@ -27,6 +27,7 @@ class _Email extends State<Email> {
           end: Alignment.bottomLeft,
           colors: [
             Colors.deepPurple,
+            Colors.deepPurple,
             Colors.indigo,
           ],
         ),
@@ -54,14 +55,16 @@ class _Email extends State<Email> {
                 ),
               ),
               const Text(
-                "An email has been sent to\n"
-                "placeholder@email.com\n" // TODO: change to variable and remove const
-                "to verify your email and activate your account.\n"
-                "If you did not receive the email,\n"
-                "click the button below.",
+                "We sent you an email to verify\n"
+                "your email address.\n" // TODO: change to variable and remove const
+                "Please follow the intructions to\n"
+                "activate your account.\n\n"
+                "If you did not receive an email,\n"
+                "click the button below to send another.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 16,
+                  color: Colors.white,
                   // fontWeight: FontWeight.bold,
                   // foreground: Paint()..shader = linearGradient,
                 ),
@@ -93,6 +96,15 @@ class _Email extends State<Email> {
       ),
     );
   }
+
+  // TODO: Wait for verification then use the following
+  //   Navigator.pushAndRemoveUntil(
+  //   context,
+  //   MaterialPageRoute(
+  //     builder: (context) => const Home(title: 'Home'),
+  //   ),
+  //   (_) => false,
+  // );
 
   void resendEmail() {}
 }
