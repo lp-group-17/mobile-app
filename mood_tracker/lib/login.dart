@@ -31,7 +31,7 @@ class _Login extends State<Login> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Colors.deepPurple,
+            // Colors.deepPurple,
             Colors.deepPurple,
             Colors.indigo,
           ],

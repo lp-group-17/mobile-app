@@ -30,6 +30,7 @@ dependencies:
   ntp: ^1.0.7
   flutter:
     sdk: flutter
+  fl_chart: ^0.40.2
 
 
   # The following adds the Cupertino Icons font to your application.
