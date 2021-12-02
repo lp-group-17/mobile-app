@@ -22,7 +22,14 @@ final ListKey = GlobalKey<AnimatedListState>();
 // ignore: non_constant_identifier_names
 static List<String> Titles = ['Entry #1','Entry #2','Entry #3','Entry #4','Entry #5'];
 // ignore: non_constant_identifier_names
-final List<HistoryModel> Data = List.generate(Titles.length, (index) => HistoryModel('${Titles[index]}','${Titles[index]}',1.0,4.0,6.0,2.0,3.0));
+final List<HistoryModel> Data = List.generate(Titles.length, (index) => HistoryModel(
+  title: Titles[index],
+        descrip: Titles[index],
+        Q1: 1.0,
+        Q2: 5.0,
+        Q3: 2.0,
+        Q4: 3.0,
+        Q5: 1.0,));
 
   @override
   Widget build(BuildContext context) {
