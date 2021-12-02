@@ -150,7 +150,7 @@ class _Questions extends State<Questions> {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   child: const Text('Finished'),
-                  onPressed:() {Navigator.pop(context);}, //edit to save the information and send it through api or w/e
+                  onPressed:() {Navigator.pop(context);}, //edit to save the information and send it through api or w/e/ do save
                 ),
               ],
             ),
@@ -185,5 +185,28 @@ class _Questions extends State<Questions> {
         controller: deetsControl,
       );
 
-      
+     Future save() async {
+
+      final event = HistoryModel(
+        title: titleControl.text,
+        descrip: deetsControl.text,
+        Q1: Q1rating,
+        Q2: Q2rating,
+        Q3: Q3rating,
+        Q4: Q4rating,
+        Q5: Q5rating,
+      );
+      // final isEdit = widget.event != null;
+      // final provider = Provider.of<EventProvider>(context,
+      //     listen: false); 
+      // if (isEdit) {
+      //   provider.editE(event, widget.event!);
+      //   Navigator.of(context).pop();
+      // } else {
+      //   provider.addEvent(event);
+      //   Navigator.of(context).pop();
+      // }
+    
+  }
+
 }
