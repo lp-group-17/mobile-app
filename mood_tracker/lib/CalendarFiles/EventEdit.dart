@@ -287,7 +287,7 @@ Widget buildDeets() => TextFormField(
       );
       final isEdit = widget.event != null;
       final provider = Provider.of<EventProvider>(context,
-          listen: false); //this might be wrong don't forget about this
+          listen: false); 
       if (isEdit) {
         provider.editE(event, widget.event!);
         Navigator.of(context).pop();

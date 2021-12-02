@@ -6,6 +6,7 @@ import 'signup.dart';
 import 'CalendarFiles/Cal.dart';
 import 'email_verification.dart';
 import 'QuestFiles/Questions.dart';
+import 'HistFiles/History.dart';
 
 void main() {
   runApp(const MyApp());
@@ -87,7 +88,9 @@ class Home extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ToExpenses()));
+                         builder: (context) => const History(title: 'History'),
+                  ),
+                );
                 // Then close the drawer
                 //Navigator.pop(context);
               },
@@ -101,7 +104,7 @@ class Home extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Questions(title: 'Calendar'),
+                    builder: (context) => const Questions(title: 'Questionnaire'),
                   ),
                 );
                 // Then close the drawer

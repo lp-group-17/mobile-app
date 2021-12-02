@@ -144,7 +144,11 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 buildDeets(),
-
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  child: const Text('Finished'),
+                  onPressed:() {Navigator.pop(context);}, //edit to save the information and send it through api or w/e
+                ),
               ],
             ),
           ],
