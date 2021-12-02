@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'login.dart';
 import 'CalendarFiles/cal.dart';
 import 'QuestFiles/Questions.dart';
+import 'HistFiles/History.dart';
 import 'BarChart/bar_chart_data.dart';
 
 class Home extends StatefulWidget {
@@ -131,17 +132,15 @@ class _Home extends State<Home> {
                       borderRadius:
                           const BorderRadius.all(Radius.circular(20.0)),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: openHistory,
                         child: Row(
                           children: const [
                             Icon(
-                              Icons.note_alt_rounded,
+                              Icons.history_edu_rounded,
                               size: 30.0,
                               color: Colors.white,
                             ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
+                            SizedBox(width: 10.0),
                             Text(
                               "History",
                               style: TextStyle(
@@ -188,10 +187,20 @@ class _Home extends State<Home> {
                               alignment: Alignment.center,
                               padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
 
-                              child: const Text(
-                                "Calendar",
-                                style: TextStyle(
-                                    fontSize: 28, color: Colors.white),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Icon(
+                                    Icons.calendar_today_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(width: 10.0),
+                                  Text(
+                                    "Calendar",
+                                    style: TextStyle(
+                                        fontSize: 28, color: Colors.white),
+                                  ),
+                                ],
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: const BorderRadius.only(
@@ -300,7 +309,7 @@ class _Home extends State<Home> {
                     child: Row(
                       children: const [
                         Icon(
-                          Icons.library_books,
+                          Icons.library_books_rounded,
                           size: 40.0,
                           color: Colors.white,
                         ),
@@ -356,6 +365,15 @@ class _Home extends State<Home> {
       context,
       MaterialPageRoute(
         builder: (context) => const Questions(title: 'Questions'),
+      ),
+    );
+  }
+
+  void openHistory() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const History(title: 'History'),
       ),
     );
   }
