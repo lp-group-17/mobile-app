@@ -45,49 +45,51 @@ class _Home extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 35.0),
+              const SizedBox(height: 20.0),
 
               // Welcome user and logout button
+              // Expanded(
+              //   flex: 1,
+              // child:
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Welcome, <USER>",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()..shader = linearGradient,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.only(right: 10.0),
+                      alignment: Alignment.centerRight,
+                      child: TextButton.icon(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                        ),
+                        onPressed: logout,
+                        label: const Icon(Icons.logout_rounded),
+                        icon: const Text("Logout"),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              // ),
               Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "Welcome, <USER>",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()..shader = linearGradient,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.only(right: 10.0),
-                        alignment: Alignment.centerRight,
-                        child: TextButton.icon(
-                          style: TextButton.styleFrom(
-                            primary: Colors.white,
-                          ),
-                          onPressed: logout,
-                          label: const Icon(Icons.logout_rounded),
-                          icon: const Text("Logout"),
-                        ),
-                      ),
-                    ),
-                  ],
+                child: const SizedBox(
+                  width: 356,
+                  // height: 250,
+                  child: BarChartSample3(),
                 ),
               ),
-              const SizedBox(
-                width: 356,
-                height: 250,
-                child: BarChartSample3(),
-              ),
-
               const SizedBox(height: 7.0),
 
               // New entry and journal
@@ -96,7 +98,7 @@ class _Home extends State<Home> {
                 children: [
                   SizedBox(
                     width: 165,
-                    height: 75,
+                    height: 60,
                     child: ClipRRect(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(20.0)),
@@ -127,7 +129,7 @@ class _Home extends State<Home> {
                   const SizedBox(width: 20),
                   SizedBox(
                     width: 165,
-                    height: 75,
+                    height: 60,
                     child: ClipRRect(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(20.0)),
@@ -158,138 +160,140 @@ class _Home extends State<Home> {
               const SizedBox(height: 10.0),
 
               // Calendar
-              SizedBox(
-                width: 350,
-                height: 250,
-                child: Material(
-                  // <----------------------------- Outer Material
-                  shadowColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              Expanded(
+                child: SizedBox(
+                  width: 350,
+                  // height: 250,
+                  child: Material(
+                    // <----------------------------- Outer Material
+                    shadowColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-                    child: Material(
-                      // <------------------------- Inner Material
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        //<------------------------- InkWell
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20.0)),
-                        // splashColor: Colors.white10,
-                        onTap: openCalendar,
-                        child: Column(
-                          children: [
-                            Container(
-                              // height: 20,
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      ),
+                      child: Material(
+                        // <------------------------- Inner Material
+                        type: MaterialType.transparency,
+                        child: InkWell(
+                          //<------------------------- InkWell
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20.0)),
+                          // splashColor: Colors.white10,
+                          onTap: openCalendar,
+                          child: Column(
+                            children: [
+                              Container(
+                                // height: 20,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
 
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.calendar_today_rounded,
-                                    color: Colors.white,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    Icon(
+                                      Icons.calendar_today_rounded,
+                                      color: Colors.white,
+                                    ),
+                                    SizedBox(width: 10.0),
+                                    Text(
+                                      "Calendar",
+                                      style: TextStyle(
+                                          fontSize: 28, color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(20.0),
+                                    topRight: Radius.circular(20.0),
                                   ),
-                                  SizedBox(width: 10.0),
-                                  Text(
-                                    "Calendar",
-                                    style: TextStyle(
-                                        fontSize: 28, color: Colors.white),
+                                  border: Border.all(color: Colors.white),
+                                  color: Colors.deepPurple,
+                                ),
+                              ),
+                              Container(
+                                // height: 20,
+                                alignment: Alignment.centerLeft,
+                                padding: const EdgeInsets.all(5),
+                                decoration: const BoxDecoration(
+                                  color: Colors.purple,
+                                  border: Border.symmetric(
+                                    vertical: BorderSide(color: Colors.white),
                                   ),
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(20.0),
-                                  topRight: Radius.circular(20.0),
                                 ),
-                                border: Border.all(color: Colors.white),
-                                color: Colors.deepPurple,
-                              ),
-                            ),
-                            Container(
-                              // height: 20,
-                              alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(5),
-                              decoration: const BoxDecoration(
-                                color: Colors.purple,
-                                border: Border.symmetric(
-                                  vertical: BorderSide(color: Colors.white),
+                                child: const Text(
+                                  "Today's Agenda:",
+                                  // DateFormat('EEEE, d MMMM yyyy')
+                                  //     .format(DateTime.now())
+                                  //     .toString(),
+                                  style: TextStyle(color: Colors.white),
                                 ),
                               ),
-                              child: const Text(
-                                "Today's Agenda:",
-                                // DateFormat('EEEE, d MMMM yyyy')
-                                //     .format(DateTime.now())
-                                //     .toString(),
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ),
-                            Expanded(
-                              // width: 350,
-                              // height: 225,
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  bottomLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0),
-                                ),
+                              Expanded(
+                                // width: 350,
+                                // height: 225,
+                                child: ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
 
-                                // padding:
-                                //     const EdgeInsets.fromLTRB(12.5, 0, 25, 0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.white),
-                                  ),
-                                  child: SfCalendar(
-                                    backgroundColor: Colors.white10,
-                                    headerHeight: 0,
-                                    allowViewNavigation: false,
-                                    view: CalendarView.schedule,
-                                    minDate: DateTime(
-                                        DateTime.now().year,
-                                        DateTime.now().month,
-                                        DateTime.now().day,
-                                        0,
-                                        0,
-                                        0),
-                                    maxDate: DateTime(
-                                        DateTime.now().year,
-                                        DateTime.now().month,
-                                        DateTime.now().day + 1,
-                                        0,
-                                        0,
-                                        0),
-                                    scheduleViewSettings:
-                                        const ScheduleViewSettings(
-                                      weekHeaderSettings: WeekHeaderSettings(
-                                        height: 0,
-                                      ),
-                                      dayHeaderSettings: DayHeaderSettings(
-                                        dayFormat: 'EEEE',
-                                        width: 0,
-                                        dayTextStyle: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.red,
+                                  // padding:
+                                  //     const EdgeInsets.fromLTRB(12.5, 0, 25, 0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.white),
+                                    ),
+                                    child: SfCalendar(
+                                      backgroundColor: Colors.white10,
+                                      headerHeight: 0,
+                                      allowViewNavigation: false,
+                                      view: CalendarView.schedule,
+                                      minDate: DateTime(
+                                          DateTime.now().year,
+                                          DateTime.now().month,
+                                          DateTime.now().day,
+                                          0,
+                                          0,
+                                          0),
+                                      maxDate: DateTime(
+                                          DateTime.now().year,
+                                          DateTime.now().month,
+                                          DateTime.now().day + 1,
+                                          0,
+                                          0,
+                                          0),
+                                      scheduleViewSettings:
+                                          const ScheduleViewSettings(
+                                        weekHeaderSettings: WeekHeaderSettings(
+                                          height: 0,
                                         ),
-                                        dateTextStyle: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.red,
+                                        dayHeaderSettings: DayHeaderSettings(
+                                          dayFormat: 'EEEE',
+                                          width: 0,
+                                          dayTextStyle: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.red,
+                                          ),
+                                          dateTextStyle: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.red,
+                                          ),
                                         ),
+                                        appointmentItemHeight: 30,
+                                        hideEmptyScheduleWeek: true,
                                       ),
-                                      appointmentItemHeight: 30,
-                                      hideEmptyScheduleWeek: true,
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -301,7 +305,7 @@ class _Home extends State<Home> {
               // Resources
               SizedBox(
                 width: 350,
-                height: 75,
+                height: 60,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                   child: ElevatedButton(
@@ -329,10 +333,11 @@ class _Home extends State<Home> {
                 ),
               ),
 
-              const Expanded(
-                flex: 1,
-                child: SizedBox(),
-              ),
+              const SizedBox(height: 10),
+              // const Expanded(
+              //   flex: 1,
+              //   child: SizedBox(),
+              // ),
             ],
           ),
         ),
