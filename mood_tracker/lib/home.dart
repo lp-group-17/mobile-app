@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'login.dart';
 import 'CalendarFiles/cal.dart';
 import 'QuestFiles/Questions.dart';
+import 'BarChart/bar_chart_data.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -31,7 +32,7 @@ class _Home extends State<Home> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            Colors.deepPurple,
+            // Colors.deepPurple,
             Colors.deepPurple,
             Colors.indigo,
           ],
@@ -81,16 +82,12 @@ class _Home extends State<Home> {
                 ),
               ),
               const SizedBox(
-                width: 350,
+                width: 356,
                 height: 250,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                  ),
-                ),
+                child: BarChartSample3(),
               ),
-              const SizedBox(height: 10.0),
+
+              const SizedBox(height: 7.0),
 
               // New entry and journal
               Row(
@@ -99,64 +96,29 @@ class _Home extends State<Home> {
                   SizedBox(
                     width: 165,
                     height: 75,
-                    child: Material(
-                      // <----------------------------- Outer Material
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20.0)),
-                          border: Border.all(color: Colors.white),
-                          gradient: const LinearGradient(
-                            begin: AlignmentDirectional.bottomStart,
-                            end: AlignmentDirectional.topEnd,
-                            colors: [
-                              Colors.purple,
-                              Colors.purple,
-                              Colors.purple,
-                              // Colors.purple,
-                              // Colors.deepPurple,
-                              Colors.deepPurple,
-                            ],
-                          ),
-                          // color: Colors.purple,
-                        ),
-                        child: Material(
-                          // <------------------------- Inner Material
-                          type: MaterialType.transparency,
-                          child: InkWell(
-                            //<------------------------- InkWell
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            splashColor: Colors.white10,
-                            onTap: openQuestions,
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Icon(
-                                  Icons.add_box_rounded,
-                                  size: 30.0,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text(
-                                  "New Entry",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20.0)),
+                      child: ElevatedButton(
+                        onPressed: openQuestions,
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.add_box_rounded,
+                              size: 30.0,
+                              color: Colors.white,
                             ),
-                          ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Text(
+                              "New Entry",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -165,64 +127,29 @@ class _Home extends State<Home> {
                   SizedBox(
                     width: 165,
                     height: 75,
-                    child: Material(
-                      // <----------------------------- Outer Material
-                      shadowColor: Colors.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(20.0)),
-                          border: Border.all(color: Colors.white),
-                          gradient: const LinearGradient(
-                            begin: AlignmentDirectional.bottomStart,
-                            end: AlignmentDirectional.topEnd,
-                            colors: [
-                              Colors.purple,
-                              Colors.purple,
-                              Colors.purple,
-                              // Colors.purple,
-                              // Colors.deepPurple,
-                              Colors.deepPurple,
-                            ],
-                          ),
-                          // color: Colors.purple,
-                        ),
-                        child: Material(
-                          // <------------------------- Inner Material
-                          type: MaterialType.transparency,
-                          child: InkWell(
-                            //<------------------------- InkWell
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(20.0)),
-                            splashColor: Colors.white10,
-                            onTap: () {},
-                            child: Row(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Icon(
-                                  Icons.note_alt_rounded,
-                                  size: 30.0,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(
-                                  width: 10.0,
-                                ),
-                                Text(
-                                  "Journal",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
+                    child: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20.0)),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.note_alt_rounded,
+                              size: 30.0,
+                              color: Colors.white,
                             ),
-                          ),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Text(
+                              "History",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -261,49 +188,31 @@ class _Home extends State<Home> {
                               alignment: Alignment.center,
                               padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
 
-                              child: Text(
+                              child: const Text(
                                 "Calendar",
                                 style: TextStyle(
                                     fontSize: 28, color: Colors.white),
                               ),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(20.0),
                                   topRight: Radius.circular(20.0),
                                 ),
                                 border: Border.all(color: Colors.white),
                                 color: Colors.deepPurple,
-                                // gradient: const LinearGradient(
-                                //   begin: AlignmentDirectional.bottomStart,
-                                //   end: AlignmentDirectional.topEnd,
-                                //   colors: [
-                                //     Colors.purple,
-                                //     Colors.purple,
-                                //     Colors.purple,
-                                //     Colors.purple,
-                                //     Colors.deepPurple,
-                                //     Colors.deepPurple,
-                                //     // Colors.green,
-                                //     // Colors.green,
-                                //     // Colors.green,
-                                //     // Colors.green,
-                                //     // Colors.yellow,
-                                //     // Colors.yellow,
-                                //   ],
-                                // ),
                               ),
                             ),
                             Container(
                               // height: 20,
                               alignment: Alignment.centerLeft,
                               padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.purple,
                                 border: Border.symmetric(
                                   vertical: BorderSide(color: Colors.white),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 "Today's Agenda:",
                                 // DateFormat('EEEE, d MMMM yyyy')
                                 //     .format(DateTime.now())
@@ -315,7 +224,7 @@ class _Home extends State<Home> {
                               // width: 350,
                               // height: 225,
                               child: ClipRRect(
-                                borderRadius: BorderRadius.only(
+                                borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(20.0),
                                   bottomRight: Radius.circular(20.0),
                                 ),
@@ -384,64 +293,28 @@ class _Home extends State<Home> {
               SizedBox(
                 width: 350,
                 height: 75,
-                child: Material(
-                  // <----------------------------- Outer Material
-                  shadowColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(20.0)),
-                      border: Border.all(color: Colors.white),
-                      gradient: const LinearGradient(
-                        begin: AlignmentDirectional.bottomStart,
-                        end: AlignmentDirectional.topEnd,
-                        colors: [
-                          Colors.purple,
-                          Colors.purple,
-                          Colors.purple,
-                          // Colors.purple,
-                          Colors.deepPurple,
-                          Colors.deepPurple,
-                        ],
-                      ),
-                      // color: Colors.purple,
-                    ),
-                    child: Material(
-                      // <------------------------- Inner Material
-                      type: MaterialType.transparency,
-                      child: InkWell(
-                        //<------------------------- InkWell
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(20.0)),
-                        splashColor: Colors.white10,
-                        onTap: () {},
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Icon(
-                              Icons.library_books,
-                              size: 40.0,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Text(
-                              "Resources",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.library_books,
+                          size: 40.0,
+                          color: Colors.white,
                         ),
-                      ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          "Resources",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
