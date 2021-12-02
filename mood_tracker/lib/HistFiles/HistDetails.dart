@@ -56,13 +56,13 @@ class HistDetails extends StatelessWidget {
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)),
-const SizedBox(height: 30),
-                        Text(historyModel.descrip,
+                const SizedBox(height: 30),
+                Text(historyModel.descrip,
                     style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
                         color: Colors.white)),
-                
+
                 //  Text(historyModel.Q1.toString(),
                 // style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)
                 // ),
