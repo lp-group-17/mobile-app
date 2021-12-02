@@ -20,11 +20,16 @@ class HistDetails extends StatelessWidget {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
         appBar: AppBar(
-          title: Text(historyModel.title),
+        backgroundColor: Colors.transparent,
+        title: Text(historyModel.title),
+        elevation: 0,
         ),
+        backgroundColor: Colors.transparent,
+          //title: Text(historyModel.title),
+
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(historyModel.descrip),
             Text('testing helloooo'),
