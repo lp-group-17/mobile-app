@@ -1,19 +1,26 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-class _BarChart extends StatelessWidget {
-  const _BarChart({Key? key}) : super(key: key);
+class MoodChart extends StatelessWidget {
+  const MoodChart({Key? key, required this.data}) : super(key: key);
+
+  final List<double> data;
 
   @override
   Widget build(BuildContext context) {
-    return BarChart(
-      BarChartData(
-        barTouchData: barTouchData,
-        titlesData: titlesData,
-        borderData: borderData,
-        barGroups: barGroups,
-        alignment: BarChartAlignment.spaceAround,
-        maxY: 6,
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.white,
+      child: BarChart(
+        BarChartData(
+          barTouchData: barTouchData,
+          titlesData: titlesData,
+          borderData: borderData,
+          barGroups: barGroups,
+          alignment: BarChartAlignment.spaceAround,
+          maxY: 6,
+        ),
       ),
     );
   }
@@ -80,7 +87,7 @@ class _BarChart extends StatelessWidget {
           x: 0,
           barRods: [
             BarChartRodData(
-              y: 2,
+              y: data[0],
               colors: [Colors.lightBlueAccent, Colors.greenAccent],
             ),
           ],
@@ -90,7 +97,7 @@ class _BarChart extends StatelessWidget {
           x: 1,
           barRods: [
             BarChartRodData(
-              y: 3,
+              y: data[1],
               colors: [Colors.lightBlueAccent, Colors.greenAccent],
             ),
           ],
@@ -99,7 +106,7 @@ class _BarChart extends StatelessWidget {
           x: 2,
           barRods: [
             BarChartRodData(
-              y: 4,
+              y: data[2],
               colors: [Colors.lightBlueAccent, Colors.greenAccent],
             ),
           ],
@@ -108,7 +115,7 @@ class _BarChart extends StatelessWidget {
           x: 3,
           barRods: [
             BarChartRodData(
-              y: 5,
+              y: data[3],
               colors: [Colors.lightBlueAccent, Colors.greenAccent],
             ),
           ],
@@ -116,24 +123,17 @@ class _BarChart extends StatelessWidget {
       ];
 }
 
-class BarChartSample3 extends StatefulWidget {
-  const BarChartSample3({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => BarChartSample3State();
-}
-
-class BarChartSample3State extends State<BarChartSample3> {
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.7,
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: Colors.white,
-        child: const _BarChart(),
-      ),
-    );
-  }
-}
+// class BarChartSample3State extends State<BarChartSample3> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return AspectRatio(
+//       aspectRatio: 1.7,
+//       child: Card(
+//         elevation: 0,
+//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+//         color: Colors.white,
+//         child: const _BarChart(),
+//       ),
+//     );
+//   }
+// }

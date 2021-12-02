@@ -6,6 +6,7 @@ import 'CalendarFiles/cal.dart';
 import 'QuestFiles/Questions.dart';
 import 'HistFiles/History.dart';
 import 'BarChart/bar_chart_data.dart';
+import 'BarChart/mood_chart.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -87,7 +88,7 @@ class _Home extends State<Home> {
                 child: const SizedBox(
                   width: 356,
                   // height: 250,
-                  child: BarChartSample3(),
+                  child: MoodChart(data: [1, 2, 3, 4]),
                 ),
               ),
               const SizedBox(height: 7.0),
