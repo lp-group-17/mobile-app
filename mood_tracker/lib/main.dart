@@ -21,8 +21,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => ChangeNotifierProvider(
         create: (context) => EventProvider(),
         child: const MaterialApp(
-          title: appTitle,
-          home: Home(title: appTitle),
+          title: "Mood Tracker",
+          home: Login(title: "Login"),
         ),
       );
 }
@@ -86,9 +86,9 @@ class Home extends StatelessWidget {
               onTap: () {
                 // Update the state of the app
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                         builder: (context) => const History(title: 'History'),
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const History(title: 'History'),
                   ),
                 );
                 // Then close the drawer
@@ -104,7 +104,8 @@ class Home extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Questions(title: 'Questionnaire'),
+                    builder: (context) =>
+                        const Questions(title: 'Questionnaire'),
                   ),
                 );
                 // Then close the drawer
