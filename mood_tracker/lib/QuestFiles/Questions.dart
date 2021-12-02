@@ -30,6 +30,7 @@ double Q5rating = 3;
 
 class _Questions extends State<Questions> {
     final deetsControl = TextEditingController();
+     final titleControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -156,6 +157,19 @@ class _Questions extends State<Questions> {
       ),
     );
   }
+
+  Widget buildTitle() => TextFormField(
+        style: const TextStyle(fontSize: 24),
+        decoration: const InputDecoration(
+          border: UnderlineInputBorder(),
+          hintText: 'Add Title',
+        ),
+        onFieldSubmitted: (_) {}, //can add save here
+        validator: (title) =>
+            title != null && title.isEmpty ? 'Please add a title' : null,
+        controller: titleControl,
+      );
+
   Widget buildDeets() => TextFormField(
         style: const TextStyle(fontSize: 24, color: Colors.white),
         decoration: const InputDecoration(
