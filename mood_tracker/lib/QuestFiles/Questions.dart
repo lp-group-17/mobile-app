@@ -60,7 +60,7 @@ class _Questions extends State<Questions> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                //const SizedBox(height: 10),
                 const Text(
                   "How has your mood been today?",
                   style: TextStyle(
@@ -96,7 +96,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q3
+                  "How has your irritability level been today?", //Q3
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -113,7 +113,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q4
+                  "How would you rate your ability to focus today?", //Q4
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -130,7 +130,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q5
+                  "How would you rate the day overall?", //Q5
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),

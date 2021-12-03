@@ -63,11 +63,11 @@ class MoodChart extends StatelessWidget {
               case 0:
                 return 'Mood';
               case 1:
-                return 'Anger';
-              case 2:
                 return 'Anxiety';
+              case 2:
+                return 'Irritability';
               case 3:
-                return 'Suicide';
+                return 'Focus';
               default:
                 return '';
             }

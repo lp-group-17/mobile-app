@@ -20,15 +20,15 @@ class History extends StatefulWidget {
 class _History extends State<History> {
 final ListKey = GlobalKey<AnimatedListState>();
 // ignore: non_constant_identifier_names
-static List<String> Titles = ['Entry #1','Entry #2','Entry #3','Entry #4','Entry #5'];
+static List<String> Titles = ['11/27','11/28','11/29','11/30','12/1'];
 // ignore: non_constant_identifier_names
 final List<HistoryModel> Data = List.generate(Titles.length, (index) => HistoryModel(
   title: Titles[index],
-        descrip: Titles[index],
-        Q1: 1.0,
-        Q2: 5.0,
+        descrip: 'I had a pretty good day today :)',
+        Q1: 5.0,
+        Q2: 1.0,
         Q3: 2.0,
-        Q4: 3.0,
+        Q4: 4.0,
         Q5: 1.0,));
 
   @override
