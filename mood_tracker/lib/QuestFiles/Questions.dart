@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/HistFiles/HistoryModel.dart';
+import 'package:provider/provider.dart';
+import 'QProvider.dart';
 
 class Questions extends StatefulWidget {
   const Questions({Key? key, required this.title}) : super(key: key);
@@ -188,7 +190,7 @@ class _Questions extends State<Questions> {
      Future save() async {
 
       final event = HistoryModel(
-        title: titleControl.text,
+        title: Time.toString(),
         descrip: deetsControl.text,
         Q1: Q1rating,
         Q2: Q2rating,
@@ -197,13 +199,13 @@ class _Questions extends State<Questions> {
         Q5: Q5rating,
       );
       // final isEdit = widget.event != null;
-      // final provider = Provider.of<EventProvider>(context,
-      //     listen: false); 
+       final provider = Provider.of<QProvider>(context,
+           listen: false); 
       // if (isEdit) {
       //   provider.editE(event, widget.event!);
       //   Navigator.of(context).pop();
       // } else {
-      //   provider.addEvent(event);
+         provider.QaddEvent(event);
       //   Navigator.of(context).pop();
       // }
     
