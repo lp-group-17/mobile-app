@@ -8,18 +8,21 @@ class MoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.white,
-      child: BarChart(
-        BarChartData(
-          barTouchData: barTouchData,
-          titlesData: titlesData,
-          borderData: borderData,
-          barGroups: barGroups,
-          alignment: BarChartAlignment.spaceAround,
-          maxY: 6,
+    return AspectRatio(
+      aspectRatio: 1.7,
+      child: Card(
+        elevation: 0,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        color: Colors.white,
+        child: BarChart(
+          BarChartData(
+            barTouchData: barTouchData,
+            titlesData: titlesData,
+            borderData: borderData,
+            barGroups: barGroups,
+            alignment: BarChartAlignment.spaceAround,
+            maxY: 5,
+          ),
         ),
       ),
     );
@@ -98,7 +101,10 @@ class MoodChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               y: data[1],
-              colors: [Colors.lightBlueAccent, Colors.greenAccent],
+              colors: [
+                Colors.lightBlueAccent,
+                Colors.redAccent,
+              ],
             ),
           ],
         ),
@@ -107,7 +113,7 @@ class MoodChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               y: data[2],
-              colors: [Colors.lightBlueAccent, Colors.greenAccent],
+              colors: [Colors.lightBlueAccent, Colors.yellowAccent],
             ),
           ],
         ),
@@ -116,7 +122,11 @@ class MoodChart extends StatelessWidget {
           barRods: [
             BarChartRodData(
               y: data[3],
-              colors: [Colors.lightBlueAccent, Colors.greenAccent],
+              colors: [
+                Colors.lightBlueAccent,
+                Colors.orangeAccent,
+                Colors.redAccent
+              ],
             ),
           ],
         ),
