@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/HistFiles/HistoryModel.dart';
+import 'package:provider/provider.dart';
+import 'QProvider.dart';
 
 class Questions extends StatefulWidget {
   const Questions({Key? key, required this.title}) : super(key: key);
@@ -60,7 +62,7 @@ class _Questions extends State<Questions> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 20),
+                //const SizedBox(height: 10),
                 const Text(
                   "How has your mood been today?",
                   style: TextStyle(
@@ -96,7 +98,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q3
+                  "How has your irritability level been today?", //Q3
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -113,7 +115,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q4
+                  "How would you rate your ability to focus today?", //Q4
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -130,7 +132,7 @@ class _Questions extends State<Questions> {
                 ),
                 const SizedBox(height: 50),
                 const Text(
-                  "How has your anxiety level been today?", //Q5
+                  "How would you rate the day overall?", //Q5
                   style: TextStyle(
                       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
@@ -188,7 +190,7 @@ class _Questions extends State<Questions> {
      Future save() async {
 
       final event = HistoryModel(
-        title: titleControl.text,
+        title: Time.toString(),
         descrip: deetsControl.text,
         Q1: Q1rating,
         Q2: Q2rating,
@@ -197,13 +199,13 @@ class _Questions extends State<Questions> {
         Q5: Q5rating,
       );
       // final isEdit = widget.event != null;
-      // final provider = Provider.of<EventProvider>(context,
-      //     listen: false); 
+       final provider = Provider.of<QProvider>(context,
+           listen: false); 
       // if (isEdit) {
       //   provider.editE(event, widget.event!);
       //   Navigator.of(context).pop();
       // } else {
-      //   provider.addEvent(event);
+         provider.QaddEvent(event);
       //   Navigator.of(context).pop();
       // }
     
