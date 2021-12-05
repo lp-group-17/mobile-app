@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'home.dart';
 import 'forgot_password.dart';
+import 'api/apiHandler.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -176,6 +177,8 @@ class _Login extends State<Login> {
   }
 
   void login() {
+    APIHandler api = APIHandler();
+    print(api.login("QQ", "password"));
     // TODO:  Check registration status
     //        If verified, goto home page
     //        If not verified, go to email verify page
