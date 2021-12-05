@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:mood_tracker/globals.dart';
+import 'package:mood_tracker/globals.dart' as globals;
 
-String jsonString = jsonEncode(user);
-Map<String, dynamic> userMap = jsonDecode(jsonString);
-var user = User.fromJson(userMap);
+// String jsonString = jsonEncode(user);
+// Map<String, dynamic> userMap = jsonDecode(jsonString);
+// var user = User.fromJson(userMap);
 
 class Event {
   final String title;
@@ -26,11 +26,11 @@ class Event {
 //   String username = json['Username']
 // };
   Map<String, dynamic> toJson() => {
-        'User': user.username,
+        'User': globals.ID,
         'Title': title,
         'Descrip': descrip,
-        'From': from,
-        'To': to,
+        'From': from.toIso8601String(),
+        'To': to.toIso8601String(),
         'AllDay': allDay,
       };
 }

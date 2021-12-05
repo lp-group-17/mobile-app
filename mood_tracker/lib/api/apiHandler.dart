@@ -8,12 +8,11 @@ class APIHandler {
   static const String url = "http://137.184.153.148/api/";
   var dio = Dio();
 
-  Future<bool> login(String username, String password) async {
-    Map<String, dynamic> body = {"username": username, "password": password};
+  Future<Response> login(String username, String password) async {
+    Map<String, dynamic> body = {"loginID": username, "password": password};
 
-    Response response = await dio.post(url + 'login', data: body);
-    print(response.data["Verified"]);
-    return true;
+    var response = await dio.post(url + 'login', data: body);
+    return response;
   }
 
   void addEvent(Map<String, dynamic> event) {

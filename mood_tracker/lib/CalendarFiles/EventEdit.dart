@@ -282,6 +282,10 @@ class _EventEditingPageState extends State<EventEditingPage> {
         to: toDate,
         allDay: isChecked,
       );
+
+      APIHandler api = APIHandler();
+      api.addEvent(event.toJson());
+
       final isEdit = widget.event != null;
       final provider = Provider.of<EventProvider>(context, listen: false);
       if (isEdit) {
@@ -291,9 +295,6 @@ class _EventEditingPageState extends State<EventEditingPage> {
         provider.addEvent(event);
         Navigator.of(context).pop();
       }
-
-      APIHandler api = APIHandler();
-      api.addEvent(event.toJson());
     }
   }
 }
