@@ -8,9 +8,7 @@ class MoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.7,
-      child: Card(
+    return Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         color: Colors.white,
@@ -24,8 +22,7 @@ class MoodChart extends StatelessWidget {
             maxY: 5,
           ),
         ),
-      ),
-    );
+      );
   }
 
   BarTouchData get barTouchData => BarTouchData(
