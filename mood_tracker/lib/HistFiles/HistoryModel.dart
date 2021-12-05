@@ -17,4 +17,16 @@ class HistoryModel {
      required this.Q3, 
      required this.Q4, 
      required this.Q5});
+
+     Map<String, dynamic> toJson() => 
+  {
+    //'User': user,
+    'Title': title,
+    'Descrip': descrip,
+    'Q1': Q1,
+    'Q2': Q2,
+    'Q3': Q3,
+    'Q4': Q4,
+    'Q5': Q5,
+  };
 }

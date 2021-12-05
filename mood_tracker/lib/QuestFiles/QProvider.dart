@@ -4,25 +4,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:mood_tracker/HistFiles/HistoryModel.dart';
 
 class QProvider extends ChangeNotifier{
-  final List<HistoryModel> _events = [];
+  final List<HistoryModel> _entries = [];
 
-  List<HistoryModel> get events => _events;
+  List<HistoryModel> get events => _entries;
 
-  void QaddEvent (HistoryModel event){
-    _events.add(event);
+  void QaddEvent (HistoryModel entry){
+    _entries.add(entry);
     notifyListeners();
   }
 
-  void deleteE(HistoryModel event){
-    _events.remove(event);
+  void deleteE(HistoryModel entry){
+    _entries.remove(entry);
     notifyListeners();
   }
 
   void editE(HistoryModel newE, HistoryModel oldE){
-    final index = _events.indexOf(oldE);
-    _events[index] = newE;
+    final index = _entries.indexOf(oldE);
+    _entries[index] = newE;
 
     notifyListeners();
   }
+
+  List<HistoryModel> getList(){
+      return _entries;
+}
 
 }
