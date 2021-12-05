@@ -7,6 +7,7 @@ import 'CalendarFiles/Cal.dart';
 import 'email_verification.dart';
 import 'QuestFiles/Questions.dart';
 import 'HistFiles/History.dart';
+import 'globals.dart' as globals;
 
 void main() {
   runApp(const MyApp());

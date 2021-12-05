@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mood_tracker/HistFiles/HistoryModel.dart';
 import 'package:provider/provider.dart';
 import 'QProvider.dart';
+import 'package:mood_tracker/globals.dart' as globals;
 
 class Questions extends StatefulWidget {
   const Questions({Key? key, required this.title}) : super(key: key);
@@ -152,7 +153,8 @@ class _Questions extends State<Questions> {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   child: const Text('Finished'),
-                  onPressed:() {Navigator.pop(context);}, //edit to save the information and send it through api or w/e/ do save
+                  onPressed:() {save;
+                  Navigator.pop(context);}, //edit to save the information and send it through api or w/e/ do save
                 ),
               ],
             ),
