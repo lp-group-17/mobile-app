@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'event.dart';
 import 'Getters.dart';
 import 'EProvider.dart';
+import 'package:mood_tracker/api/apiHandler.dart';
 //import 'package:ntp/ntp.dart';
 
 class EventEditingPage extends StatefulWidget {
@@ -57,19 +58,18 @@ class _EventEditingPageState extends State<EventEditingPage> {
         appBar: AppBar(
           leading: const CloseButton(),
           actions: doAddBut(),
-
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.deepPurple,
-                Colors.indigo,
-              ],
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.deepPurple,
+                  Colors.indigo,
+                ],
+              ),
             ),
           ),
-        ),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(12),
@@ -81,7 +81,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
                 buildTitle(),
                 const SizedBox(height: 12),
                 buildDateTime(),
-                buildBox(),                   //these 2 lines need to save their input to the actual data list n stuff
+                buildBox(), //these 2 lines need to save their input to the actual data list n stuff
                 buildDeets(),
                 // const TextField(
                 //   decoration: InputDecoration(
@@ -96,7 +96,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
           ),
         ),
       );
-Widget buildDeets() => TextFormField(
+  Widget buildDeets() => TextFormField(
         style: const TextStyle(fontSize: 24),
         decoration: const InputDecoration(
           border: UnderlineInputBorder(),
@@ -109,8 +109,6 @@ Widget buildDeets() => TextFormField(
       );
 
   Widget buildBox() {
-    
-
     return StatefulBuilder(
       builder: (context, StateSetter setState) {
         return Center(
@@ -134,13 +132,12 @@ Widget buildDeets() => TextFormField(
   List<Widget> doAddBut() => [
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            primary:Colors.transparent,
+            primary: Colors.transparent,
             shadowColor: Colors.transparent,
           ),
           onPressed: save,
           icon: const Icon(Icons.done),
           label: const Text('ADD'),
-          
         )
       ];
 
@@ -286,8 +283,7 @@ Widget buildDeets() => TextFormField(
         allDay: isChecked,
       );
       final isEdit = widget.event != null;
-      final provider = Provider.of<EventProvider>(context,
-          listen: false); 
+      final provider = Provider.of<EventProvider>(context, listen: false);
       if (isEdit) {
         provider.editE(event, widget.event!);
         Navigator.of(context).pop();
@@ -295,6 +291,9 @@ Widget buildDeets() => TextFormField(
         provider.addEvent(event);
         Navigator.of(context).pop();
       }
+
+      APIHandler api = APIHandler();
+      api.addEvent(event.toJson());
     }
   }
 }
