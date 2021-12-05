@@ -65,25 +65,6 @@ class _CalendarPage extends State<CalendarPage> {
       ),
     );
   }
+  
 }
 
-class ToJournal extends StatelessWidget {
-  const ToJournal({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Journal goes here"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
