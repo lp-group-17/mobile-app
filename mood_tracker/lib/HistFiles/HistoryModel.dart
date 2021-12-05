@@ -7,7 +7,7 @@ class HistoryModel {
   final double Q2;
   final double Q3;
   final double Q4;
-  final double Q5;
+  //final double Q5;
 
   const HistoryModel({
       required this.title, 
@@ -16,7 +16,8 @@ class HistoryModel {
      required this.Q2, 
      required this.Q3, 
      required this.Q4, 
-     required this.Q5});
+     //required this.Q5
+     });
 
      Map<String, dynamic> toJson() => 
   {
@@ -27,6 +28,6 @@ class HistoryModel {
     'Q2': Q2,
     'Q3': Q3,
     'Q4': Q4,
-    'Q5': Q5,
+    //'Q5': Q5,
   };
 }

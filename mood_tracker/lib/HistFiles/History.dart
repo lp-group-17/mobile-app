@@ -32,7 +32,8 @@ final List<HistoryModel> Data = List.generate(Titles.length, (index) => HistoryM
         Q2: 1.0,
         Q3: 2.0,
         Q4: 4.0,
-        Q5: 1.0,));
+        //Q5: 1.0,
+        ));
   
   
 

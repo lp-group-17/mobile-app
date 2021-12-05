@@ -30,7 +30,7 @@ double Q3rating = 3;
 // ignore: non_constant_identifier_names
 double Q4rating = 3;
 // ignore: non_constant_identifier_names
-double Q5rating = 3;
+//double Q5rating = 3;
 
 class _Questions extends State<Questions> {
     final deetsControl = TextEditingController();
@@ -131,23 +131,23 @@ class _Questions extends State<Questions> {
                   divisions: 4,
                   label:"$Q4rating",
                 ),
-                const SizedBox(height: 50),
-                const Text(
-                  "How would you rate the day overall?", //Q5
-                  style: TextStyle(
-                      fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                const SizedBox(height: 20),
-                Slider(
-                  value: Q5rating,
-                  min:1,
-                  max: 5,
-                  onChanged: (newRating){
-                    setState(() => Q5rating = newRating);
-                  },
-                  divisions: 4,
-                  label:"$Q5rating",
-                ),
+                // const SizedBox(height: 50),
+                // const Text(
+                //   "How would you rate the day overall?", //Q5
+                //   style: TextStyle(
+                //       fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+                // ),
+                // const SizedBox(height: 20),
+                // Slider(
+                //   value: Q5rating,
+                //   min:1,
+                //   max: 5,
+                //   onChanged: (newRating){
+                //     setState(() => Q5rating = newRating);
+                //   },
+                //   divisions: 4,
+                //   label:"$Q5rating",
+                // ),
                 const SizedBox(height: 50),
                 buildDeets(),
                 const SizedBox(height: 30),
@@ -198,7 +198,7 @@ class _Questions extends State<Questions> {
         Q2: Q2rating,
         Q3: Q3rating,
         Q4: Q4rating,
-        Q5: Q5rating,
+        //Q5: Q5rating,
       );
       // final isEdit = widget.event != null;
        final provider = Provider.of<QProvider>(context,
