@@ -2,11 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:mood_tracker/QuestFiles/Questions.dart';
+import 'package:mood_tracker/api/apiHandler.dart';
 import 'package:provider/provider.dart';
 import 'HistDetails.dart';
 import 'HistoryModel.dart';
 import 'ListEdit.dart';
 import 'QData.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 import 'package:mood_tracker/QuestFiles/QProvider.dart';
 
 class History extends StatefulWidget {
@@ -20,20 +23,37 @@ class History extends StatefulWidget {
 class _History extends State<History> {
   final ListKey = GlobalKey<AnimatedListState>();
 // ignore: non_constant_identifier_names
-  static List<String> Titles = ['11/27', '11/28', '11/29', '11/30', '12/1'];
-// ignore: non_constant_identifier_names
-  final List<HistoryModel> Data = List.generate(
-    Titles.length,
-    (index) => HistoryModel(
-      date: DateTime.now(),
-      descrip: 'I had a pretty good day today :)',
-      Q1: 5.0,
-      Q2: 1.0,
-      Q3: 2.0,
-      Q4: 4.0,
-      //Q5: 1.0,
-    ),
-  );
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  List<HistoryModel> entries = [];
+  int count = 0;
+
+//this is what you need for events/entries
+  Future<void> loadData() async {
+    APIHandler api = APIHandler();
+    entries.clear();
+
+    var data = await api.getEntries();
+    entries.clear();
+    data["Entries"].forEach((entry) => {
+          entries.add(HistoryModel(
+            date: DateTime.parse(entry["Date"]),
+            descrip: entry["Descrip"],
+            Q1: entry["Q1"].toDouble(),
+            Q2: entry["Q2"].toDouble(),
+            Q3: entry["Q3"].toDouble(),
+            Q4: entry["Q4"].toDouble(),
+          )),
+        });
+
+    count = entries.length;
+    print(entries);
+    setState(() {}); //tells page to refresh widget when you get data
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,25 +74,39 @@ class _History extends State<History> {
           elevation: 0,
         ),
         backgroundColor: Colors.transparent,
-        body: AnimatedList(
-          key: ListKey,
-          initialItemCount: Titles.length,
-          itemBuilder: (context, index, animation) => ListEdit(
-            item: Data[index],
-            animation: animation,
-            onClicked: () => removeItem(index),
-            onClicked2: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HistDetails(
-                        historyModel: Data[index],
-                      )));
-            },
-            //onClicked2: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => HistDetails(historyModel:Data[index],)));},
-          ),
-        ),
+        body: ListView.builder(
+            reverse: true,
+            itemCount: entries.length,
+            itemBuilder: (context, index) {
+              final item = entries[index];
+              String frmtdate = DateFormat('M/d, y').format(item.date);
+
+              return Card(
+                child: ListTile(
+                  title: Text(frmtdate),
+                  trailing: Row(
+                    mainAxisSize:MainAxisSize.min, // space between two icons
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: <Widget>[
+                      IconButton(
+                        icon:Icon(Icons.delete, color: Colors.red), 
+                        onPressed: (){removeItem(index);}),
+                        IconButton(
+                          icon: Icon(Icons.arrow_forward),
+                          onPressed: (){
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HistDetails(historyModel: entries[index]))).then((_) {loadData();});
+                          },
+                        ),  // icon-1
+                       // icon-2
+                    ],
+                  ),
+                ),
+              );
+            }),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
+            test;
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -89,17 +123,30 @@ class _History extends State<History> {
 //   final newIndex = 1;
 //   final newData =
 // }
+
+  void test() {
+    print("testing");
+    final t = 1;
+    final nT = (List.of(entries).first);
+
+    entries.insert(t, nT);
+    ListKey.currentState!.insertItem(
+      t,
+      duration: Duration(milliseconds: 600),
+    );
+  }
+
   void removeItem(int index) {
     // ignore: non_constant_identifier_names
-    final RemovedItem = Data[index];
-    Data.removeAt(index);
-    ListKey.currentState!.removeItem(
-      index,
-      (context, animation) => ListEdit(
-          item: RemovedItem,
-          animation: animation,
-          onClicked: () {},
-          onClicked2: () {}),
-    );
+    final RemovedItem = entries[index];
+    entries.removeAt(index);
+    // ListKey.currentState!.removeItem(
+    //   index,
+    //   (context, animation) => ListEdit(
+    //       item: RemovedItem,
+    //       animation: animation,
+    //       onClicked: () {},
+    //       onClicked2: () {}),
+    // );
   }
 }

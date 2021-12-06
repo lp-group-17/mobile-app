@@ -49,7 +49,7 @@ class _CalendarPage extends State<CalendarPage> {
               final event = details.appointments!.first;
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => EventView(event: event),
-              ));
+              ),);
             }
             // ignore: empty_catches
             catch (e) {}

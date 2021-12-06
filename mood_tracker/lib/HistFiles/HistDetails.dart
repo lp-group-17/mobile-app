@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:mood_tracker/BarChart/mood_chart.dart';
 import 'HistoryModel.dart';
 import 'package:mood_tracker/BarChart/bar_chart_data.dart';
+import 'package:intl/intl.dart';
 
 class HistDetails extends StatelessWidget {
   const HistDetails({Key? key, required this.historyModel}) : super(key: key);
   final HistoryModel historyModel;
+  
 
   @override
   Widget build(BuildContext context) {
+    String frmtdate = DateFormat('M/d, y @ H:m').format(historyModel.date);
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -24,7 +27,7 @@ class HistDetails extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(historyModel.date.toString()),
+          title: Text(frmtdate),
           elevation: 0,
         ),
         backgroundColor: Colors.transparent,

@@ -140,25 +140,25 @@ class _Questions extends State<Questions> {
                   divisions: 4,
                   label: "$Q4rating",
                 ),
-                const SizedBox(height: 50),
-                const Text(
-                  "How would you rate the day overall?", //Q5
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                const SizedBox(height: 20),
-                Slider(
-                  value: Q5rating,
-                  min: 1,
-                  max: 5,
-                  onChanged: (newRating) {
-                    setState(() => Q5rating = newRating);
-                  },
-                  divisions: 4,
-                  label: "$Q5rating",
-                ),
+                // const SizedBox(height: 50),
+                // const Text(
+                //   "How would you rate the day overall?", //Q5
+                //   style: TextStyle(
+                //       fontSize: 24,
+                //       fontWeight: FontWeight.bold,
+                //       color: Colors.white),
+                // ),
+                // const SizedBox(height: 20),
+                // Slider(
+                //   value: Q5rating,
+                //   min: 1,
+                //   max: 5,
+                //   onChanged: (newRating) {
+                //     setState(() => Q5rating = newRating);
+                //   },
+                //   divisions: 4,
+                //   label: "$Q5rating",
+                // ),
                 const SizedBox(height: 50),
                 buildDeets(),
                 const SizedBox(height: 30),
