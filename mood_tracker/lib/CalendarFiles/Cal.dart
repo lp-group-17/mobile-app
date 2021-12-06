@@ -1,10 +1,16 @@
+//import 'dart:html';
+import 'event.dart';
 import 'package:flutter/material.dart';
+import 'package:mood_tracker/HistFiles/HistoryModel.dart';
+import 'package:mood_tracker/api/apiHandler.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'EProvider.dart';
 import 'EventEdit.dart';
 import 'EventView.dart';
 import 'EventsData.dart';
+import 'package:mood_tracker/home_events.dart';
+//import 'dart:html';
 
 // ignore: prefer_const_constructors
 class CalendarPage extends StatefulWidget {
@@ -15,7 +21,37 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPage();
 }
 
+
 class _CalendarPage extends State<CalendarPage> {
+
+  List<Event> eventss = [];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+//this is what you need for events/entries
+  Future<void> loadData() async {
+    APIHandler api = APIHandler();
+    var data = await api.getEvents();
+    eventss.clear();
+    data["Events"].forEach((event) => {
+          //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
+          eventss.add(Event(
+            title: event["Title"],
+            descrip: event["Descrip"],
+            to: DateTime.parse(event["To"]),
+            from: DateTime.parse(event["From"]),
+            allDay: event["AllDay"],
+          ))
+        });
+
+
+    setState(() {});
+  }
+  
   @override
   Widget build(BuildContext context) {
     final events = Provider.of<EventProvider>(context).events;
@@ -37,7 +73,7 @@ class _CalendarPage extends State<CalendarPage> {
         //backgroundColor: Colors.deepPurple.shade400,
       ),
       body: SfCalendar(
-          dataSource: Appointments(events),
+          dataSource: EventsDataSource(eventss),
           view: CalendarView.month,
           //todayHighlightColor: Colors.indigo,
           //backgroundColor: Colors.purple,
@@ -49,7 +85,8 @@ class _CalendarPage extends State<CalendarPage> {
               final event = details.appointments!.first;
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => EventView(event: event),
-              ),);
+              ),
+              );
             }
             // ignore: empty_catches
             catch (e) {}
