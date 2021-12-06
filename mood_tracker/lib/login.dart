@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'globals.dart';
 import 'signup.dart';
 import 'home.dart';
 import 'forgot_password.dart';
+import 'email_verification.dart';
+import 'api/apiHandler.dart';
+import 'package:dio/dio.dart';
+import 'globals.dart' as globals;
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
@@ -176,18 +181,56 @@ class _Login extends State<Login> {
     );
   }
 
-  void login() {
+  Future<void> login() async {
+    APIHandler api = APIHandler();
+    var response = await api.login("QQ", "password");
+    var data = response.data;
+    if (data["error"] == "") {
+      globals.fname = data["User"]["Firstname"];
+      globals.lname = data["User"]["Lastname"];
+      globals.email = data["User"]["Email"];
+      globals.ID = data["User"]["_id"];
+      globals.username = data["User"]["Username"];
+      globals.verified = data["User"]["Verified"];
+
+      if (globals.verified) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Home(title: 'Home'),
+          ),
+          (_) => false,
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Email(title: 'Email Verification'),
+          ),
+        );
+      }
+    }
+
     // TODO:  Check registration status
     //        If verified, goto home page
     //        If not verified, go to email verify page
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Home(title: 'Home'),
-      ),
-      (_) => false,
-    );
   }
+
+  // Future<User>? _futureUser;
+  // FutureBuilder<User> buildFutureBuilder() {
+  //   return FutureBuilder<User>(
+  //     future: _futureUser,
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasData) {
+  //         return Text(snapshot.data!.title);
+  //       } else if (snapshot.hasError) {
+  //         return Text('${snapshot.error}');
+  //       }
+
+  //       return const CircularProgressIndicator();
+  //     },
+  //   );
+  // }
 
   void signup() {
     // TODO: Go to signup page
