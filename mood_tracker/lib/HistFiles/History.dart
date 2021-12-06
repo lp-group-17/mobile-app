@@ -72,6 +72,21 @@ class _History extends State<History> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: <Widget>[         
+          IconButton(
+            icon: const Icon(Icons.add),
+            tooltip: 'Go to the next page',
+            onPressed: () {
+              test;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Questions(title: 'Questionnaire'),
+              ),
+            );
+            },
+          ),
+        ],
         ),
         backgroundColor: Colors.transparent,
         body: ListView.builder(
@@ -103,18 +118,20 @@ class _History extends State<History> {
                 ),
               );
             }),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            test;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Questions(title: 'Questionnaire'),
-              ),
-            );
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   child: const Icon(Icons.add),
+          
+        //   onPressed: () {
+        //     test;
+        //     Navigator.push(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => const Questions(title: 'Questionnaire'),
+        //       ),
+        //     );
+        //   },
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerTop,
       ),
     );
   }
