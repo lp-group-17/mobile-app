@@ -11,6 +11,7 @@ import 'CalendarFiles/event.dart';
 import 'HistFiles/HistoryModel.dart';
 import 'api/apiHandler.dart';
 import 'home_events.dart';
+import 'Resources.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -470,7 +471,7 @@ class _Home extends State<Home> {
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xff381980),
                       ),
-                      onPressed: () {},
+                      onPressed: openResources,
                       child: Row(
                         children: const [
                           Icon(
@@ -501,6 +502,15 @@ class _Home extends State<Home> {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void openResources() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Resources(title: 'Resources'),
       ),
     );
   }
