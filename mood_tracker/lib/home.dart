@@ -33,13 +33,21 @@ class _Home extends State<Home> {
 
   List<Event> events = [];
   List<HistoryModel> entries = [];
+  List<double> moodAverages = [0, 0, 0, 0];
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
 
 //this is what you need for events/entries
   Future<void> loadData() async {
     APIHandler api = APIHandler();
     var data = await api.getEvents();
     events.clear();
-    data["Events"].forEach((event) => { //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
+    data["Events"].forEach((event) => {
+          //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
           events.add(Event(
             title: event["Title"],
             descrip: event["Descrip"],
@@ -51,25 +59,33 @@ class _Home extends State<Home> {
 
     data = await api.getEntries();
     entries.clear();
-    print(data);
+    List<double> sums = [0, 0, 0, 0];
+    double length = data["Entries"].length.toDouble();
     data["Entries"].forEach((entry) => {
           entries.add(HistoryModel(
             title: entry["Title"],
             descrip: entry["Descrip"],
-            Q1: entry["Q1"] as double,
-            Q2: entry["Q2"] as double,
-            Q3: entry["Q3"] as double,
-            Q4: entry["Q4"] as double,
-            //Q5: entry["Q5"],
+            Q1: entry["Q1"].toDouble(),
+            Q2: entry["Q2"].toDouble(),
+            Q3: entry["Q3"].toDouble(),
+            Q4: entry["Q4"].toDouble(),
           )),
-          print(entry)
+          sums[0] += entry["Q1"].toDouble(),
+          sums[1] += entry["Q2"].toDouble(),
+          sums[2] += entry["Q3"].toDouble(),
+          sums[3] += entry["Q4"].toDouble()
         });
+
+    for (int i = 0; i < 4; i++) {
+      moodAverages[i] = sums[i] / length;
+    }
+
+    print(moodAverages);
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    loadData();
-
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -198,7 +214,12 @@ class _Home extends State<Home> {
                           // child: const SizedBox(
                           // // width: 356,
                           // height: 250,
-                          child: MoodChart(data: [1, 2, 3, 4]),
+                          child: MoodChart(data: [
+                            moodAverages[0],
+                            moodAverages[1],
+                            moodAverages[2],
+                            moodAverages[3]
+                          ]),
                           // ),
                         ),
                       ],
