@@ -1,12 +1,10 @@
-
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'HistoryModel.dart';
 
-class Appointments extends CalendarDataSource{
-  Appointments(List<HistoryModel> appointments){
+class Appointments extends CalendarDataSource {
+  Appointments(List<HistoryModel> appointments) {
     this.appointments = appointments;
-  // ignore: non_constant_identifier_names
-  
+    // ignore: non_constant_identifier_names
   }
 
   HistoryModel getEvent(int index) => appointments![index] as HistoryModel;
@@ -18,9 +16,7 @@ class Appointments extends CalendarDataSource{
   //double getQ5(int index) => getEvent(index).Q5;
 
   @override
-  String getSubject(int index) => getEvent(index).title;
+  String getSubject(int index) => getEvent(index).date.toString();
 
   String getDescrip(int index) => getEvent(index).descrip;
-
-  
 }

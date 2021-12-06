@@ -10,6 +10,7 @@ import 'BarChart/mood_chart.dart';
 import 'CalendarFiles/event.dart';
 import 'HistFiles/HistoryModel.dart';
 import 'api/apiHandler.dart';
+import 'home_events.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -63,7 +64,7 @@ class _Home extends State<Home> {
     double length = data["Entries"].length.toDouble();
     data["Entries"].forEach((entry) => {
           entries.add(HistoryModel(
-            title: entry["Title"],
+            date: DateTime.parse(entry["Date"]),
             descrip: entry["Descrip"],
             Q1: entry["Q1"].toDouble(),
             Q2: entry["Q2"].toDouble(),
@@ -80,7 +81,6 @@ class _Home extends State<Home> {
       moodAverages[i] = sums[i] / length;
     }
 
-    print(moodAverages);
     setState(() {});
   }
 
@@ -404,6 +404,7 @@ class _Home extends State<Home> {
                                           // border: Border.all(color: Colors.white),
                                           ),
                                       child: SfCalendar(
+                                        dataSource: EventsDataSource(events),
                                         backgroundColor: Colors.white10,
                                         headerHeight: 0,
                                         allowViewNavigation: false,
@@ -521,7 +522,9 @@ class _Home extends State<Home> {
       MaterialPageRoute(
         builder: (context) => const CalendarPage(title: 'Calendar'),
       ),
-    );
+    ).then((_) {
+      loadData();
+    });
   }
 
   void openQuestions() {
@@ -530,7 +533,9 @@ class _Home extends State<Home> {
       MaterialPageRoute(
         builder: (context) => const Questions(title: 'Questions'),
       ),
-    );
+    ).then((_) {
+      loadData();
+    });
   }
 
   void openHistory() {
@@ -539,6 +544,8 @@ class _Home extends State<Home> {
       MaterialPageRoute(
         builder: (context) => const History(title: 'History'),
       ),
-    );
+    ).then((_) {
+      loadData();
+    });
   }
 }
