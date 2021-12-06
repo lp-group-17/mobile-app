@@ -27,6 +27,8 @@ class _Signup extends State<Signup> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: double.infinity,
+        width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
@@ -38,53 +40,83 @@ class _Signup extends State<Signup> {
             ],
           ),
         ),
-        child: Scaffold(
-          appBar: AppBar(
-            flexibleSpace: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Colors.deepPurple,
-                    Colors.indigo,
-                  ],
-                ),
-              ),
-            ),
-            title: Text(
-              "Sign Up",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                foreground: Paint()..shader = linearGradient,
-              ),
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  flex: 10,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 50, right: 50, top: 5),
-                    child: Image.asset(
-                      'assets/images/logo/logo.png',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        child: Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                child: Center(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Flexible(
-                            child: TextFormField(
+                      Container(
+                        margin: EdgeInsets.only(top: 30),
+                        width: 100,
+                        child: Image.asset('assets/images/logo/logo.png'),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Sign Up",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          foreground: Paint()..shader = linearGradient,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30, vertical: 10),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: TextFormField(
+                                    style: const TextStyle(color: Colors.white),
+                                    enableSuggestions: true,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                      ),
+                                      filled: true,
+                                      // fillColor: Colors.white,
+                                      border: OutlineInputBorder(),
+                                      labelText: 'First Name',
+                                      labelStyle: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Flexible(
+                                  child: TextFormField(
+                                    style: const TextStyle(color: Colors.white),
+                                    enableSuggestions: true,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                      ),
+                                      filled: true,
+                                      // fillColor: Colors.white,
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Last Name',
+                                      labelStyle: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            TextFormField(
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
@@ -95,16 +127,14 @@ class _Signup extends State<Signup> {
                                 filled: true,
                                 // fillColor: Colors.white,
                                 border: OutlineInputBorder(),
-                                labelText: 'First Name',
+                                labelText: 'Username',
                                 labelStyle: TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            child: TextFormField(
+                            const SizedBox(height: 10),
+                            TextFormField(
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
@@ -115,149 +145,150 @@ class _Signup extends State<Signup> {
                                 filled: true,
                                 // fillColor: Colors.white,
                                 border: OutlineInputBorder(),
-                                labelText: 'Last Name',
+                                labelText: 'Email',
                                 labelStyle: TextStyle(
                                   color: Colors.white,
                                 ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-
-                      // Username
-                      TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        enableSuggestions: true,
-                        autocorrect: true,
-                        decoration: const InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'Username',
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-
-                      // Email
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        enableSuggestions: true,
-                        autocorrect: true,
-                        decoration: const InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: OutlineInputBorder(),
-                          labelText: 'Email',
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-
-                      // Password
-                      TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        obscureText: !_passwordVisible,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.white,
+                            const SizedBox(height: 10),
+                            TextFormField(
+                              style: const TextStyle(color: Colors.white),
+                              obscureText: !_passwordVisible,
+                              enableSuggestions: false,
+                              autocorrect: false,
+                              decoration: InputDecoration(
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    // Based on passwordVisible state choose the icon
+                                    _passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    // Update the state i.e. toogle the state of passwordVisible variable
+                                    setState(() {
+                                      _passwordVisible = !_passwordVisible;
+                                    });
+                                  },
+                                ),
+                                filled: true,
+                                // fillColor: Colors.white,
+                                border: const OutlineInputBorder(),
+                                labelText: 'Password',
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _passwordVisible = !_passwordVisible;
-                              });
-                            },
-                          ),
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: const OutlineInputBorder(),
-                          labelText: 'Password',
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        obscureText: !_passwordConfirmVisible,
-                        enableSuggestions: false,
-                        autocorrect: false,
-                        decoration: InputDecoration(
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              // Based on passwordVisible state choose the icon
-                              _passwordConfirmVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              color: Colors.white,
+                            const SizedBox(height: 10),
+                            TextFormField(
+                              style: const TextStyle(color: Colors.white),
+                              obscureText: !_passwordConfirmVisible,
+                              enableSuggestions: false,
+                              autocorrect: false,
+                              decoration: InputDecoration(
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    // Based on passwordVisible state choose the icon
+                                    _passwordConfirmVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    // Update the state i.e. toogle the state of passwordVisible variable
+                                    setState(() {
+                                      _passwordConfirmVisible =
+                                          !_passwordConfirmVisible;
+                                    });
+                                  },
+                                ),
+                                filled: true,
+                                // fillColor: Colors.white,
+                                border: const OutlineInputBorder(),
+                                labelText: 'Comfirm password',
+                                labelStyle: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                            onPressed: () {
-                              // Update the state i.e. toogle the state of passwordVisible variable
-                              setState(() {
-                                _passwordConfirmVisible =
-                                    !_passwordConfirmVisible;
-                              });
-                            },
-                          ),
-                          filled: true,
-                          // fillColor: Colors.white,
-                          border: const OutlineInputBorder(),
-                          labelText: 'Comfirm password',
-                          labelStyle: TextStyle(
-                            color: Colors.white,
-                          ),
+                            SizedBox(height: 10),
+                            Container(
+                              // margin: EdgeInsets.only(top: 10),
+                              height: 50,
+                              // alignment: A,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xff381980),
+                                  ),
+                                  onPressed: signup,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        "Signup",
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+
+                      // ElevatedButton(
+                      //   onPressed: signup,
+                      //   child: const SizedBox(
+                      //     width: 300,
+                      //     child: Center(
+                      //       child: Text("Submit"),
+                      //     ),
+                      //   ),
+                      //   style: ButtonStyle(
+                      //     shape:
+                      //         MaterialStateProperty.all<RoundedRectangleBorder>(
+                      //       RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(18.0),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: signup,
-                  child: const SizedBox(
-                    width: 300,
-                    child: Center(
-                      child: Text("Submit"),
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-              ],
+              ),
             ),
-          ),
+
+            // Back button
+            Container(
+              padding: const EdgeInsets.only(top: 30),
+              child: IconButton(
+                color: Colors.white,
+                icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
