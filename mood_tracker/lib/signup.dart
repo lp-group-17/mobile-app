@@ -37,6 +37,13 @@ class _Signup extends State<Signup> {
   final UsernameController = TextEditingController();
   final EmailController = TextEditingController();
   final PassController = TextEditingController();
+  final PCController = TextEditingController();
+  bool FNameValidate = false;
+  bool LNameValidate = false;
+  bool UsernameValidate = false;
+  bool EmailValidate = false;
+  bool PassValidate = false;
+  bool PCValidate = false;
 
   checkConfirm(String passConfirm){
 
@@ -149,7 +156,9 @@ class _Signup extends State<Signup> {
                                     style: const TextStyle(color: Colors.white),
                                     enableSuggestions: true,
                                     autocorrect: true,
-                                    decoration: const InputDecoration(
+                                    controller: FNameController,
+                                    decoration: InputDecoration(
+                                      errorText: FNameValidate ? 'First Name Can\'t Be Empty' : null,
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
@@ -170,7 +179,9 @@ class _Signup extends State<Signup> {
                                     style: const TextStyle(color: Colors.white),
                                     enableSuggestions: true,
                                     autocorrect: true,
-                                    decoration: const InputDecoration(
+                                    controller: LNameController,
+                                    decoration: InputDecoration(
+                                      errorText: LNameValidate ? 'Last Name Can\'t Be Empty' : null,
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
@@ -192,7 +203,9 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
-                              decoration: const InputDecoration(
+                              controller: UsernameController,
+                              decoration:  InputDecoration(
+                                errorText: UsernameValidate ? 'Username Can\'t Be Empty' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -210,7 +223,9 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
-                              decoration: const InputDecoration(
+                              controller: EmailController,
+                              decoration:  InputDecoration(
+                                errorText: EmailValidate ? 'Email Can\'t Be Empty' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -230,7 +245,9 @@ class _Signup extends State<Signup> {
                               onChanged: (password) => checkPass(password),
                               enableSuggestions: false,
                               autocorrect: false,
+                              controller: PassController,
                               decoration: InputDecoration(
+                                errorText: PassValidate ? 'Password Can\'t Be Empty' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -262,11 +279,13 @@ class _Signup extends State<Signup> {
                             TextFormField(
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordConfirmVisible,
-                              controller: PassController,
+                              //controller: PassController,
                             onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
                               enableSuggestions: false,
                               autocorrect: false,
+                              controller: PCController,
                               decoration: InputDecoration(
+                                 errorText: PCValidate ? 'Passwords don\'t match' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -308,6 +327,7 @@ class _Signup extends State<Signup> {
                                     primary: Color(0xff381980),
                                   ),
                                   onPressed: signup,
+                                  
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
@@ -373,7 +393,7 @@ class _Signup extends State<Signup> {
     // TODO: submit form and goto email verification page
 
   
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true){
+    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true && FNameValidate == true && LNameValidate == true && UsernameValidate == true && EmailValidate == true && PassValidate == true && PCValidate == true){
            Navigator.push(
       context,
       MaterialPageRoute(
@@ -386,14 +406,33 @@ class _Signup extends State<Signup> {
       print("testing");
       print(holdPass);
       print(temp);
-      // MaterialButton(
-      //   elevation: 5.0,
-      //   child: Text("Ok"),
-      //   onPressed: (){
-      //     Navigator.of(context).pop();
-      //   } ,);
-      //PassController.
-      //print(hasNum);
+      setState(() {
+                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
+                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
+                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
+                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
+                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
+                  PCController.text != PassController.text ? PCValidate = true : PCValidate = false;
+                });
+      // showDialog(
+      //   barrierDismissible: true,
+      //   context: context,
+      //   builder: (context){
+      //     return AlertDialog(
+      //    title: const Text ('Error'),
+      //   content: const Text('Error in pass field'),
+      //   actions: <Widget> [
+      //     TextButton(
+      //       onPressed: () => Navigator.pop(context, 'Ok'),
+      //       child: const Text('Ok'),
+      //     ),
+      //   ],
+      //     );
+      //   }
+      //  );
+
+
+
 
     }
 

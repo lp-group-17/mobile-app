@@ -73,9 +73,12 @@ class _History extends State<History> {
           backgroundColor: Colors.transparent,
           elevation: 0,
           actions: <Widget>[         
-          IconButton(
-            icon: const Icon(Icons.add),
-            tooltip: 'Go to the next page',
+          TextButton.icon(
+            icon: Icon(Icons.add, color: Colors.white, ),
+            label: const Text("Add Entry", 
+            style: TextStyle(fontSize: 20,
+            color: Colors.white)),
+            //tooltip: 'Go to the next page',
             onPressed: () {
               test;
             Navigator.push(
