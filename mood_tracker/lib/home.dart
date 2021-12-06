@@ -7,6 +7,9 @@ import 'QuestFiles/Questions.dart';
 import 'HistFiles/History.dart';
 import 'BarChart/bar_chart_data.dart';
 import 'BarChart/mood_chart.dart';
+import 'CalendarFiles/event.dart';
+import 'HistFiles/HistoryModel.dart';
+import 'api/apiHandler.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -28,8 +31,42 @@ class _Home extends State<Home> {
     const Rect.fromLTWH(50.0, 0.0, 300.0, 70.0),
   );
 
+  List<Event> events = [];
+  List<HistoryModel> entries = [];
+
+  Future<void> loadData() async {
+    APIHandler api = APIHandler();
+    var data = await api.getEvents();
+    events.clear();
+    data["Events"].forEach((event) => {
+          events.add(Event(
+            title: event["Title"],
+            descrip: event["Descrip"],
+            to: DateTime.parse(event["To"]),
+            from: DateTime.parse(event["From"]),
+            allDay: event["AllDay"],
+          ))
+        });
+
+    data = await api.getEntries();
+    entries.clear();
+    data["Entries"].forEach((entry) => {
+          entries.add(HistoryModel(
+            title: entry["Title"],
+            descrip: entry["Descrip"],
+            Q1: entry["Q1"],
+            Q2: entry["Q2"],
+            Q3: entry["Q3"],
+            Q4: entry["Q4"],
+            Q5: entry["Q5"],
+          ))
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    loadData();
+
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
