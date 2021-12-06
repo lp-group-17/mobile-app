@@ -6,6 +6,24 @@ import 'package:mood_tracker/globals.dart' as globals;
 // Map<String, dynamic> userMap = jsonDecode(jsonString);
 // var user = User.fromJson(userMap);
 
+// Future<String> loadFromAssets() async {
+//     return await rootBundle.loadString('json/parse.json');
+//   }
+
+//   loadYourData() async {
+//     String jsonString = await loadFromAssets();
+//     final yourDataModel = yourDataModelFromJson(jsonString);
+    
+//     for (int i = 0; i < yourDataModel.length; i++) {
+//       if (yourDataModel[i].Q1 == 3) {
+//         print('you got your id');
+//         // Do your stuff
+//       }
+//     }
+//   }
+String jsonString = jsonEncode(user);
+Map<String, dynamic> userMap = jsonDecode(jsonString);
+var user = globals.User.fromJson(userMap);
 class Event {
   final String title;
   final String descrip;

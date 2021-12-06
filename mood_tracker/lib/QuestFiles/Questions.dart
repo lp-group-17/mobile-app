@@ -211,7 +211,6 @@ class _Questions extends State<Questions> {
       Q2: Q2rating,
       Q3: Q3rating,
       Q4: Q4rating,
-      Q5: Q5rating,
     );
 
     APIHandler api = APIHandler();
