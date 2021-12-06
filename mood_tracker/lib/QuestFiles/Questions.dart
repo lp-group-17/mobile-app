@@ -162,12 +162,29 @@ class _Questions extends State<Questions> {
                 const SizedBox(height: 50),
                 buildDeets(),
                 const SizedBox(height: 30),
-                ElevatedButton(
-                  child: const Text('Finished'),
-                  onPressed: () {
-                    save();
-                    Navigator.pop(context);
-                  }, //edit to save the information and send it through api or w/e/ do save
+                // ElevatedButton(
+                //   child: const Text('Finished'),
+                //   onPressed: () {
+                //     save();
+                //     Navigator.pop(context);
+                //   }, //edit to save the information and send it through api or w/e/ do save
+                // ),
+                SizedBox(
+                 width: 200,
+                  height: 50,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff381980),
+                      ),
+                      onPressed: (){
+                        save();
+                     Navigator.pop(context);
+                      },
+                      child: const Text('Finished', style: TextStyle(color: Colors.white, fontSize: 25)),
+                    ),
+                  ),
                 ),
               ],
             ),
