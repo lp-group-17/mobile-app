@@ -29,7 +29,7 @@ class EventsDataSource extends CalendarDataSource {
 
   @override
   Color getColor(int index) {
-    return Colors.red.shade700;
+    return Colors.orange.shade900;
   }
 
   @override

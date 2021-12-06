@@ -93,7 +93,7 @@ class _CalendarPage extends State<CalendarPage> {
           }),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, color: Colors.white),
-        backgroundColor: Colors.indigo,
+        backgroundColor: Color(0xff381980),
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
               builder: (context) =>
