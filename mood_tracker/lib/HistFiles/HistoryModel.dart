@@ -4,10 +4,10 @@ import "package:mood_tracker/globals.dart" as globals;
 class HistoryModel {
   final String title;
   final String descrip;
-  final double Q1;
-  final double Q2;
-  final double Q3;
-  final double Q4;
+  final int Q1;
+  final int Q2;
+  final int Q3;
+  final int Q4;
   //final double Q5;
 
   const HistoryModel({

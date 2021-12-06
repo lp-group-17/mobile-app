@@ -11,10 +11,10 @@ class Appointments extends CalendarDataSource{
 
   HistoryModel getEvent(int index) => appointments![index] as HistoryModel;
 
-  double getQ1(int index) => getEvent(index).Q1;
-  double getQ2(int index) => getEvent(index).Q2;
-  double getQ3(int index) => getEvent(index).Q3;
-  double getQ4(int index) => getEvent(index).Q4;
+  int getQ1(int index) => getEvent(index).Q1;
+  int getQ2(int index) => getEvent(index).Q2;
+  int getQ3(int index) => getEvent(index).Q3;
+  int getQ4(int index) => getEvent(index).Q4;
   //double getQ5(int index) => getEvent(index).Q5;
 
   @override

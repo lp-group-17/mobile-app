@@ -56,10 +56,10 @@ class _Home extends State<Home> {
           entries.add(HistoryModel(
             title: entry["Title"],
             descrip: entry["Descrip"],
-            Q1: entry["Q1"] as double,
-            Q2: entry["Q2"] as double,
-            Q3: entry["Q3"] as double,
-            Q4: entry["Q4"] as double,
+            Q1: entry["Q1"],
+            Q2: entry["Q2"],
+            Q3: entry["Q3"],
+            Q4: entry["Q4"],
             //Q5: entry["Q5"],
           )),
           print(entry)

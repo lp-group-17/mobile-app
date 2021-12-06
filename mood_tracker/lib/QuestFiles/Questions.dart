@@ -207,10 +207,10 @@ class _Questions extends State<Questions> {
     final event = HistoryModel(
       title: Time.toString(),
       descrip: deetsControl.text,
-      Q1: Q1rating,
-      Q2: Q2rating,
-      Q3: Q3rating,
-      Q4: Q4rating,
+      Q1: Q1rating.toInt(),
+      Q2: Q2rating.toInt(),
+      Q3: Q3rating.toInt(),
+      Q4: Q4rating.toInt(),
     );
 
     APIHandler api = APIHandler();
