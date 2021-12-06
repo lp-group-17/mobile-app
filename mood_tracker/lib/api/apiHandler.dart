@@ -3,38 +3,52 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 import 'package:dio/dio.dart';
+import 'package:mood_tracker/globals.dart' as globals;
 
 class APIHandler {
   static const String url = "http://137.184.153.148/api/";
   var dio = Dio();
 
-  Future<Response> login(String username, String password) async {
+  Future<Map<String, dynamic>> login(String username, String password) async {
     Map<String, dynamic> body = {"loginID": username, "password": password};
 
     var response = await dio.post(url + 'login', data: body);
-    return response;
+    return response.data;
   }
 
   void addEvent(Map<String, dynamic> event) {
     dio.post(url + 'addEvent', data: event);
   }
 
+  Future<Map<String, dynamic>> getEvents() async {
+    var response =
+        await dio.post(url + 'getEvents', data: {"User": globals.ID});
+    return response.data;
+  }
+
   void addEntry(Map<String, dynamic> entry) {
     dio.post(url + 'addEntry', data: entry);
   }
 
-  // void signup(String firstname, String lastname, String email, String username,
-  //     String password) {
-  //   Map<String, dynamic> body = {
-  //     "firstname": firstname,
-  //     "lastname": lastname,
-  //     "email": email,
-  //     "username": username,
-  //     "password": password
-  //   };
+  Future<Map<String, dynamic>> getEntries() async {
+    var response =
+        await dio.post(url + 'getEntries', data: {"User": globals.ID});
+    return response.data;
+  }
 
-  //   post(body, 'adduser');
-  // }
+  Future<Map<String, dynamic>> signup(String firstname, String lastname,
+      String email, String username, String password) async {
+    Map<String, dynamic> body = {
+      "firstname": firstname,
+      "lastname": lastname,
+      "email": email,
+      "username": username,
+      "password": password
+    };
+
+    var response = await dio.post('adduser', data: body);
+    return response.data;
+  }
 
   // Future<Response> post(Map<String, dynamic> body, String endpoint) {
   //   var dio = Dio();

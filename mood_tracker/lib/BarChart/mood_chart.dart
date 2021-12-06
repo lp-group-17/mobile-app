@@ -8,7 +8,9 @@ class MoodChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Container(
+      padding: EdgeInsets.only(bottom: 10),
+      child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         color: Colors.white,
@@ -19,10 +21,11 @@ class MoodChart extends StatelessWidget {
             borderData: borderData,
             barGroups: barGroups,
             alignment: BarChartAlignment.spaceAround,
-            maxY: 5,
+            maxY: 5.1,
           ),
         ),
-      );
+      ),
+    );
   }
 
   BarTouchData get barTouchData => BarTouchData(
@@ -57,7 +60,7 @@ class MoodChart extends StatelessWidget {
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
-          margin: 1,
+          margin: 10,
           getTitles: (double value) {
             switch (value.toInt()) {
               case 0:
@@ -118,7 +121,7 @@ class MoodChart extends StatelessWidget {
           x: 3,
           barRods: [
             BarChartRodData(
-              y: data[3],
+              y: 5,
               colors: [
                 Colors.lightBlueAccent,
                 Colors.orangeAccent,

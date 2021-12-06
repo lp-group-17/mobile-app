@@ -76,6 +76,7 @@ class _Login extends State<Login> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: loginIDController,
                       enableSuggestions: true,
                       autocorrect: true,
                       style: const TextStyle(color: Colors.white),
@@ -95,6 +96,7 @@ class _Login extends State<Login> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
+                      controller: passwordController,
                       obscureText: !_passwordVisible,
                       enableSuggestions: false,
                       autocorrect: false,
@@ -127,52 +129,82 @@ class _Login extends State<Login> {
                         ),
                       ),
                     ),
+                    // SizedBox(height: 5),
+                    Container(
+                      alignment: Alignment.topRight,
+                      height: 40,
+                      child: TextButton(
+                        onPressed: forgotPassword,
+                        child: const Text(
+                          "Forgot password?",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    Container(
+                      // margin: EdgeInsets.only(top: 10),
+                      height: 50,
+                      // alignment: A,
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff381980),
+                          ),
+                          onPressed: login,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              SizedBox(width: 10.0),
+                              Text(
+                                "Login",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      // margin: EdgeInsets.only(top: 10),
+                      height: 50,
+                      // alignment: A,
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(20.0)),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xff381980),
+                          ),
+                          onPressed: signup,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              SizedBox(width: 10.0),
+                              Text(
+                                "Signup",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 5)
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: login,
-                child: const SizedBox(
-                  width: 300,
-                  child: Center(
-                    child: Text("Log In"),
-                  ),
-                ),
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 5),
-              ElevatedButton(
-                onPressed: signup,
-                child: const SizedBox(
-                  width: 300,
-                  child: Center(
-                    child: Text("Sign Up"),
-                  ),
-                ),
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    ),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: forgotPassword,
-                child: const Text(
-                  "Forgot password?",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
             ],
           ),
         ),
@@ -180,10 +212,13 @@ class _Login extends State<Login> {
     );
   }
 
+  TextEditingController loginIDController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   Future<void> login() async {
     APIHandler api = APIHandler();
-    var response = await api.login("QQ", "password");
-    var data = response.data;
+    var data = await api.login(loginIDController.text, passwordController.text);
+    // var data = response.data;
     if (data["error"] == "") {
       globals.fname = data["User"]["Firstname"];
       globals.lname = data["User"]["Lastname"];
@@ -208,6 +243,8 @@ class _Login extends State<Login> {
           ),
         );
       }
+    } else {
+      print(data["error"]);
     }
 
     // TODO:  Check registration status

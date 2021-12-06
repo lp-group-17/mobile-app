@@ -48,19 +48,21 @@ class _Home extends State<Home> {
           ))
         });
 
-    data = await api.getEntries();
-    entries.clear();
-    data["Entries"].forEach((entry) => {
-          entries.add(HistoryModel(
-            title: entry["Title"],
-            descrip: entry["Descrip"],
-            Q1: entry["Q1"],
-            Q2: entry["Q2"],
-            Q3: entry["Q3"],
-            Q4: entry["Q4"],
-            Q5: entry["Q5"],
-          ))
-        });
+    // data = await api.getEntries();
+    // entries.clear();
+    // print(data);
+    // data["Entries"].forEach((entry) => {
+    //       entries.add(HistoryModel(
+    //         title: entry["Title"],
+    //         descrip: entry["Descrip"],
+    //         Q1: entry["Q1"],
+    //         Q2: entry["Q2"],
+    //         Q3: entry["Q3"],
+    //         Q4: entry["Q4"],
+    //         Q5: entry["Q5"],
+    //       )),
+    //       print(entry)
+    //     });
   }
 
   @override
@@ -96,8 +98,8 @@ class _Home extends State<Home> {
                 Row(
                   children: [
                     Container(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      alignment: Alignment.centerLeft,
+                      // padding: const EdgeInsets.only(left: 5.0),
+                      alignment: Alignment.center,
                       child: Text(
                         "Welcome, <USER>",
                         textAlign: TextAlign.start,
@@ -110,7 +112,7 @@ class _Home extends State<Home> {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.only(right: 10.0),
+                        // padding: const EdgeInsets.only(right: 5.0),
                         alignment: Alignment.centerRight,
                         child: TextButton.icon(
                           style: TextButton.styleFrom(
@@ -134,21 +136,31 @@ class _Home extends State<Home> {
                     child: Column(
                       children: [
                         Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20.0),
+                                topRight: Radius.circular(20.0)),
+                            color: Color(0xff9CB342),
+                          ),
                           // height: 20,
                           alignment: Alignment.bottomLeft,
                           // padding: const EdgeInsets.only(left: 10, top: 10),
-                          decoration: const BoxDecoration(
-                            color: Colors.transparent,
-                          ),
+                          // decoration: const BoxDecoration(
+                          //   color: Colors.transparent,
+                          // ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
                                 "Average",
-                                style: TextStyle(fontSize: 24),
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  color: Colors.white,
+                                ),
                               ),
                               SizedBox(width: 20),
                               DropdownButton<String>(
+                                dropdownColor: Color(0xff381980),
                                 value: averagePeriod,
                                 items: <String>[
                                   '1 week',
@@ -159,7 +171,12 @@ class _Home extends State<Home> {
                                 ].map((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
-                                    child: Text(value),
+                                    child: Text(
+                                      value,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   );
                                 }).toList(),
                                 onChanged: (String? newValue) {
@@ -190,13 +207,16 @@ class _Home extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Flexible(
-                      child: SizedBox(
+                      child: Container(
                         // width: 165,
                         height: 70,
                         child: ClipRRect(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20.0)),
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xff381980),
+                            ),
                             onPressed: openQuestions,
                             child: Row(
                               children: const [
@@ -205,9 +225,7 @@ class _Home extends State<Home> {
                                   size: 30.0,
                                   color: Colors.white,
                                 ),
-                                SizedBox(
-                                    // width: 10.0,
-                                    ),
+                                SizedBox(width: 10.0),
                                 Text(
                                   "New Entry",
                                   style: TextStyle(
@@ -229,6 +247,9 @@ class _Home extends State<Home> {
                           borderRadius:
                               const BorderRadius.all(Radius.circular(20.0)),
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Color(0xff381980),
+                            ),
                             onPressed: openHistory,
                             child: Row(
                               children: const [
@@ -282,11 +303,10 @@ class _Home extends State<Home> {
                             child: Column(
                               children: [
                                 Container(
-                                  // height: 20,
+                                  height: 50,
                                   alignment: Alignment.center,
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 5, 0, 5),
-
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
@@ -298,7 +318,9 @@ class _Home extends State<Home> {
                                       Text(
                                         "Calendar",
                                         style: TextStyle(
-                                            fontSize: 28, color: Colors.white),
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -307,19 +329,29 @@ class _Home extends State<Home> {
                                       topLeft: Radius.circular(20.0),
                                       topRight: Radius.circular(20.0),
                                     ),
-                                    border: Border.all(color: Colors.white),
-                                    color: Colors.deepPurple,
+                                    // border: Border.all(color: Colors.white),
+                                    color: Color(0xff9CB342),
+                                    // gradient: LinearGradient(
+                                    //   begin: Alignment.topLeft,
+                                    //   end: Alignment(0.8,
+                                    //       0.0), // 10% of the width, so there are ten blinds.
+                                    //   colors: [
+                                    //     Colors.green,
+                                    //     Colors.yellow
+                                    //   ], // red to yellow// repeats the gradient over the canvas
+                                    // ),
                                   ),
                                 ),
                                 Container(
                                   // height: 20,
                                   alignment: Alignment.centerLeft,
-                                  padding: const EdgeInsets.all(5),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 5, 0, 5),
                                   decoration: const BoxDecoration(
-                                    color: Colors.purple,
-                                    border: Border.symmetric(
-                                      vertical: BorderSide(color: Colors.white),
-                                    ),
+                                    color: Colors.grey,
+                                    // border: Border.symmetric(
+                                    //   vertical: BorderSide(color: Colors.white),
+                                    // ),
                                   ),
                                   child: const Text(
                                     "Today's Agenda:",
@@ -342,8 +374,8 @@ class _Home extends State<Home> {
                                     //     const EdgeInsets.fromLTRB(12.5, 0, 25, 0),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        border: Border.all(color: Colors.white),
-                                      ),
+                                          // border: Border.all(color: Colors.white),
+                                          ),
                                       child: SfCalendar(
                                         backgroundColor: Colors.white10,
                                         headerHeight: 0,
@@ -407,6 +439,9 @@ class _Home extends State<Home> {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xff381980),
+                      ),
                       onPressed: () {},
                       child: Row(
                         children: const [
@@ -415,9 +450,7 @@ class _Home extends State<Home> {
                             size: 40.0,
                             color: Colors.white,
                           ),
-                          SizedBox(
-                              // width: 10.0,
-                              ),
+                          SizedBox(width: 10.0),
                           Text(
                             "Resources",
                             style: TextStyle(
