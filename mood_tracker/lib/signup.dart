@@ -209,7 +209,7 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
-                               onChanged: (password) => checkPass(password),
+                               
                               decoration: const InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -228,9 +228,10 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordVisible,
                               controller: PassController,
-                            onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
+                            
                               enableSuggestions: false,
                               autocorrect: false,
+                              onChanged: (password) => checkPass(password),
                               decoration: InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -264,6 +265,7 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordConfirmVisible,
                               enableSuggestions: false,
+                              onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
                               autocorrect: false,
                               decoration: InputDecoration(
                                 enabledBorder: const OutlineInputBorder(

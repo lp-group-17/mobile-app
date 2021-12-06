@@ -34,11 +34,12 @@ class _Home extends State<Home> {
   List<Event> events = [];
   List<HistoryModel> entries = [];
 
+//this is what you need for events/entries
   Future<void> loadData() async {
     APIHandler api = APIHandler();
     var data = await api.getEvents();
     events.clear();
-    data["Events"].forEach((event) => {
+    data["Events"].forEach((event) => { //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
           events.add(Event(
             title: event["Title"],
             descrip: event["Descrip"],
@@ -48,21 +49,21 @@ class _Home extends State<Home> {
           ))
         });
 
-    // data = await api.getEntries();
-    // entries.clear();
-    // print(data);
-    // data["Entries"].forEach((entry) => {
-    //       entries.add(HistoryModel(
-    //         title: entry["Title"],
-    //         descrip: entry["Descrip"],
-    //         Q1: entry["Q1"],
-    //         Q2: entry["Q2"],
-    //         Q3: entry["Q3"],
-    //         Q4: entry["Q4"],
-    //         Q5: entry["Q5"],
-    //       )),
-    //       print(entry)
-    //     });
+    data = await api.getEntries();
+    entries.clear();
+    print(data);
+    data["Entries"].forEach((entry) => {
+          entries.add(HistoryModel(
+            title: entry["Title"],
+            descrip: entry["Descrip"],
+            Q1: entry["Q1"] as double,
+            Q2: entry["Q2"] as double,
+            Q3: entry["Q3"] as double,
+            Q4: entry["Q4"] as double,
+            //Q5: entry["Q5"],
+          )),
+          print(entry)
+        });
   }
 
   @override
