@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'email_verification.dart';
 import 'api/APIHandler.dart';
@@ -23,76 +22,6 @@ class _Signup extends State<Signup> {
 
   bool _passwordVisible = false;
   bool _passwordConfirmVisible = false;
-
-  bool is8Chars = false;
-  bool hasNum = false;
-  bool hasUpper = false;
-  bool hasLower = false;
-  bool hasSymbol = false;
-  bool isSame = false;
-  String holdPass = "";
-  String temp = "";
-
-  final FNameController = TextEditingController();
-  final LNameController = TextEditingController();
-  final UsernameController = TextEditingController();
-  final EmailController = TextEditingController();
-  final PassController = TextEditingController();
-
-  checkConfirm(String passConfirm){
-
-    setState((){
-      temp = passConfirm;
-    isSame = false;
-    if(passConfirm == holdPass){
-      isSame = true;
-    }
-    });
-  }
-
-  checkPass(String password){
-    // ignore: non_constant_identifier_names
-    final TRegex = RegExp(r'[0-9]');
-    // ignore: non_constant_identifier_names
-    final TRegex2 = RegExp(r'[ A-Z]');
-    // ignore: non_constant_identifier_names
-    final TRegex3 = RegExp(r'[a-z]');
-    // ignore: non_constant_identifier_names
-    final TRegex4 = RegExp(r'^[a-zA-Z0-9]+$');
-    
-
-    setState((){
-      holdPass = password;
-      
-      is8Chars = false;
-      if(password.length >= 8){
-        is8Chars = true;
-      }
-
-      hasNum = false;
-      if(TRegex.hasMatch(password)){
-        hasNum = true;
-      }
-
-      hasUpper = false;
-      if(TRegex2.hasMatch(password)){
-        hasUpper = true;
-      }
-
-      hasLower = false;
-      if(TRegex3.hasMatch(password)){
-        hasLower = true;
-      }
-
-      hasSymbol = false;
-      if(TRegex4.hasMatch(password)){
-        hasSymbol = false;
-      }
-      else{
-        hasSymbol = true;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +138,6 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               enableSuggestions: true,
                               autocorrect: true,
-                               
                               decoration: const InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -227,11 +155,8 @@ class _Signup extends State<Signup> {
                             TextFormField(
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordVisible,
-                              controller: PassController,
-                            
                               enableSuggestions: false,
                               autocorrect: false,
-                              onChanged: (password) => checkPass(password),
                               decoration: InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -265,7 +190,6 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordConfirmVisible,
                               enableSuggestions: false,
-                              onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
                               autocorrect: false,
                               decoration: InputDecoration(
                                 enabledBorder: const OutlineInputBorder(
@@ -372,29 +296,15 @@ class _Signup extends State<Signup> {
 
   void signup() {
     // TODO: submit form and goto email verification page
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true){
-           Navigator.push(
+
+    // APIHandler api = APIHandler();
+    // api.signup();
+
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const Email(title: 'Email Verification'),
       ),
-    );             }
-
-    else{
-      print("testing");
-      print(holdPass);
-      print(temp);
-      // MaterialButton(
-      //   elevation: 5.0,
-      //   child: Text("Ok"),
-      //   onPressed: (){
-      //     Navigator.of(context).pop();
-      //   } ,);
-      //PassController.
-      //print(hasNum);
-     
-    }
-
-    
+    );
   }
 }

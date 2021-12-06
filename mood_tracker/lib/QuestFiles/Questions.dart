@@ -165,7 +165,7 @@ class _Questions extends State<Questions> {
                 ElevatedButton(
                   child: const Text('Finished'),
                   onPressed: () {
-                    save;
+                    save();
                     Navigator.pop(context);
                   }, //edit to save the information and send it through api or w/e/ do save
                 ),
@@ -203,26 +203,27 @@ class _Questions extends State<Questions> {
       );
 
   // TODO: fix this, no idea whats wrong, but doesn't work. Won't post and won't print with debug statement
-  Future save() async {
+  void save() {
+    print("asdasdasd");
     final event = HistoryModel(
-      title: Time.toString(),
+      date: DateTime.now(),
       descrip: deetsControl.text,
-      Q1: Q1rating.toInt(),
-      Q2: Q2rating.toInt(),
-      Q3: Q3rating.toInt(),
-      Q4: Q4rating.toInt(),
+      Q1: Q1rating,
+      Q2: Q2rating,
+      Q3: Q3rating,
+      Q4: Q4rating,
     );
 
     APIHandler api = APIHandler();
     api.addEntry(event.toJson());
 
     // final isEdit = widget.event != null;
-    final provider = Provider.of<QProvider>(context, listen: false);
+    // final provider = Provider.of<QProvider>(context, listen: false);
     // if (isEdit) {
     //   provider.editE(event, widget.event!);
     //   Navigator.of(context).pop();
     // } else {
-    provider.QaddEvent(event);
+    // provider.QaddEvent(event);
     //   Navigator.of(context).pop();
     // }
   }

@@ -2,16 +2,16 @@
 import "package:mood_tracker/globals.dart" as globals;
 
 class HistoryModel {
-  final String title;
+  final DateTime date;
   final String descrip;
-  final int Q1;
-  final int Q2;
-  final int Q3;
-  final int Q4;
+  final double Q1;
+  final double Q2;
+  final double Q3;
+  final double Q4;
   //final double Q5;
 
   const HistoryModel({
-    required this.title,
+    required this.date,
     required this.descrip,
     required this.Q1,
     required this.Q2,
@@ -21,8 +21,8 @@ class HistoryModel {
   });
 
   Map<String, dynamic> toJson() => {
-        //'User': user,
-        'Title': title,
+        'User': globals.ID,
+        'Date': date.toIso8601String(),
         'Descrip': descrip,
         'Q1': Q1,
         'Q2': Q2,

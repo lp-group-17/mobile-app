@@ -24,7 +24,7 @@ class HistDetails extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          title: Text(historyModel.title),
+          title: Text(historyModel.date.toString()),
           elevation: 0,
         ),
         backgroundColor: Colors.transparent,

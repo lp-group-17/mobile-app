@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class MoodChart extends StatelessWidget {
   const MoodChart({Key? key, required this.data}) : super(key: key);
 
-  final List<int> data;
+  final List<double> data;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class MoodChart extends StatelessWidget {
           x: 1,
           barRods: [
             BarChartRodData(
-              y: data[1].toDouble(),
+              y: data[1],
               colors: [
                 Colors.lightBlueAccent,
                 Colors.redAccent,
@@ -112,7 +112,7 @@ class MoodChart extends StatelessWidget {
           x: 2,
           barRods: [
             BarChartRodData(
-              y: data[2].toDouble(),
+              y: data[2],
               colors: [Colors.lightBlueAccent, Colors.yellowAccent],
             ),
           ],
@@ -121,7 +121,7 @@ class MoodChart extends StatelessWidget {
           x: 3,
           barRods: [
             BarChartRodData(
-              y: 5,
+              y: data[3],
               colors: [
                 Colors.lightBlueAccent,
                 Colors.orangeAccent,
