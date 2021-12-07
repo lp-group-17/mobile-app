@@ -188,9 +188,10 @@ class _Resources extends State<Resources> {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.email_outlined,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.email_outlined),
+                                onPressed: launchNamiE,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 20),
