@@ -149,15 +149,17 @@ class _Resources extends State<Resources> {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.phone_rounded,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.phone_rounded),
+                                onPressed:launchNSPLP,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
-                              Icon(
-                                Icons.link_rounded,
-                                size: 25.0,
+                              //SizedBox(width: 20),
+                              IconButton(
+                                icon: Icon(Icons.link_rounded),
+                                onPressed:launchNSPLS,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                             ],
@@ -660,8 +662,8 @@ launchCrisisS() async {
 }
 
 launchCrisisP() async {
-  //const url = 'sms:+741741?body=HOME';
-  const url = 'sms:+15618279507?body=HOME';
+  const url = 'sms:+741741?body=HOME';
+  //const url = 'sms:+15618279507?body=HOME';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
