@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:mood_tracker/globals.dart' as globals;
 
 class APIHandler {
-  static const String url = "http://137.184.153.148/api/";
+  static const String url = "https://www.g17ccmt.com/api/";
   var dio = Dio();
 
   Future<Map<String, dynamic>> login(String username, String password) async {
