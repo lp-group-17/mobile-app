@@ -45,18 +45,17 @@ class _Signup extends State<Signup> {
   bool PassValidate = false;
   bool PCValidate = false;
 
-  checkConfirm(String passConfirm){
-
-    setState((){
+  checkConfirm(String passConfirm) {
+    setState(() {
       temp = passConfirm;
-    isSame = false;
-    if(passConfirm == holdPass){
-      isSame = true;
-    }
+      isSame = false;
+      if (passConfirm == holdPass) {
+        isSame = true;
+      }
     });
   }
 
-  checkPass(String password){
+  checkPass(String password) {
     // ignore: non_constant_identifier_names
     final TRegex = RegExp(r'[0-9]');
     // ignore: non_constant_identifier_names
@@ -66,41 +65,37 @@ class _Signup extends State<Signup> {
     // ignore: non_constant_identifier_names
     final TRegex4 = RegExp(r'^[a-zA-Z0-9]+$');
 
-
-    setState((){
+    setState(() {
       holdPass = password;
 
       is8Chars = false;
-      if(password.length >= 8){
+      if (password.length >= 8) {
         is8Chars = true;
       }
 
       hasNum = false;
-      if(TRegex.hasMatch(password)){
+      if (TRegex.hasMatch(password)) {
         hasNum = true;
       }
 
       hasUpper = false;
-      if(TRegex2.hasMatch(password)){
+      if (TRegex2.hasMatch(password)) {
         hasUpper = true;
       }
 
       hasLower = false;
-      if(TRegex3.hasMatch(password)){
+      if (TRegex3.hasMatch(password)) {
         hasLower = true;
       }
 
       hasSymbol = false;
-      if(TRegex4.hasMatch(password)){
+      if (TRegex4.hasMatch(password)) {
         hasSymbol = false;
-      }
-      else{
+      } else {
         hasSymbol = true;
       }
     });
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +153,9 @@ class _Signup extends State<Signup> {
                                     autocorrect: true,
                                     controller: FNameController,
                                     decoration: InputDecoration(
-                                      errorText: FNameValidate ? 'First Name Can\'t Be Empty' : null,
+                                      errorText: FNameValidate
+                                          ? 'First Name Can\'t Be Empty'
+                                          : null,
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
@@ -181,7 +178,9 @@ class _Signup extends State<Signup> {
                                     autocorrect: true,
                                     controller: LNameController,
                                     decoration: InputDecoration(
-                                      errorText: LNameValidate ? 'Last Name Can\'t Be Empty' : null,
+                                      errorText: LNameValidate
+                                          ? 'Last Name Can\'t Be Empty'
+                                          : null,
                                       enabledBorder: const OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.white),
@@ -204,8 +203,10 @@ class _Signup extends State<Signup> {
                               enableSuggestions: true,
                               autocorrect: true,
                               controller: UsernameController,
-                              decoration:  InputDecoration(
-                                errorText: UsernameValidate ? 'Username Can\'t Be Empty' : null,
+                              decoration: InputDecoration(
+                                errorText: UsernameValidate
+                                    ? 'Username Can\'t Be Empty'
+                                    : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -224,8 +225,10 @@ class _Signup extends State<Signup> {
                               enableSuggestions: true,
                               autocorrect: true,
                               controller: EmailController,
-                              decoration:  InputDecoration(
-                                errorText: EmailValidate ? 'Email Can\'t Be Empty' : null,
+                              decoration: InputDecoration(
+                                errorText: EmailValidate
+                                    ? 'Email Can\'t Be Empty'
+                                    : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -247,7 +250,9 @@ class _Signup extends State<Signup> {
                               autocorrect: false,
                               controller: PassController,
                               decoration: InputDecoration(
-                                errorText: PassValidate ? 'Password Doesn\'t Meet Specifications' : null,
+                                errorText: PassValidate
+                                    ? 'Password Doesn\'t Meet Specifications'
+                                    : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -280,13 +285,16 @@ class _Signup extends State<Signup> {
                               style: const TextStyle(color: Colors.white),
                               obscureText: !_passwordConfirmVisible,
                               //controller: PassController,
-                            onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
+                              onChanged: (passwordConfirm) =>
+                                  checkConfirm(passwordConfirm),
 
                               enableSuggestions: false,
                               autocorrect: false,
                               controller: PCController,
                               decoration: InputDecoration(
-                                 errorText: PCValidate ? 'Passwords don\'t match' : null,
+                                errorText: PCValidate
+                                    ? 'Passwords don\'t match'
+                                    : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -328,7 +336,6 @@ class _Signup extends State<Signup> {
                                     primary: Color(0xff381980),
                                   ),
                                   onPressed: signup,
-                                  
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
@@ -390,45 +397,87 @@ class _Signup extends State<Signup> {
     );
   }
 
-  void test(){
+  void test() {
     setState(() {
-                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
-                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
-                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
-                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
-                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
-                  PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
-                });
+      FNameController.text.isEmpty
+          ? FNameValidate = true
+          : FNameValidate = false;
+      LNameController.text.isEmpty
+          ? LNameValidate = true
+          : LNameValidate = false;
+      UsernameController.text.isEmpty
+          ? UsernameValidate = true
+          : UsernameValidate = false;
+      EmailController.text.isEmpty
+          ? EmailValidate = true
+          : EmailValidate = false;
+      PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
+      PCController.text == PassController.text
+          ? PCValidate = false
+          : PCValidate = true;
+    });
   }
 
-  void signup() {
+  Future<void> signup() async {
     // TODO: submit form and goto email verification page
 
     setState(() {
-                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
-                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
-                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
-                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
-                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false; //password has to meet certain specifications
-                  PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
-                });
-  
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
-      Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Email(title: 'Email Verification'),
-      ),
-    );
-                }
+      FNameController.text.isEmpty
+          ? FNameValidate = true
+          : FNameValidate = false;
+      LNameController.text.isEmpty
+          ? LNameValidate = true
+          : LNameValidate = false;
+      UsernameController.text.isEmpty
+          ? UsernameValidate = true
+          : UsernameValidate = false;
+      EmailController.text.isEmpty
+          ? EmailValidate = true
+          : EmailValidate = false;
+      PassController.text.isEmpty
+          ? PassValidate = true
+          : PassValidate = false; //password has to meet certain specifications
+      PCController.text == PassController.text
+          ? PCValidate = false
+          : PCValidate = true;
+    });
 
-    else{
-  
+    APIHandler api = APIHandler();
+    var response = await api.signup(FNameController.text, LNameController.text,
+        EmailController.text, UsernameController.text, PassController.text);
+
+    print(response);
+    if (response["error"]["emailUsed"]) {
+      print("Email Used");
+    }
+    if (response["error"]["usernameTaken"]) {
+      print("Username Taken");
+    }
+
+    if (is8Chars == true &&
+        hasNum == true &&
+        hasUpper == true &&
+        hasLower == true &&
+        hasSymbol == true &&
+        isSame == true &&
+        FNameValidate == false &&
+        LNameValidate == false &&
+        UsernameValidate == false &&
+        EmailValidate == false &&
+        PassValidate == false &&
+        PCValidate == false) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Email(title: 'Email Verification'),
+        ),
+      );
+    } else {
       print("testing");
       print(holdPass);
       print(temp);
       print('a');
-      print(FNameValidate );
+      print(FNameValidate);
       print('b');
       print(LNameValidate);
       print('c');
@@ -439,7 +488,7 @@ class _Signup extends State<Signup> {
       print(PassValidate);
       print('f');
       print(PCValidate);
-      
+
       // showDialog(
       //   barrierDismissible: true,
       //   context: context,
@@ -457,10 +506,6 @@ class _Signup extends State<Signup> {
       //   }
       //  );
 
-
-
-
     }
-
   }
 }
