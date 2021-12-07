@@ -31,6 +31,7 @@ class _Signup extends State<Signup> {
   bool isSame = false;
   String holdPass = "";
   String temp = "";
+  bool weGucci = true;
 
   final FNameController = TextEditingController();
   final LNameController = TextEditingController();
@@ -96,6 +97,11 @@ class _Signup extends State<Signup> {
       }
       else{
         hasSymbol = true;
+      }
+
+      weGucci = false;
+      if(is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true){
+        weGucci = true;
       }
     });
   }
@@ -413,7 +419,7 @@ class _Signup extends State<Signup> {
                   PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
                 });
   
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
+    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
       Navigator.push(
       context,
       MaterialPageRoute(
