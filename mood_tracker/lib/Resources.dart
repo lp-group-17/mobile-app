@@ -110,11 +110,11 @@ class _Resources extends State<Resources> {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.phone_rounded),
-                                onPressed: launchSamshaS,
+                                onPressed: launchSamshaP, //HELLO YOU NEED TO CHANGE THIS
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
+                              //SizedBox(width: 5),
                               IconButton(
                                 icon: Icon(Icons.link_rounded),
                                 onPressed: launchSamshaS,
@@ -574,6 +574,51 @@ class _Resources extends State<Resources> {
 
   launchSamshaS() async {
   const url = 'https://www.samhsa.gov/find-treatment';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchSamshaP() async {
+  const url = 'tel:+15618279507';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchSPLS() async {
+  const url = 'https://suicidepreventionlifeline.org/';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchNamiS() async {
+  const url = 'https://www.nami.org/help ';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchAPAS() async {
+  const url = 'https://www.apa.org/topics/crisis-hotlines';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchCrisisS() async {
+  const url = 'https://www.crisistextline.org/'; //for crisis home 
   if (await canLaunch(url)) {
     await launch(url);
   } else {
