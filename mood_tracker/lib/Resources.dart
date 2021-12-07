@@ -621,7 +621,7 @@ launchNamiS() async {
 }
 
 launchNamiE() async {
-  const url = 'https://www.nami.org/help'; //HEY RIGHT HERE CHANGE TO EMAIL
+  const url = 'mailto: info@nami.org'; //HEY RIGHT HERE CHANGE TO EMAIL
   if (await canLaunch(url)) {
     await launch(url);
   } else {
