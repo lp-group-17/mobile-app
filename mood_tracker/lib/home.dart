@@ -12,6 +12,7 @@ import 'HistFiles/HistoryModel.dart';
 import 'api/apiHandler.dart';
 import 'home_events.dart';
 import 'Resources.dart';
+import 'globals.dart' as globals;
 
 class Home extends StatefulWidget {
   const Home({Key? key, required this.title}) : super(key: key);
@@ -124,7 +125,7 @@ class _Home extends State<Home> {
                       // padding: const EdgeInsets.only(left: 5.0),
                       alignment: Alignment.center,
                       child: Text(
-                        "Welcome, <USER>",
+                        "Welcome, " + globals.fname,
                         textAlign: TextAlign.start,
                         style: TextStyle(
                           fontSize: 24,
