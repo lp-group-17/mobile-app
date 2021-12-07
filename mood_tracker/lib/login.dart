@@ -17,6 +17,11 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
+
+  bool isNotFound = true;
+  bool UsernameValidate = false;
+  bool PassValidate = false;
+
   Shader linearGradient = const LinearGradient(
     colors: [
       Colors.green,
@@ -81,7 +86,10 @@ class _Login extends State<Login> {
                       autocorrect: true,
                       style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,
-                      decoration: const InputDecoration(
+                      decoration:  InputDecoration(
+                        errorText: UsernameValidate
+                                          ? 'Username not valid'
+                                          : null,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -103,6 +111,9 @@ class _Login extends State<Login> {
                       style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
+                        errorText: PassValidate
+                                          ? 'Password not valid'
+                                          : null,
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -215,11 +226,23 @@ class _Login extends State<Login> {
   TextEditingController loginIDController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+
   Future<void> login() async {
     APIHandler api = APIHandler();
     var data = await api.login(loginIDController.text, passwordController.text);
     // var data = response.data;
+
+    setState(() {
+                  loginIDController.text.isEmpty || isNotFound == true ? UsernameValidate = true : UsernameValidate = false;
+                   passwordController.text.isEmpty || isNotFound == true ? PassValidate = true : PassValidate = false;
+                });
+
     if (data["error"] == "") {
+      setState(() {
+                  isNotFound = false;
+                  loginIDController.text.isEmpty  ? UsernameValidate = true : UsernameValidate = false;
+                   passwordController.text.isEmpty  ? PassValidate = true : PassValidate = false;
+                });
       globals.fname = data["User"]["Firstname"];
       globals.lname = data["User"]["Lastname"];
       globals.email = data["User"]["Email"];
@@ -227,11 +250,16 @@ class _Login extends State<Login> {
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
 
-      if (data["error"] == "User not found") {
-        
+      // isNotFound = true;
+      // if (data["error"] == "User not found") {
+      //   //print('do we get in error change state');
+      //   isNotFound = false;
+      // }
+      //CloginIDController.text == loginIDController.text;
+      
 
-      }
-
+      if(UsernameValidate == false && PassValidate == false){
+        print("do we get here?");
       if (globals.verified) {
         Navigator.pushAndRemoveUntil(
           context,
@@ -250,6 +278,24 @@ class _Login extends State<Login> {
       }
     } else {
       print(data["error"]);
+    }}
+    else{ //only error is the one user not found so come here if there's an error
+      
+      //isNotFound = true;
+      setState(() {
+                  isNotFound = true;
+                  UsernameValidate = true;
+                  PassValidate = true;
+                });
+      print(loginIDController.text);
+      print("hiiiiii");
+      print(data["error"]);
+      print("testing");
+      print(isNotFound);
+      print('t1');
+      print(UsernameValidate);
+      print('t2');
+      print(PassValidate);
     }
 
     // TODO:  Check registration status
