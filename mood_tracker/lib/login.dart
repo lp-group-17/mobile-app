@@ -227,6 +227,11 @@ class _Login extends State<Login> {
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
 
+      if (data["error"] == "User not found") {
+        
+
+      }
+
       if (globals.verified) {
         Navigator.pushAndRemoveUntil(
           context,
