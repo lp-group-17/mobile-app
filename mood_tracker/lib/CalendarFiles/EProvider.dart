@@ -20,7 +20,7 @@ class EventProvider extends ChangeNotifier{
 
   void editE(Event newE, Event oldE){
     final index = _events.indexOf(oldE);
-    _events[index] = newE;
+    //_events[index] = newE;
 
     notifyListeners();
   }
