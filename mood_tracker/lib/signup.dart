@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'email_verification.dart';
 import 'api/APIHandler.dart';
+import 'globals.dart' as globals;
+import 'home.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.title}) : super(key: key);
@@ -405,25 +407,22 @@ class _Signup extends State<Signup> {
     );
   }
 
-  void test() {
-    setState(() {
-      FNameController.text.isEmpty
-          ? FNameValidate = true
-          : FNameValidate = false;
-      LNameController.text.isEmpty
-          ? LNameValidate = true
-          : LNameValidate = false;
-      UsernameController.text.isEmpty
-          ? UsernameValidate = true
-          : UsernameValidate = false;
-      EmailController.text.isEmpty
-          ? EmailValidate = true
-          : EmailValidate = false;
-      PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
-      PCController.text == PassController.text
-          ? PCValidate = false
-          : PCValidate = true;
-    });
+  Future<void> login() async {
+    APIHandler api = APIHandler();
+    var data = await api.login(UsernameController.text, PassController.text);
+    // var data = response.data;
+
+      globals.fname = data["User"]["Firstname"];
+      globals.lname = data["User"]["Lastname"];
+      globals.email = data["User"]["Email"];
+      globals.ID = data["User"]["_id"];
+      globals.username = data["User"]["Username"];
+      globals.verified = data["User"]["Verified"];
+
+
+    // TODO:  Check registration status
+    //        If verified, goto home page
+    //        If not verified, go to email verify page
   }
 
   Future<void> signup() async {
@@ -454,14 +453,15 @@ class _Signup extends State<Signup> {
 
                
   
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
-      Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const Email(title: 'Email Verification'),
-      ),
-    );
-                }
+    // if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
+    //   login(),
+    //   Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => const Email(title: 'Email Verification'),
+    //   ),
+    // );
+    //             }
 
     
 
@@ -477,12 +477,14 @@ class _Signup extends State<Signup> {
         EmailValidate == false &&
         PassValidate == false &&
         PCValidate == false) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const Email(title: 'Email Verification'),
-        ),
-      );
+          login();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Email(title: 'Email Verification'),
+          ),
+        );
+      
     } else {
       print("testing");
       print(holdPass);

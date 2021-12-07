@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mood_tracker">
+    
    <application
         android:label="mood_tracker"
         android:icon="@mipmap/ic_launcher">
@@ -42,4 +43,5 @@
                android:value="AIzaSyBYZbW_CkaukPo8m8Xo2yp5Oc_KDwhCa7c"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
 </manifest>

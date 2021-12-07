@@ -5,6 +5,7 @@ import 'api/APIHandler.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
 import 'dart:async';
+import 'package:url_launcher/url_launcher.dart';
 
 class Resources extends StatefulWidget {
   const Resources({Key? key, required this.title}) : super(key: key);
@@ -107,15 +108,17 @@ class _Resources extends State<Resources> {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.phone_rounded,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.phone_rounded),
+                                onPressed: launchSamshaS,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 20),
-                              Icon(
-                                Icons.link_rounded,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.link_rounded),
+                                onPressed: launchSamshaS,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                             ],
@@ -568,6 +571,15 @@ class _Resources extends State<Resources> {
       ),
     );
   }
+
+  launchSamshaS() async {
+  const url = 'https://www.samhsa.gov/find-treatment';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
 //   void showDialog(BuildContext context) {
 // showDialog<String>(

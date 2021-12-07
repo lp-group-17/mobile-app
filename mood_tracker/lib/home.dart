@@ -507,6 +507,15 @@ class _Home extends State<Home> {
     );
   }
 
+void globalReset(){
+ globals.fname = "";
+      globals.lname = "";
+      globals.email = "";
+      globals.ID = "";
+      globals.username = "";
+      globals.verified = false;
+}
+
   void openResources() {
     Navigator.push(
       context,
@@ -518,6 +527,7 @@ class _Home extends State<Home> {
 
   void logout() {
     // TODO:  delete token
+    globalReset();
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
