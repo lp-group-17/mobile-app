@@ -32,6 +32,8 @@ class _Signup extends State<Signup> {
   String holdPass = "";
   String temp = "";
   bool weGucci = true;
+  bool UserTaken = false;
+  bool EmailTaken = false;
 
   final FNameController = TextEditingController();
   final LNameController = TextEditingController();
@@ -211,7 +213,7 @@ class _Signup extends State<Signup> {
                               controller: UsernameController,
                               decoration: InputDecoration(
                                 errorText: UsernameValidate
-                                    ? 'Username Can\'t Be Empty'
+                                    ? 'Username not valid'
                                     : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -233,7 +235,7 @@ class _Signup extends State<Signup> {
                               controller: EmailController,
                               decoration: InputDecoration(
                                 errorText: EmailValidate
-                                    ? 'Email Can\'t Be Empty'
+                                    ? 'Email not valid'
                                     : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
@@ -426,15 +428,31 @@ class _Signup extends State<Signup> {
 
   Future<void> signup() async {
     // TODO: submit form and goto email verification page
+ APIHandler api = APIHandler();
+    var response = await api.signup(FNameController.text, LNameController.text,
+        EmailController.text, UsernameController.text, PassController.text);
 
+    UserTaken = false;
+    EmailTaken = false;
+    print(response);
+    if (response["error"]["emailUsed"]) {
+      print("Email Used");
+      EmailTaken = true;
+    }
+    if (response["error"]["usernameTaken"]) {
+      print("Username Taken");
+      UserTaken = true;
+    }
     setState(() {
                   FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
                   LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
-                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
-                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
+                  UsernameController.text.isEmpty || UserTaken == true ? UsernameValidate = true : UsernameValidate = false;
+                  EmailController.text.isEmpty || EmailTaken == true ? EmailValidate = true : EmailValidate = false;
                   PassController.text.isEmpty ? PassValidate = true : PassValidate = false; //password has to meet certain specifications
                   PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
                 });
+
+               
   
     if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
       Navigator.push(
@@ -445,17 +463,7 @@ class _Signup extends State<Signup> {
     );
                 }
 
-    APIHandler api = APIHandler();
-    var response = await api.signup(FNameController.text, LNameController.text,
-        EmailController.text, UsernameController.text, PassController.text);
-
-    print(response);
-    if (response["error"]["emailUsed"]) {
-      print("Email Used");
-    }
-    if (response["error"]["usernameTaken"]) {
-      print("Username Taken");
-    }
+    
 
     if (is8Chars == true &&
         hasNum == true &&
