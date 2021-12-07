@@ -46,7 +46,7 @@ class APIHandler {
       "password": password
     };
 
-    var response = await dio.post('adduser', data: body);
+    var response = await dio.post(url + 'adduser', data: body);
     return response.data;
   }
 
