@@ -233,15 +233,17 @@ class _Resources extends State<Resources> {
                           ),
                           Row(
                             children: [
-                              Icon(
-                                Icons.textsms_outlined,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.textsms_outlined),
+                                onPressed: launchCrisisP,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                               SizedBox(width: 20),
-                              Icon(
-                                Icons.link_rounded,
-                                size: 25.0,
+                              IconButton(
+                                icon: Icon(Icons.link_rounded),
+                                onPressed: launchCrisisS,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                             ],
@@ -262,7 +264,7 @@ class _Resources extends State<Resources> {
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             "APA Crisis Resources",
                             style: TextStyle(
@@ -270,9 +272,10 @@ class _Resources extends State<Resources> {
                               color: Colors.white,
                             ),
                           ),
-                          Icon(
-                            Icons.link_rounded,
-                            size: 25.0,
+                          IconButton(
+                            icon: Icon(Icons.link_rounded),
+                            onPressed: launchAPAS,
+                            iconSize: 25.0,
                             color: Colors.white,
                           ),
                         ],
@@ -582,7 +585,7 @@ class _Resources extends State<Resources> {
 }
 
 launchSamshaP() async {
-  const url = 'tel:+15618279507';
+  const url = 'tel:+18006624357';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
@@ -590,7 +593,7 @@ launchSamshaP() async {
   }
 }
 
-launchSPLS() async {
+launchNSPLS() async {
   const url = 'https://suicidepreventionlifeline.org/';
   if (await canLaunch(url)) {
     await launch(url);
@@ -599,8 +602,35 @@ launchSPLS() async {
   }
 }
 
+launchNSPLP() async {
+  const url = 'tel:+18002738255';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
 launchNamiS() async {
-  const url = 'https://www.nami.org/help ';
+  const url = 'https://www.nami.org/help';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchNamiE() async {
+  const url = 'https://www.nami.org/help'; //HEY RIGHT HERE CHANGE TO EMAIL
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchNamiP() async {
+  const url = 'tel:+18009506264';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
@@ -619,6 +649,16 @@ launchAPAS() async {
 
 launchCrisisS() async {
   const url = 'https://www.crisistextline.org/'; //for crisis home 
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+launchCrisisP() async {
+  //const url = 'sms:+741741?body=HOME';
+  const url = 'sms:+15618279507?body=HOME';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
