@@ -247,7 +247,7 @@ class _Signup extends State<Signup> {
                               autocorrect: false,
                               controller: PassController,
                               decoration: InputDecoration(
-                                errorText: PassValidate ? 'Password Can\'t Be Empty' : null,
+                                errorText: PassValidate ? 'Password Doesn\'t Meet Specifications' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -281,6 +281,7 @@ class _Signup extends State<Signup> {
                               obscureText: !_passwordConfirmVisible,
                               //controller: PassController,
                             onChanged: (passwordConfirm) => checkConfirm(passwordConfirm),
+
                               enableSuggestions: false,
                               autocorrect: false,
                               controller: PCController,
@@ -389,12 +390,31 @@ class _Signup extends State<Signup> {
     );
   }
 
+  void test(){
+    setState(() {
+                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
+                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
+                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
+                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
+                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
+                  PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
+                });
+  }
+
   void signup() {
     // TODO: submit form and goto email verification page
 
+    setState(() {
+                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
+                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
+                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
+                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
+                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false; //password has to meet certain specifications
+                  PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
+                });
   
-    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true && FNameValidate == true && LNameValidate == true && UsernameValidate == true && EmailValidate == true && PassValidate == true && PCValidate == true){
-           Navigator.push(
+    if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
+      Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const Email(title: 'Email Verification'),
@@ -403,17 +423,23 @@ class _Signup extends State<Signup> {
                 }
 
     else{
+  
       print("testing");
       print(holdPass);
       print(temp);
-      setState(() {
-                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
-                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
-                  UsernameController.text.isEmpty ? UsernameValidate = true : UsernameValidate = false;
-                  EmailController.text.isEmpty ? EmailValidate = true : EmailValidate = false;
-                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false;
-                  PCController.text != PassController.text ? PCValidate = true : PCValidate = false;
-                });
+      print('a');
+      print(FNameValidate );
+      print('b');
+      print(LNameValidate);
+      print('c');
+      print(UsernameValidate);
+      print('d');
+      print(EmailValidate);
+      print('e');
+      print(PassValidate);
+      print('f');
+      print(PCValidate);
+      
       // showDialog(
       //   barrierDismissible: true,
       //   context: context,
