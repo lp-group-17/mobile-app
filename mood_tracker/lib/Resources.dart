@@ -194,16 +194,18 @@ class _Resources extends State<Resources> {
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
-                              Icon(
-                                Icons.phone_rounded,
-                                size: 25.0,
+                              //SizedBox(width: 20),
+                              IconButton(
+                                icon: Icon(Icons.phone_rounded),
+                                onPressed: launchNamiP,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
-                              Icon(
-                                Icons.link_rounded,
-                                size: 25.0,
+                              //SizedBox(width: 20),
+                              IconButton(
+                                icon: Icon(Icons.link_rounded),
+                                onPressed: launchNamiS,
+                                iconSize: 25.0,
                                 color: Colors.white,
                               ),
                             ],
@@ -240,7 +242,7 @@ class _Resources extends State<Resources> {
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
-                              SizedBox(width: 20),
+                              //SizedBox(width: 20),
                               IconButton(
                                 icon: Icon(Icons.link_rounded),
                                 onPressed: launchCrisisS,
