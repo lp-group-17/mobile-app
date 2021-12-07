@@ -88,7 +88,7 @@ class _Login extends State<Login> {
                       cursorColor: Colors.white,
                       decoration:  InputDecoration(
                         errorText: UsernameValidate
-                                          ? 'Username not valid'
+                                          ? ''
                                           : null,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -112,7 +112,7 @@ class _Login extends State<Login> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         errorText: PassValidate
-                                          ? 'Password not valid'
+                                          ? 'Username/Password is Incorrect'
                                           : null,
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),

@@ -448,7 +448,7 @@ class _Signup extends State<Signup> {
                   LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
                   UsernameController.text.isEmpty || UserTaken == true ? UsernameValidate = true : UsernameValidate = false;
                   EmailController.text.isEmpty || EmailTaken == true ? EmailValidate = true : EmailValidate = false;
-                  PassController.text.isEmpty ? PassValidate = true : PassValidate = false; //password has to meet certain specifications
+                  PassController.text.isEmpty || weGucci == false? PassValidate = true : PassValidate = false; //password has to meet certain specifications
                   PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
                 });
 
