@@ -160,7 +160,8 @@ class _Email extends State<Email> {
     await user.reload();
     if(user.emailVerified){
       timer.cancel();
-      print('it works');
+      
+      //print('it works'); verify email 
     }
   }
 }
