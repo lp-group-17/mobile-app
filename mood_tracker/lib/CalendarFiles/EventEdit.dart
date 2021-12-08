@@ -292,7 +292,6 @@ class _EventEditingPageState extends State<EventEditingPage> {
       final provider = Provider.of<EventProvider>(context, listen: false);
       if (isEdit) {
         provider.editE(event, widget.event!);
-        
         Navigator.of(context).pop();
       } else {
         provider.addEvent(event);
