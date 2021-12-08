@@ -53,6 +53,7 @@ class _Home extends State<Home> {
       data["Events"].forEach((event) => {
             //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
             events.add(Event(
+              user: event["User"],
               title: event["Title"],
               descrip: event["Descrip"],
               to: DateTime.parse(event["To"]),
@@ -168,7 +169,7 @@ class _Home extends State<Home> {
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(20.0),
                                 topRight: Radius.circular(20.0)),
-                            color: Color(0xff9CB342),
+                            color: Color(0xff33BD6B),
                           ),
                           // height: 20,
                           alignment: Alignment.bottomLeft,
@@ -369,7 +370,7 @@ class _Home extends State<Home> {
                                       topRight: Radius.circular(20.0),
                                     ),
                                     // border: Border.all(color: Colors.white),
-                                    color: Color(0xff9CB342),
+                                    color: Color(0xff33BD6B),
                                     // gradient: LinearGradient(
                                     //   begin: Alignment.topLeft,
                                     //   end: Alignment(0.8,
@@ -386,12 +387,12 @@ class _Home extends State<Home> {
                                   alignment: Alignment.centerLeft,
                                   padding:
                                       const EdgeInsets.fromLTRB(10, 5, 0, 5),
-                                  decoration: const BoxDecoration(
-                                    color: Colors.grey,
-                                    // border: Border.symmetric(
-                                    //   vertical: BorderSide(color: Colors.white),
-                                    // ),
-                                  ),
+                                  decoration: BoxDecoration(
+                                      color: Color(0xff2F885A)
+                                      // border: Border.symmetric(
+                                      //   vertical: BorderSide(color: Colors.white),
+                                      // ),
+                                      ),
                                   child: const Text(
                                     "Today's Agenda:",
                                     // DateFormat('EEEE, d MMMM yyyy')

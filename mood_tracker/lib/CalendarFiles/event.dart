@@ -13,7 +13,7 @@ import 'package:mood_tracker/globals.dart' as globals;
 //   loadYourData() async {
 //     String jsonString = await loadFromAssets();
 //     final yourDataModel = yourDataModelFromJson(jsonString);
-    
+
 //     for (int i = 0; i < yourDataModel.length; i++) {
 //       if (yourDataModel[i].Q1 == 3) {
 //         print('you got your id');
@@ -24,7 +24,9 @@ import 'package:mood_tracker/globals.dart' as globals;
 String jsonString = jsonEncode(user);
 Map<String, dynamic> userMap = jsonDecode(jsonString);
 var user = globals.User.fromJson(userMap);
+
 class Event {
+  final String user;
   final String title;
   final String descrip;
   final DateTime from;
@@ -33,6 +35,7 @@ class Event {
   final bool allDay;
 
   Event({
+    required this.user,
     required this.title,
     required this.descrip,
     required this.from,
@@ -44,7 +47,7 @@ class Event {
 //   String username = json['Username']
 // };
   Map<String, dynamic> toJson() => {
-        'User': globals.ID,
+        'User': user,
         'Title': title,
         'Descrip': descrip,
         'From': from.toIso8601String(),

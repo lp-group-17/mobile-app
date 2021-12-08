@@ -111,7 +111,8 @@ class _Signup extends State<Signup> {
       }
     });
   }
- final auth = FirebaseAuth.instance;
+
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -429,22 +430,6 @@ class _Signup extends State<Signup> {
   }
 
   Future<void> signup() async {
-    // TODO: submit form and goto email verification page
-    APIHandler api = APIHandler();
-    var response = await api.signup(FNameController.text, LNameController.text,
-        EmailController.text, UsernameController.text, PassController.text);
-
-    UserTaken = false;
-    EmailTaken = false;
-    print(response);
-    if (response["error"]["emailUsed"]) {
-      print("Email Used");
-      EmailTaken = true;
-    }
-    if (response["error"]["usernameTaken"]) {
-      print("Username Taken");
-      UserTaken = true;
-    }
     setState(() {
       FNameController.text.isEmpty
           ? FNameValidate = true
@@ -466,16 +451,6 @@ class _Signup extends State<Signup> {
           : PCValidate = true;
     });
 
-    // if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
-    //   login(),
-    //   Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => const Email(title: 'Email Verification'),
-    //   ),
-    // );
-    //             }
-
     if (is8Chars == true &&
         hasNum == true &&
         hasUpper == true &&
@@ -488,51 +463,39 @@ class _Signup extends State<Signup> {
         EmailValidate == false &&
         PassValidate == false &&
         PCValidate == false) {
-      login();
-      auth.createUserWithEmailAndPassword(
-              email: EmailController.text, password: PassController.text)
-          .then((_) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const Email(title: 'Email Verification'),
-          ),
-        );
-      });
-    } else {
-      print("testing");
-      print(holdPass);
-      print(temp);
-      print('a');
-      print(FNameValidate);
-      print('b');
-      print(LNameValidate);
-      print('c');
-      print(UsernameValidate);
-      print('d');
-      print(EmailValidate);
-      print('e');
-      print(PassValidate);
-      print('f');
-      print(PCValidate);
+      APIHandler api = APIHandler();
+      var response = await api.signup(
+          FNameController.text,
+          LNameController.text,
+          EmailController.text,
+          UsernameController.text,
+          PassController.text);
 
-      // showDialog(
-      //   barrierDismissible: true,
-      //   context: context,
-      //   builder: (context){
-      //     return AlertDialog(
-      //    title: const Text ('Error'),
-      //   content: const Text('Error in pass field'),
-      //   actions: <Widget> [
-      //     TextButton(
-      //       onPressed: () => Navigator.pop(context, 'Ok'),
-      //       child: const Text('Ok'),
-      //     ),
-      //   ],
-      //     );
-      //   }
-      //  );
+      UserTaken = false;
+      EmailTaken = false;
 
+      if (response["error"]["emailUsed"]) {
+        EmailTaken = true;
+      }
+
+      if (response["error"]["usernameTaken"]) {
+        UserTaken = true;
+      }
+
+      if (!UserTaken && !EmailTaken) {
+        login();
+        auth
+            .createUserWithEmailAndPassword(
+                email: EmailController.text, password: PassController.text)
+            .then((_) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Email(title: 'Email Verification'),
+            ),
+          );
+        });
+      }
     }
   }
 }

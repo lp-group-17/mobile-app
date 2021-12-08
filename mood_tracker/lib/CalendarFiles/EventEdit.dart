@@ -6,6 +6,7 @@ import 'event.dart';
 import 'Getters.dart';
 import 'EProvider.dart';
 import 'package:mood_tracker/api/apiHandler.dart';
+import 'package:mood_tracker/globals.dart' as globals;
 //import 'package:ntp/ntp.dart';
 
 class EventEditingPage extends StatefulWidget {
@@ -276,6 +277,7 @@ class _EventEditingPageState extends State<EventEditingPage> {
 
     if (isValid) {
       final event = Event(
+        user: globals.ID,
         title: titleControl.text,
         descrip: deetsControl.text,
         from: fromDate,

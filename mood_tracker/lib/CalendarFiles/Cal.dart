@@ -21,9 +21,7 @@ class CalendarPage extends StatefulWidget {
   State<CalendarPage> createState() => _CalendarPage();
 }
 
-
 class _CalendarPage extends State<CalendarPage> {
-
   List<Event> eventss = [];
 
   @override
@@ -40,6 +38,7 @@ class _CalendarPage extends State<CalendarPage> {
     data["Events"].forEach((event) => {
           //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
           eventss.add(Event(
+            user: event["User"],
             title: event["Title"],
             descrip: event["Descrip"],
             to: DateTime.parse(event["To"]),
@@ -48,10 +47,9 @@ class _CalendarPage extends State<CalendarPage> {
           ))
         });
 
-
     setState(() {});
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final events = Provider.of<EventProvider>(context).events;
@@ -83,12 +81,15 @@ class _CalendarPage extends State<CalendarPage> {
             //if(details.appointments!.first == null) return;
             try {
               final event = details.appointments!.first;
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => EventView(event: event),
-              ),
-              ).then((_) {
-      loadData();
-    });
+              Navigator.of(context)
+                  .push(
+                MaterialPageRoute(
+                  builder: (context) => EventView(event: event),
+                ),
+              )
+                  .then((_) {
+                loadData();
+              });
             }
             // ignore: empty_catches
             catch (e) {}
@@ -96,16 +97,16 @@ class _CalendarPage extends State<CalendarPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add, color: Colors.white),
         backgroundColor: Color(0xff381980),
-        onPressed: () => Navigator.of(context).push(
+        onPressed: () => Navigator.of(context)
+            .push(
           MaterialPageRoute(
               builder: (context) =>
                   const EventEditingPage()), //EventEditingPage()
-        ).then((_) {
-      loadData();
-    }),
+        )
+            .then((_) {
+          loadData();
+        }),
       ),
     );
   }
-  
 }
-
