@@ -235,6 +235,7 @@ class _Questions extends State<Questions> {
   void save() {
     print("asdasdasd");
     final event = HistoryModel(
+      user: globals.ID,
       date: DateTime.now(),
       descrip: deetsControl.text,
       Q1: Q1rating,

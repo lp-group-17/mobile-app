@@ -41,6 +41,7 @@ class _History extends State<History> {
     entries.clear();
     data["Entries"].forEach((entry) => {
           entries.add(HistoryModel(
+            user: entry["User"],
             date: DateTime.parse(entry["Date"]),
             descrip: entry["Descrip"],
             Q1: entry["Q1"].toDouble(),

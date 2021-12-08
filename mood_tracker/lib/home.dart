@@ -71,6 +71,7 @@ class _Home extends State<Home> {
       double length = data["Entries"].length.toDouble();
       data["Entries"].forEach((entry) => {
             entries.add(HistoryModel(
+              user: entry["User"],
               date: DateTime.parse(entry["Date"]),
               descrip: entry["Descrip"],
               Q1: entry["Q1"].toDouble(),

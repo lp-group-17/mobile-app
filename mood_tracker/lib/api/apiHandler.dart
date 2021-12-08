@@ -54,4 +54,12 @@ class APIHandler {
     var response = await dio.post(url + 'Verify', data: {"ID": userID});
     return response.data;
   }
+
+  void deleteEvent(Map<String, dynamic> event) {
+    dio.post(url + 'deleteEvent', data: event);
+  }
+
+  void deleteEntry(Map<String, dynamic> entry) {
+    dio.post(url + 'deleteEvent', data: entry);
+  }
 }

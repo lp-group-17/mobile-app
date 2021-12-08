@@ -123,9 +123,8 @@ class MoodChart extends StatelessWidget {
             BarChartRodData(
               y: data[3],
               colors: [
-                Colors.lightBlueAccent,
                 Colors.orangeAccent,
-                Colors.redAccent
+                Colors.lightBlueAccent,
               ],
             ),
           ],
