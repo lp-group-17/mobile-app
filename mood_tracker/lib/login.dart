@@ -17,7 +17,6 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-
   bool isNotFound = true;
   bool UsernameValidate = false;
   bool PassValidate = false;
@@ -41,7 +40,6 @@ class _Login extends State<Login> {
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           colors: [
-            // Colors.deepPurple,
             Colors.deepPurple,
             Colors.indigo,
           ],
@@ -86,15 +84,12 @@ class _Login extends State<Login> {
                       autocorrect: true,
                       style: const TextStyle(color: Colors.white),
                       cursorColor: Colors.white,
-                      decoration:  InputDecoration(
-                        errorText: UsernameValidate
-                                          ? ''
-                                          : null,
+                      decoration: InputDecoration(
+                        errorText: UsernameValidate ? '' : null,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
                         filled: true,
-                        // fillColor: Colors.white,
                         border: OutlineInputBorder(),
                         labelText: 'Enter your username',
                         labelStyle: TextStyle(
@@ -112,8 +107,8 @@ class _Login extends State<Login> {
                       cursorColor: Colors.white,
                       decoration: InputDecoration(
                         errorText: PassValidate
-                                          ? 'Username/Password is Incorrect'
-                                          : null,
+                            ? 'Username/Password is Incorrect'
+                            : null,
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -156,9 +151,7 @@ class _Login extends State<Login> {
                     ),
                     SizedBox(height: 20),
                     Container(
-                      // margin: EdgeInsets.only(top: 10),
                       height: 50,
-                      // alignment: A,
                       child: ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20.0)),
@@ -185,9 +178,7 @@ class _Login extends State<Login> {
                     ),
                     SizedBox(height: 10),
                     Container(
-                      // margin: EdgeInsets.only(top: 10),
                       height: 50,
-                      // alignment: A,
                       child: ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(20.0)),
@@ -226,23 +217,23 @@ class _Login extends State<Login> {
   TextEditingController loginIDController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-
   Future<void> login() async {
     APIHandler api = APIHandler();
     var data = await api.login(loginIDController.text, passwordController.text);
     // var data = response.data;
 
     setState(() {
-                  loginIDController.text.isEmpty || isNotFound == true ? UsernameValidate = true : UsernameValidate = false;
-                   passwordController.text.isEmpty || isNotFound == true ? PassValidate = true : PassValidate = false;
-                });
+      loginIDController.text.isEmpty || isNotFound == true
+          ? UsernameValidate = true
+          : UsernameValidate = false;
+      passwordController.text.isEmpty || isNotFound == true
+          ? PassValidate = true
+          : PassValidate = false;
+    });
 
+    // If user is found
     if (data["error"] == "") {
-      setState(() {
-                  isNotFound = false;
-                  loginIDController.text.isEmpty  ? UsernameValidate = true : UsernameValidate = false;
-                   passwordController.text.isEmpty  ? PassValidate = true : PassValidate = false;
-                });
+      // Set global variable to user
       globals.fname = data["User"]["Firstname"];
       globals.lname = data["User"]["Lastname"];
       globals.email = data["User"]["Email"];
@@ -250,16 +241,7 @@ class _Login extends State<Login> {
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
 
-      // isNotFound = true;
-      // if (data["error"] == "User not found") {
-      //   //print('do we get in error change state');
-      //   isNotFound = false;
-      // }
-      //CloginIDController.text == loginIDController.text;
-      
-
-      if(UsernameValidate == false && PassValidate == false){
-        print("do we get here?");
+      // If user is verified, push home page, if not, push verification page
       if (globals.verified) {
         Navigator.pushAndRemoveUntil(
           context,
@@ -277,50 +259,73 @@ class _Login extends State<Login> {
         );
       }
     } else {
-      print(data["error"]);
-    }}
-    else{ //only error is the one user not found so come here if there's an error
-      
-      //isNotFound = true;
+      // User is not found set borders to red
       setState(() {
-                  isNotFound = true;
-                  UsernameValidate = true;
-                  PassValidate = true;
-                });
-      print(loginIDController.text);
-      print("hiiiiii");
-      print(data["error"]);
-      print("testing");
-      print(isNotFound);
-      print('t1');
-      print(UsernameValidate);
-      print('t2');
-      print(PassValidate);
+        isNotFound = true;
+        UsernameValidate = true;
+        PassValidate = true;
+      });
     }
 
-    // TODO:  Check registration status
-    //        If verified, goto home page
-    //        If not verified, go to email verify page
+    // if (data["error"] == "") {
+    //   // setState(() {
+    //   //   isNotFound = false;
+    //   //   loginIDController.text.isEmpty
+    //   //       ? UsernameValidate = true
+    //   //       : UsernameValidate = false;
+    //   //   passwordController.text.isEmpty
+    //   //       ? PassValidate = true
+    //   //       : PassValidate = false;
+    //   // });
+    //   globals.fname = data["User"]["Firstname"];
+    //   globals.lname = data["User"]["Lastname"];
+    //   globals.email = data["User"]["Email"];
+    //   globals.ID = data["User"]["_id"];
+    //   globals.username = data["User"]["Username"];
+    //   globals.verified = data["User"]["Verified"];
+
+    //   // isNotFound = true;
+    //   // if (data["error"] == "User not found") {
+    //   //   //print('do we get in error change state');
+    //   //   isNotFound = false;
+    //   // }
+    //   //CloginIDController.text == loginIDController.text;
+
+    //   // if (UsernameValidate == false && PassValidate == false) {
+    //   //   print("do we get here?");
+
+    //   if (globals.verified) {
+    //     Navigator.pushAndRemoveUntil(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => const Home(title: 'Home'),
+    //       ),
+    //       (_) => false,
+    //     );
+    //   } else {
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //         builder: (context) => const Email(title: 'Email Verification'),
+    //       ),
+    //     );
+    //   }
+    // } else {
+    //   print(data["error"]);
+    //   //   }
+    //   // } else {
+    //   //only error is the one user not found so come here if there's an error
+
+    //   //isNotFound = true;
+    //   setState(() {
+    //     isNotFound = true;
+    //     UsernameValidate = true;
+    //     PassValidate = true;
+    //   });
+    // }
   }
 
-  // Future<User>? _futureUser;
-  // FutureBuilder<User> buildFutureBuilder() {
-  //   return FutureBuilder<User>(
-  //     future: _futureUser,
-  //     builder: (context, snapshot) {
-  //       if (snapshot.hasData) {
-  //         return Text(snapshot.data!.title);
-  //       } else if (snapshot.hasError) {
-  //         return Text('${snapshot.error}');
-  //       }
-
-  //       return const CircularProgressIndicator();
-  //     },
-  //   );
-  // }
-
   void signup() {
-    // TODO: Go to signup page
     Navigator.push(
       context,
       MaterialPageRoute(
