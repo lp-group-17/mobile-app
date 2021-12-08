@@ -160,9 +160,12 @@ class _Email extends State<Email> {
     APIHandler api = APIHandler();
     //bool check = firebase.auth().currentUser.emailVerified;
     user = auth.currentUser!;
+    print(auth.currentUser!.emailVerified);
     await user.reload();
     if (user.emailVerified) {
+      print(auth.currentUser!.emailVerified);
       timer.cancel();
+      //firebase.auth().signOut();
       var response = await api.setVerification(globals.ID);
       if (response["error"] == "") {
         globals.verified = true;
