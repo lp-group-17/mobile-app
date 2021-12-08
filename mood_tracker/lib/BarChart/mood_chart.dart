@@ -90,6 +90,7 @@ class MoodChart extends StatelessWidget {
           x: 0,
           barRods: [
             BarChartRodData(
+              width: 13,
               y: data[0].toDouble(),
               colors: [
                 Colors.orangeAccent,
@@ -104,6 +105,7 @@ class MoodChart extends StatelessWidget {
           x: 1,
           barRods: [
             BarChartRodData(
+              width: 13,
               y: data[1],
               colors: [
                 Colors.greenAccent,
@@ -118,6 +120,7 @@ class MoodChart extends StatelessWidget {
           x: 2,
           barRods: [
             BarChartRodData(
+              width: 13,
               y: data[2],
               colors: [
                 Colors.greenAccent,
@@ -132,6 +135,7 @@ class MoodChart extends StatelessWidget {
           x: 3,
           barRods: [
             BarChartRodData(
+              width: 13,
               y: data[3],
               colors: [
                 Colors.orangeAccent,
