@@ -3,6 +3,7 @@ import 'email_verification.dart';
 import 'api/APIHandler.dart';
 import 'globals.dart' as globals;
 import 'home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key, required this.title}) : super(key: key);
@@ -101,12 +102,16 @@ class _Signup extends State<Signup> {
       }
 
       weGucci = false;
-      if(is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && hasSymbol == true){
+      if (is8Chars == true &&
+          hasNum == true &&
+          hasUpper == true &&
+          hasLower == true &&
+          hasSymbol == true) {
         weGucci = true;
       }
     });
   }
-
+ final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -236,9 +241,8 @@ class _Signup extends State<Signup> {
                               autocorrect: true,
                               controller: EmailController,
                               decoration: InputDecoration(
-                                errorText: EmailValidate
-                                    ? 'Email not valid'
-                                    : null,
+                                errorText:
+                                    EmailValidate ? 'Email not valid' : null,
                                 enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.white),
                                 ),
@@ -412,13 +416,12 @@ class _Signup extends State<Signup> {
     var data = await api.login(UsernameController.text, PassController.text);
     // var data = response.data;
 
-      globals.fname = data["User"]["Firstname"];
-      globals.lname = data["User"]["Lastname"];
-      globals.email = data["User"]["Email"];
-      globals.ID = data["User"]["_id"];
-      globals.username = data["User"]["Username"];
-      globals.verified = data["User"]["Verified"];
-
+    globals.fname = data["User"]["Firstname"];
+    globals.lname = data["User"]["Lastname"];
+    globals.email = data["User"]["Email"];
+    globals.ID = data["User"]["_id"];
+    globals.username = data["User"]["Username"];
+    globals.verified = data["User"]["Verified"];
 
     // TODO:  Check registration status
     //        If verified, goto home page
@@ -427,7 +430,7 @@ class _Signup extends State<Signup> {
 
   Future<void> signup() async {
     // TODO: submit form and goto email verification page
- APIHandler api = APIHandler();
+    APIHandler api = APIHandler();
     var response = await api.signup(FNameController.text, LNameController.text,
         EmailController.text, UsernameController.text, PassController.text);
 
@@ -443,16 +446,26 @@ class _Signup extends State<Signup> {
       UserTaken = true;
     }
     setState(() {
-                  FNameController.text.isEmpty ? FNameValidate = true : FNameValidate = false;
-                  LNameController.text.isEmpty ? LNameValidate = true : LNameValidate = false;
-                  UsernameController.text.isEmpty || UserTaken == true ? UsernameValidate = true : UsernameValidate = false;
-                  EmailController.text.isEmpty || EmailTaken == true ? EmailValidate = true : EmailValidate = false;
-                  PassController.text.isEmpty || weGucci == false? PassValidate = true : PassValidate = false; //password has to meet certain specifications
-                  PCController.text == PassController.text ? PCValidate = false : PCValidate = true;
-                });
+      FNameController.text.isEmpty
+          ? FNameValidate = true
+          : FNameValidate = false;
+      LNameController.text.isEmpty
+          ? LNameValidate = true
+          : LNameValidate = false;
+      UsernameController.text.isEmpty || UserTaken == true
+          ? UsernameValidate = true
+          : UsernameValidate = false;
+      EmailController.text.isEmpty || EmailTaken == true
+          ? EmailValidate = true
+          : EmailValidate = false;
+      PassController.text.isEmpty || weGucci == false
+          ? PassValidate = true
+          : PassValidate = false; //password has to meet certain specifications
+      PCController.text == PassController.text
+          ? PCValidate = false
+          : PCValidate = true;
+    });
 
-               
-  
     // if (is8Chars == true && hasNum == true && hasUpper == true && hasLower == true && weGucci == true && hasSymbol == true && isSame == true && FNameValidate == false && LNameValidate == false && UsernameValidate == false && EmailValidate == false && PassValidate == false && PCValidate == false){
     //   login(),
     //   Navigator.push(
@@ -462,8 +475,6 @@ class _Signup extends State<Signup> {
     //   ),
     // );
     //             }
-
-    
 
     if (is8Chars == true &&
         hasNum == true &&
@@ -477,14 +488,17 @@ class _Signup extends State<Signup> {
         EmailValidate == false &&
         PassValidate == false &&
         PCValidate == false) {
-          login();
+      login();
+      auth.createUserWithEmailAndPassword(
+              email: EmailController.text, password: PassController.text)
+          .then((_) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const Email(title: 'Email Verification'),
           ),
         );
-      
+      });
     } else {
       print("testing");
       print(holdPass);
