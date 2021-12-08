@@ -87,8 +87,8 @@ class _CalendarPage extends State<CalendarPage> {
                   builder: (context) => EventView(event: event),
                 ),
               )
-                  .then((_) {
-                loadData();
+                  .then((_) async {
+                await loadData();
               });
             }
             // ignore: empty_catches
@@ -103,8 +103,8 @@ class _CalendarPage extends State<CalendarPage> {
               builder: (context) =>
                   const EventEditingPage()), //EventEditingPage()
         )
-            .then((_) {
-          loadData();
+            .then((_) async {
+          await loadData();
         }),
       ),
     );
