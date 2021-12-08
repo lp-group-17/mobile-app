@@ -8,8 +8,11 @@ import 'email_verification.dart';
 import 'QuestFiles/Questions.dart';
 import 'HistFiles/History.dart';
 import 'globals.dart' as globals;
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
