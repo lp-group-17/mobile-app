@@ -16,11 +16,12 @@ class Login extends StatefulWidget {
   final String title;
 
   @override
-  State<Login> createState() => _Login();
+  State<Login> createState() => LoginState();
 }
 
-  final auth = FirebaseAuth.instance;
-class _Login extends State<Login> {
+final auth = FirebaseAuth.instance;
+
+class LoginState extends State<Login> {
   bool isNotFound = true;
   bool UsernameValidate = false;
   bool PassValidate = false;
@@ -220,13 +221,12 @@ class _Login extends State<Login> {
 
   TextEditingController loginIDController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  String fname = '';
   Future<void> login() async {
     APIHandler api = APIHandler();
     var data = await api.login(loginIDController.text, passwordController.text);
     // var data = response.data;
     //var _email = await api.getEmail(loginIDController.text); //could be empty, if empty user doesn't exist
-    
 
     // if(email == ""){
     //   setState((){
@@ -239,12 +239,11 @@ class _Login extends State<Login> {
     //   catch(error){
     //     if(error == "ERROR_WRONG_PASSWORD" ||error == "ERROR_USER_NOT_FOUND"){
     //       isNotFound = true;
-          
+
     //     }
     //   }
-    
+
     // }
-    
 
     setState(() {
       loginIDController.text.isEmpty || isNotFound == true
@@ -258,14 +257,13 @@ class _Login extends State<Login> {
     // If user is found
     if (data["error"] == "") {
       // Set global variable to user
+      fname = 'asdasd';
       globals.fname = data["User"]["Firstname"];
       globals.lname = data["User"]["Lastname"];
       globals.email = data["User"]["Email"];
       globals.ID = data["User"]["_id"];
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
-
-      
 
       // If user is verified, push home page, if not, push verification page
       if (globals.verified) {

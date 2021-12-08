@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:mood_tracker/api/testing.dart';
+// import '../test/testing.dart';
 
 import 'api/apiHandler.dart';
 import 'globals.dart' as globals;
@@ -104,35 +104,34 @@ class _Email extends State<Email> {
                 flex: 1,
                 child: SizedBox(),
               ),
-               Container(
-                              // margin: EdgeInsets.only(top: 10),
-                              height: 50,
-                              width: 300,
-                              // alignment: A,
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(20.0)),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    primary: Color(0xff381980),
-                                  ),
-                                  onPressed: (){},
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      //SizedBox(width: 10.0),
-                                      Text(
-                                        "Resend Email",
-                                        style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+              Container(
+                // margin: EdgeInsets.only(top: 10),
+                height: 50,
+                width: 300,
+                // alignment: A,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff381980),
+                    ),
+                    onPressed: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        //SizedBox(width: 10.0),
+                        Text(
+                          "Resend Email",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(height: 20),
             ],
           ),

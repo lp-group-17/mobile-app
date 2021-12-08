@@ -19,10 +19,11 @@ class Home extends StatefulWidget {
   final String title;
 
   @override
-  State<Home> createState() => _Home();
+  State<Home> createState() => HomeState();
 }
 
-class _Home extends State<Home> {
+@visibleForTesting
+class HomeState extends State<Home> {
   String averagePeriod = '1 week';
 
   Shader linearGradient = const LinearGradient(
