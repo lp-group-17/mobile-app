@@ -33,9 +33,20 @@ class _Email extends State<Email> {
   @override
   void initState() {
     user = auth.currentUser!;
+    user.sendEmailVerification();
+
+    timer = Timer.periodic(Duration(seconds: 5), (timer){
+      checkEmailVerified();
+    });
 
     super.initState();
     checkVerification();
+  }
+
+  @override
+  void dispose(){
+    timer.cancel();
+    super.dispose();
   }
 
 //this is what you need for events/entries
@@ -142,5 +153,15 @@ class _Email extends State<Email> {
         builder: (context) => test(),
       ),
     );
+  }
+
+  Future<void> checkEmailVerified() async {
+    user = auth.currentUser!;
+    await user.reload();
+    if(user.emailVerified){
+      timer.cancel();
+      
+      //print('it works'); verify email 
+    }
   }
 }

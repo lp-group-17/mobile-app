@@ -86,7 +86,9 @@ class _CalendarPage extends State<CalendarPage> {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => EventView(event: event),
               ),
-              );
+              ).then((_) {
+      loadData();
+    });
             }
             // ignore: empty_catches
             catch (e) {}
@@ -98,7 +100,9 @@ class _CalendarPage extends State<CalendarPage> {
           MaterialPageRoute(
               builder: (context) =>
                   const EventEditingPage()), //EventEditingPage()
-        ),
+        ).then((_) {
+      loadData();
+    }),
       ),
     );
   }
