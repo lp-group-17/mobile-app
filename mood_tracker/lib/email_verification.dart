@@ -158,6 +158,7 @@ class _Email extends State<Email> {
 
   Future<void> checkEmailVerified() async {
     APIHandler api = APIHandler();
+    //bool check = firebase.auth().currentUser.emailVerified;
     user = auth.currentUser!;
     await user.reload();
     if (user.emailVerified) {
