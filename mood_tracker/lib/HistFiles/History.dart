@@ -120,7 +120,7 @@ class _History extends State<History> {
                       IconButton(
                           icon: Icon(Icons.delete, color: Colors.red),
                           onPressed: () {
-                            removeItem(index);
+                            removeItem(entries[index]);
                           }),
                       IconButton(
                         icon: Icon(Icons.arrow_forward),
@@ -175,16 +175,10 @@ class _History extends State<History> {
     );
   }
 
-  void removeItem(int index) {
-    // ignore: non_constant_identifier_names
-    // comment
-    // ListKey.currentState!.removeItem(
-    //   index,
-    //   (context, animation) => ListEdit(
-    //       item: RemovedItem,
-    //       animation: animation,
-    //       onClicked: () {},
-    //       onClicked2: () {}),
-    // );
+  void removeItem(HistoryModel entry) {
+    APIHandler api = APIHandler();
+    print(entry.toJson());
+    api.deleteEntry(entry.toJson());
+    loadData();
   }
 }

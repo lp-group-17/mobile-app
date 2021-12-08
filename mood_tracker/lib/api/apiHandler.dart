@@ -60,6 +60,6 @@ class APIHandler {
   }
 
   void deleteEntry(Map<String, dynamic> entry) {
-    dio.post(url + 'deleteEvent', data: entry);
+    dio.post(url + 'deleteEntry', data: entry);
   }
 }
