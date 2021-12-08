@@ -75,7 +75,7 @@ class APIHandler {
   }
 
   Future<Map<String, dynamic>> getEmail(String username) async {
-    var response = await dio.post(url + 'Users', data: {"Username": username});
+    var response = await dio.post(url + 'Users', data: {"loginID": username});
     return response.data;
   }
 }
