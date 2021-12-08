@@ -223,6 +223,8 @@ class _Login extends State<Login> {
     APIHandler api = APIHandler();
     var data = await api.login(loginIDController.text, passwordController.text);
     // var data = response.data;
+    var _email = await api.getEmail(loginIDController.text);
+    
 
     setState(() {
       loginIDController.text.isEmpty || isNotFound == true
@@ -242,6 +244,8 @@ class _Login extends State<Login> {
       globals.ID = data["User"]["_id"];
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
+
+      auth.signInWithEmailAndPassword(email: _email, password: _password);
 
       // If user is verified, push home page, if not, push verification page
       if (globals.verified) {
