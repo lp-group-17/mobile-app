@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart';
 import 'signup.dart';
@@ -18,6 +19,7 @@ class Login extends StatefulWidget {
   State<Login> createState() => _Login();
 }
 
+  final auth = FirebaseAuth.instance;
 class _Login extends State<Login> {
   bool isNotFound = true;
   bool UsernameValidate = false;
@@ -223,7 +225,25 @@ class _Login extends State<Login> {
     APIHandler api = APIHandler();
     var data = await api.login(loginIDController.text, passwordController.text);
     // var data = response.data;
-    var _email = await api.getEmail(loginIDController.text);
+    //var _email = await api.getEmail(loginIDController.text); //could be empty, if empty user doesn't exist
+    
+
+    // if(email == ""){
+    //   setState((){
+    //     isNotFound = true;
+    //   });
+    // }
+    // else{
+    //   try{auth.signInWithEmailAndPassword(email: _email.toString(), password: passwordController.text);
+    //   var t = await api.resetPassword(loginIDController.text,passwordController.text);}
+    //   catch(error){
+    //     if(error == "ERROR_WRONG_PASSWORD" ||error == "ERROR_USER_NOT_FOUND"){
+    //       isNotFound = true;
+          
+    //     }
+    //   }
+    
+    // }
     
 
     setState(() {
@@ -245,7 +265,7 @@ class _Login extends State<Login> {
       globals.username = data["User"]["Username"];
       globals.verified = data["User"]["Verified"];
 
-      auth.signInWithEmailAndPassword(email: _email, password: _password);
+      
 
       // If user is verified, push home page, if not, push verification page
       if (globals.verified) {
