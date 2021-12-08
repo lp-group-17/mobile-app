@@ -12,14 +12,15 @@ class APIHandler {
 
   Future<Map<String, dynamic>> login(String username, String password) async {
     var key = utf8.encode(password);
+    var bytes = utf8.encode("foobar");
     var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
+    var digest = hmacSha256.convert(bytes);
 
     Map<String, dynamic> body = {
       "loginID": username,
-      "password": hmacSha256.toString()
+      "password": digest.toString()
     };
 
-    print(hmacSha256.toString());
     var response = await dio.post(url + 'login', data: body);
     return response.data;
   }
@@ -47,14 +48,16 @@ class APIHandler {
   Future<Map<String, dynamic>> signup(String firstname, String lastname,
       String email, String username, String password) async {
     var key = utf8.encode(password);
+    var bytes = utf8.encode("foobar");
     var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
+    var digest = hmacSha256.convert(bytes);
 
     Map<String, dynamic> body = {
       "firstname": firstname,
       "lastname": lastname,
       "email": email,
       "username": username,
-      "password": hmacSha256.toString()
+      "password": digest.toString()
     };
 
     var response = await dio.post(url + 'adduser', data: body);
