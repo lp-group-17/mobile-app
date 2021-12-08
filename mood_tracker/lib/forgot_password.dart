@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({Key? key, required this.title}) : super(key: key);
@@ -17,6 +18,9 @@ class _ForgotPassword extends State<ForgotPassword> {
   ).createShader(
     const Rect.fromLTWH(50.0, 0.0, 300.0, 70.0),
   );
+
+final _email = TextEditingController();
+final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +86,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                         autocorrect: true,
                         style: const TextStyle(color: Colors.white),
                         cursorColor: Colors.white,
+                        controller: _email,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
@@ -101,7 +106,10 @@ class _ForgotPassword extends State<ForgotPassword> {
                       child: SizedBox(),
                     ),
                     ElevatedButton(
-                      onPressed: sendEmail,
+                      onPressed: (){
+                        auth.sendPasswordResetEmail(email: _email.text);
+                        Navigator.pop(context);
+                      },
                       child: const SizedBox(
                         width: 300,
                         child: Center(
