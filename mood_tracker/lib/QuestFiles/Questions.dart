@@ -170,7 +170,7 @@ class _Questions extends State<Questions> {
                 //   }, //edit to save the information and send it through api or w/e/ do save
                 // ),
                 SizedBox(
-                 width: 200,
+                  width: 200,
                   height: 50,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(20.0)),
@@ -178,11 +178,12 @@ class _Questions extends State<Questions> {
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xff381980),
                       ),
-                      onPressed: (){
+                      onPressed: () {
                         save();
-                     Navigator.pop(context);
+                        Navigator.pop(context);
                       },
-                      child: const Text('Finished', style: TextStyle(color: Colors.white, fontSize: 25)),
+                      child: const Text('Finished',
+                          style: TextStyle(color: Colors.white, fontSize: 25)),
                     ),
                   ),
                 ),

@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:mood_tracker/api/testing.dart';
 
 import 'api/apiHandler.dart';
 import 'globals.dart' as globals;
+import 'home.dart';
 
 class Email extends StatefulWidget {
   const Email({Key? key, required this.title}) : super(key: key);
@@ -17,7 +18,6 @@ class Email extends StatefulWidget {
 }
 
 class _Email extends State<Email> {
-  
   final auth = FirebaseAuth.instance;
   late User user;
   late Timer timer;
@@ -41,22 +41,12 @@ class _Email extends State<Email> {
     });
 
     super.initState();
-    checkVerification();
   }
 
   @override
   void dispose() {
     timer.cancel();
     super.dispose();
-  }
-
-//this is what you need for events/entries
-  Future<void> checkVerification() async {
-    APIHandler api = APIHandler();
-
-    Timer.periodic(Duration(seconds: 5), (timer) async {
-      var isVerified = await api.checkVerification(globals.ID);
-    });
   }
 
   @override
@@ -158,16 +148,25 @@ class _Email extends State<Email> {
 
   Future<void> checkEmailVerified() async {
     APIHandler api = APIHandler();
-    //bool check = firebase.auth().currentUser.emailVerified;
-    user = auth.currentUser!;
-    await user.reload();
-    if (user.emailVerified) {
+
+    await auth.currentUser!.reload();
+    var isEmailVerified = auth.currentUser!.emailVerified;
+    if (isEmailVerified) {
       timer.cancel();
       var response = await api.setVerification(globals.ID);
+      print(response);
+
       if (response["error"] == "") {
         globals.verified = true;
       }
 
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const Home(title: 'Home'),
+        ),
+        (_) => false,
+      );
       //print('it works'); verify email
     }
   }

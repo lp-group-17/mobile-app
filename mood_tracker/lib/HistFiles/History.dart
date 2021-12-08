@@ -51,7 +51,10 @@ class _History extends State<History> {
         });
 
     count = entries.length;
-    print(entries);
+    // var temp = entries;
+    // for (var i = 0; i < count; i++) {
+    //   entries[i] = temp[count - i - 1];
+    // }
     setState(() {}); //tells page to refresh widget when you get data
   }
 
@@ -72,28 +75,33 @@ class _History extends State<History> {
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-          actions: <Widget>[         
-          TextButton.icon(
-            icon: Icon(Icons.add, color: Colors.white, ),
-            label: const Text("Add Entry", 
-            style: TextStyle(fontSize: 20,
-            color: Colors.white)),
-            //tooltip: 'Go to the next page',
-            onPressed: () {
-              test;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Questions(title: 'Questionnaire'),
+          actions: <Widget>[
+            TextButton.icon(
+              icon: Icon(
+                Icons.add,
+                color: Colors.white,
               ),
-            );
-            },
-          ),
-        ],
+              label: const Text("Add Entry",
+                  style: TextStyle(fontSize: 20, color: Colors.white)),
+              //tooltip: 'Go to the next page',
+              onPressed: () {
+                test;
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const Questions(title: 'Questionnaire'),
+                  ),
+                ).then((_) {
+                  loadData();
+                });
+              },
+            ),
+          ],
         ),
         backgroundColor: Colors.transparent,
         body: ListView.builder(
-            reverse: true,
+            key: UniqueKey(),
             itemCount: entries.length,
             itemBuilder: (context, index) {
               final item = entries[index];
@@ -103,19 +111,27 @@ class _History extends State<History> {
                 child: ListTile(
                   title: Text(frmtdate),
                   trailing: Row(
-                    mainAxisSize:MainAxisSize.min, // space between two icons
+                    mainAxisSize: MainAxisSize.min, // space between two icons
                     // ignore: prefer_const_literals_to_create_immutables
                     children: <Widget>[
                       IconButton(
-                        icon:Icon(Icons.delete, color: Colors.red), 
-                        onPressed: (){removeItem(index);}),
-                        IconButton(
-                          icon: Icon(Icons.arrow_forward),
-                          onPressed: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => HistDetails(historyModel: entries[index]))).then((_) {loadData();});
-                          },
-                        ),  // icon-1
-                       // icon-2
+                          icon: Icon(Icons.delete, color: Colors.red),
+                          onPressed: () {
+                            removeItem(index);
+                          }),
+                      IconButton(
+                        icon: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(
+                                  builder: (context) => HistDetails(
+                                      historyModel: entries[index])))
+                              .then((_) {
+                            loadData();
+                          });
+                        },
+                      ), // icon-1
+                      // icon-2
                     ],
                   ),
                 ),
@@ -123,7 +139,7 @@ class _History extends State<History> {
             }),
         // floatingActionButton: FloatingActionButton(
         //   child: const Icon(Icons.add),
-          
+
         //   onPressed: () {
         //     test;
         //     Navigator.push(

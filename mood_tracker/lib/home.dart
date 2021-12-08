@@ -49,40 +49,44 @@ class _Home extends State<Home> {
     APIHandler api = APIHandler();
     var data = await api.getEvents();
     events.clear();
-    data["Events"].forEach((event) => {
-          //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
-          events.add(Event(
-            title: event["Title"],
-            descrip: event["Descrip"],
-            to: DateTime.parse(event["To"]),
-            from: DateTime.parse(event["From"]),
-            allDay: event["AllDay"],
-          ))
-        });
+    if (data["Events"].length > 0) {
+      data["Events"].forEach((event) => {
+            //data["Events"] change to entries for for questions. should just be able to be loaded into whatever it needs
+            events.add(Event(
+              title: event["Title"],
+              descrip: event["Descrip"],
+              to: DateTime.parse(event["To"]),
+              from: DateTime.parse(event["From"]),
+              allDay: event["AllDay"],
+            ))
+          });
+    }
 
     data = await api.getEntries();
     entries.clear();
-    List<double> sums = [0, 0, 0, 0];
-    double length = data["Entries"].length.toDouble();
-    data["Entries"].forEach((entry) => {
-          entries.add(HistoryModel(
-            date: DateTime.parse(entry["Date"]),
-            descrip: entry["Descrip"],
-            Q1: entry["Q1"].toDouble(),
-            Q2: entry["Q2"].toDouble(),
-            Q3: entry["Q3"].toDouble(),
-            Q4: entry["Q4"].toDouble(),
-          )),
-          sums[0] += entry["Q1"].toDouble(),
-          sums[1] += entry["Q2"].toDouble(),
-          sums[2] += entry["Q3"].toDouble(),
-          sums[3] += entry["Q4"].toDouble()
-        });
 
-    for (int i = 0; i < 4; i++) {
-      moodAverages[i] = sums[i] / length;
+    if (data["Entries"].length > 0) {
+      List<double> sums = [0, 0, 0, 0];
+      double length = data["Entries"].length.toDouble();
+      data["Entries"].forEach((entry) => {
+            entries.add(HistoryModel(
+              date: DateTime.parse(entry["Date"]),
+              descrip: entry["Descrip"],
+              Q1: entry["Q1"].toDouble(),
+              Q2: entry["Q2"].toDouble(),
+              Q3: entry["Q3"].toDouble(),
+              Q4: entry["Q4"].toDouble(),
+            )),
+            sums[0] += entry["Q1"].toDouble(),
+            sums[1] += entry["Q2"].toDouble(),
+            sums[2] += entry["Q3"].toDouble(),
+            sums[3] += entry["Q4"].toDouble()
+          });
+
+      for (int i = 0; i < 4; i++) {
+        moodAverages[i] = sums[i] / length;
+      }
     }
-
     setState(() {});
   }
 
@@ -174,19 +178,20 @@ class _Home extends State<Home> {
                           // ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [ //40 height
-                            Container(
-                               height: 50,
-                               alignment: Alignment.center,
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
-                               child: const Text(
-                                "Average",
-                                style: TextStyle(
-                                  fontSize: 24,
-                                  color: Colors.white,
+                            children: [
+                              //40 height
+                              Container(
+                                height: 50,
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                child: const Text(
+                                  "Average",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),),
+                              ),
                               //SizedBox(width: 20),
                               // DropdownButton<String>(
                               //   dropdownColor: Color(0xff381980),
@@ -512,14 +517,14 @@ class _Home extends State<Home> {
     );
   }
 
-void globalReset(){
- globals.fname = "";
-      globals.lname = "";
-      globals.email = "";
-      globals.ID = "";
-      globals.username = "";
-      globals.verified = false;
-}
+  void globalReset() {
+    globals.fname = "";
+    globals.lname = "";
+    globals.email = "";
+    globals.ID = "";
+    globals.username = "";
+    globals.verified = false;
+  }
 
   void openResources() {
     Navigator.push(
