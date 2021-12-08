@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+//import 'package:firebase_core/firebase_core.dart';
+import 'package:mood_tracker/api/testing.dart';
 
 class Email extends StatefulWidget {
   const Email({Key? key, required this.title}) : super(key: key);
@@ -106,5 +108,12 @@ class _Email extends State<Email> {
   //   (_) => false,
   // );
 
-  void resendEmail() {}
+  void resendEmail() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  test(),
+      ),
+    );
+  }
 }
