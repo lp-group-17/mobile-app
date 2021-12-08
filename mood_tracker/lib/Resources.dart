@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'email_verification.dart';
 import 'api/APIHandler.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'locations.dart' as locations;
+//import 'locations.dart' as locations;
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,23 +24,23 @@ class _Resources extends State<Resources> {
   //   _controller.complete(controller);
   // }
 
-  Future<void> _onMapCreated(GoogleMapController controller) async {
-    final googleOffices = await locations.getGoogleOffices();
-    setState(() {
-      _markers.clear();
-      for (final office in googleOffices.offices) {
-        final marker = Marker(
-          markerId: MarkerId(office.name),
-          position: LatLng(office.lat, office.lng),
-          infoWindow: InfoWindow(
-            title: office.name,
-            snippet: office.address,
-          ),
-        );
-        _markers[office.name] = marker;
-      }
-    });
-  }
+  // Future<void> _onMapCreated(GoogleMapController controller) async {
+  //   //final googleOffices = await locations.getGoogleOffices();
+  //   setState(() {
+  //     _markers.clear();
+  //     for (final office in googleOffices.offices) {
+  //       final marker = Marker(
+  //         markerId: MarkerId(office.name),
+  //         position: LatLng(office.lat, office.lng),
+  //         infoWindow: InfoWindow(
+  //           title: office.name,
+  //           snippet: office.address,
+  //         ),
+  //       );
+  //       _markers[office.name] = marker;
+  //     }
+  //   });
+  // }
 
   Shader linearGradient = const LinearGradient(
     colors: [
@@ -562,17 +562,17 @@ class _Resources extends State<Resources> {
                 ],
               ),
             ),
-            ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 300),
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(0, 0),
-                  zoom: 2,
-                ),
-                markers: _markers.values.toSet(),
-              ),
-            ),
+            // ConstrainedBox(
+            //   constraints: const BoxConstraints.expand(height: 300),
+            //   child: GoogleMap(
+            //     //onMapCreated: _onMapCreated,
+            //     initialCameraPosition: const CameraPosition(
+            //       target: LatLng(0, 0),
+            //       zoom: 2,
+            //     ),
+            //     markers: _markers.values.toSet(),
+            //   ),
+            // ),
           ],
         ),
         // Back button
