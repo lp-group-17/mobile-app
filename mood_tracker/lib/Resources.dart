@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'email_verification.dart';
 import 'api/APIHandler.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'locations.dart' as locations;
 import 'dart:async';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,10 +16,6 @@ class Resources extends StatefulWidget {
 }
 
 class _Resources extends State<Resources> {
-  final Map<String, Marker> _markers = {};
-
-  static const LatLng _center = const LatLng(45.521563, -122.677433);
-
   // void _onMapCreated(GoogleMapController controller) {
   //   _controller.complete(controller);
   // }
@@ -110,7 +106,8 @@ class _Resources extends State<Resources> {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.phone_rounded),
-                                onPressed: launchSamshaP, //HELLO YOU NEED TO CHANGE THIS
+                                onPressed:
+                                    launchSamshaP, //HELLO YOU NEED TO CHANGE THIS
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
@@ -151,14 +148,14 @@ class _Resources extends State<Resources> {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.phone_rounded),
-                                onPressed:launchNSPLP,
+                                onPressed: launchNSPLP,
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
                               //SizedBox(width: 20),
                               IconButton(
                                 icon: Icon(Icons.link_rounded),
-                                onPressed:launchNSPLS,
+                                onPressed: launchNSPLS,
                                 iconSize: 25.0,
                                 color: Colors.white,
                               ),
@@ -581,95 +578,95 @@ class _Resources extends State<Resources> {
   }
 
   launchSamshaS() async {
-  const url = 'https://www.samhsa.gov/find-treatment';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+    const url = 'https://www.samhsa.gov/find-treatment';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchSamshaP() async {
-  const url = 'tel:+18006624357';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchSamshaP() async {
+    const url = 'tel:+18006624357';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchNSPLS() async {
-  const url = 'https://suicidepreventionlifeline.org/';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchNSPLS() async {
+    const url = 'https://suicidepreventionlifeline.org/';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchNSPLP() async {
-  const url = 'tel:+18002738255';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchNSPLP() async {
+    const url = 'tel:+18002738255';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchNamiS() async {
-  const url = 'https://www.nami.org/help';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchNamiS() async {
+    const url = 'https://www.nami.org/help';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchNamiE() async {
-  const url = 'mailto: info@nami.org'; //HEY RIGHT HERE CHANGE TO EMAIL
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchNamiE() async {
+    const url = 'mailto: info@nami.org'; //HEY RIGHT HERE CHANGE TO EMAIL
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchNamiP() async {
-  const url = 'tel:+18009506264';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchNamiP() async {
+    const url = 'tel:+18009506264';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchAPAS() async {
-  const url = 'https://www.apa.org/topics/crisis-hotlines';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchAPAS() async {
+    const url = 'https://www.apa.org/topics/crisis-hotlines';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchCrisisS() async {
-  const url = 'https://www.crisistextline.org/'; //for crisis home 
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchCrisisS() async {
+    const url = 'https://www.crisistextline.org/'; //for crisis home
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
-launchCrisisP() async {
-  const url = 'sms:+741741?body=HOME';
-  //const url = 'sms:+15618279507?body=HOME';
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  launchCrisisP() async {
+    const url = 'sms:+741741?body=HOME';
+    //const url = 'sms:+15618279507?body=HOME';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
-}
 
 //   void showDialog(BuildContext context) {
 // showDialog<String>(
