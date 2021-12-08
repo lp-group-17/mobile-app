@@ -53,6 +53,13 @@ class APIHandler {
   Future<bool> checkVerification(String userID) async {
     var response =
         await dio.post(url + 'checkVerification', data: {"ID": userID});
+
     return response.data["Verified"];
+  }
+
+  Future<Map<String, dynamic>> setVerification(String userID) async {
+    var response =
+        await dio.post(url + 'checkVerification', data: {"ID": userID});
+    return response.data;
   }
 }
