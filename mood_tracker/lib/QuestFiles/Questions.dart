@@ -37,6 +37,17 @@ class _Questions extends State<Questions> {
   final deetsControl = TextEditingController();
   final titleControl = TextEditingController();
   late DateTime Time = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+    Q1rating = 3;
+    Q2rating = 3;
+    Q3rating = 3;
+    Q4rating = 3;
+    Q5rating = 3;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

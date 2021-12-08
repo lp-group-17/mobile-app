@@ -51,11 +51,13 @@ class _History extends State<History> {
         });
 
     count = entries.length;
-    // var temp = entries;
-    // for (var i = 0; i < count; i++) {
-    //   entries[i] = temp[count - i - 1];
-    // }
-    setState(() {}); //tells page to refresh widget when you get data
+
+    setState(() {
+      // var temp = List.from(entries);
+      // for (var i = 0; i < count; i++) {
+      //   entries[i] = temp[count - i - 1];
+      // }
+    }); //tells page to refresh widget when you get data
   }
 
   @override
