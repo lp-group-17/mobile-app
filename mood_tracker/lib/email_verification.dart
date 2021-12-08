@@ -17,6 +17,7 @@ class Email extends StatefulWidget {
 }
 
 class _Email extends State<Email> {
+  
   final auth = FirebaseAuth.instance;
   late User user;
   late Timer timer;
@@ -35,7 +36,7 @@ class _Email extends State<Email> {
     user = auth.currentUser!;
     user.sendEmailVerification();
 
-    timer = Timer.periodic(Duration(seconds: 5), (timer){
+    timer = Timer.periodic(Duration(seconds: 5), (timer) {
       checkEmailVerified();
     });
 
@@ -44,7 +45,7 @@ class _Email extends State<Email> {
   }
 
   @override
-  void dispose(){
+  void dispose() {
     timer.cancel();
     super.dispose();
   }
@@ -156,12 +157,17 @@ class _Email extends State<Email> {
   }
 
   Future<void> checkEmailVerified() async {
+    APIHandler api = APIHandler();
     user = auth.currentUser!;
     await user.reload();
-    if(user.emailVerified){
+    if (user.emailVerified) {
       timer.cancel();
-      
-      //print('it works'); verify email 
+      var response = await api.setVerification(globals.ID);
+      if (response["error"] == "") {
+        globals.verified = true;
+      }
+
+      //print('it works'); verify email
     }
   }
 }
