@@ -1,3 +1,4 @@
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -10,8 +11,15 @@ class APIHandler {
   var dio = Dio();
 
   Future<Map<String, dynamic>> login(String username, String password) async {
-    Map<String, dynamic> body = {"loginID": username, "password": password};
+    var key = utf8.encode(password);
+    var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
 
+    Map<String, dynamic> body = {
+      "loginID": username,
+      "password": hmacSha256.toString()
+    };
+
+    print(hmacSha256.toString());
     var response = await dio.post(url + 'login', data: body);
     return response.data;
   }
@@ -38,12 +46,15 @@ class APIHandler {
 
   Future<Map<String, dynamic>> signup(String firstname, String lastname,
       String email, String username, String password) async {
+    var key = utf8.encode(password);
+    var hmacSha256 = Hmac(sha256, key); // HMAC-SHA256
+
     Map<String, dynamic> body = {
       "firstname": firstname,
       "lastname": lastname,
       "email": email,
       "username": username,
-      "password": password
+      "password": hmacSha256.toString()
     };
 
     var response = await dio.post(url + 'adduser', data: body);
@@ -61,5 +72,10 @@ class APIHandler {
 
   void deleteEntry(Map<String, dynamic> entry) {
     dio.post(url + 'deleteEntry', data: entry);
+  }
+
+  Future<Map<String, dynamic>> getEmail(String username) async {
+    var response = await dio.post(url + 'Users', data: {"loginID": username});
+    return response.data;
   }
 }

@@ -7,6 +7,8 @@ import 'email_verification.dart';
 import 'api/apiHandler.dart';
 import 'package:dio/dio.dart';
 import 'globals.dart' as globals;
+import 'package:crypto/crypto.dart';
+import 'dart:convert';
 
 class Login extends StatefulWidget {
   const Login({Key? key, required this.title}) : super(key: key);
