@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "627518035575",
+    "project_id": "mobileapp-da3dc",
+    "storage_bucket": "mobileapp-da3dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627518035575:android:f588aa454d3f7e37071872",
+        "android_client_info": {
+          "package_name": "com.example.mood_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627518035575-7kco1i0eunbpuldtec8hgfgnrrdc5vil.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu-xKgMSQe-tSdxOacIDwv3HmQEIpOeHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "627518035575-7kco1i0eunbpuldtec8hgfgnrrdc5vil.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
