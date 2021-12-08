@@ -105,26 +105,37 @@ final auth = FirebaseAuth.instance;
                       flex: 1,
                       child: SizedBox(),
                     ),
-                    ElevatedButton(
-                      onPressed: (){
-                        auth.sendPasswordResetEmail(email: _email.text);
-                        Navigator.pop(context);
-                      },
-                      child: const SizedBox(
-                        width: 300,
-                        child: Center(
-                          child: Text("Send Email"),
-                        ),
-                      ),
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          ),
-                        ),
-                      ),
-                    ),
+                    Container(
+                              // margin: EdgeInsets.only(top: 10),
+                              height: 50,
+                              width: 300,
+                              // alignment: A,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(20.0)),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Color(0xff381980),
+                                  ),
+                                  onPressed: (){auth.sendPasswordResetEmail(email: _email.text);
+                                  Navigator.pop(context);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      //SizedBox(width: 10.0),
+                                      Text(
+                                        "Signup",
+                                        style: TextStyle(
+                                          fontSize: 20.0,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                     const SizedBox(height: 20),
                   ],
                 ),
