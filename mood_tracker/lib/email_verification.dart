@@ -116,7 +116,7 @@ class _Email extends State<Email> {
                                   style: ElevatedButton.styleFrom(
                                     primary: Color(0xff381980),
                                   ),
-                                  onPressed: resendEmail,
+                                  onPressed: (){},
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: const [
@@ -150,14 +150,14 @@ class _Email extends State<Email> {
   //   (_) => false,
   // );
 
-  void resendEmail() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => test(),
-      ),
-    );
-  }
+  // void resendEmail() {
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => test(),
+  //     ),
+  //   );
+  // }
 
   Future<void> checkEmailVerified() async {
     APIHandler api = APIHandler();
