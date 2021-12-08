@@ -153,6 +153,7 @@ class _Email extends State<Email> {
     var isEmailVerified = auth.currentUser!.emailVerified;
     if (isEmailVerified) {
       timer.cancel();
+      //firebase.auth().signOut();
       var response = await api.setVerification(globals.ID);
       print(response);
 

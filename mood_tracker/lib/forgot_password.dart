@@ -138,5 +138,7 @@ class _ForgotPassword extends State<ForgotPassword> {
     );
   }
 
-  void sendEmail() {}
+  void sendEmail(
+    
+  ) {}
 }
