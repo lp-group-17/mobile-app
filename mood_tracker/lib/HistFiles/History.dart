@@ -177,6 +177,7 @@ class _History extends State<History> {
 
   void removeItem(int index) {
     // ignore: non_constant_identifier_names
+    // comment
     final RemovedItem = entries[index];
     entries.removeAt(index);
     // ListKey.currentState!.removeItem(
