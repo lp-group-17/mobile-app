@@ -1,6 +1,12 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:mood_tracker/api/testing.dart';
+
+import 'api/apiHandler.dart';
+import 'globals.dart' as globals;
 
 class Email extends StatefulWidget {
   const Email({Key? key, required this.title}) : super(key: key);
@@ -11,6 +17,10 @@ class Email extends StatefulWidget {
 }
 
 class _Email extends State<Email> {
+  final auth = FirebaseAuth.instance;
+  late User user;
+  late Timer timer;
+
   Shader linearGradient = const LinearGradient(
     colors: [
       Colors.green,
@@ -19,6 +29,23 @@ class _Email extends State<Email> {
   ).createShader(
     const Rect.fromLTWH(50.0, 0.0, 300.0, 70.0),
   );
+
+  @override
+  void initState() {
+    user = auth.currentUser!;
+
+    super.initState();
+    checkVerification();
+  }
+
+//this is what you need for events/entries
+  Future<void> checkVerification() async {
+    APIHandler api = APIHandler();
+
+    Timer.periodic(Duration(seconds: 5), (timer) async {
+      var isVerified = await api.checkVerification(globals.ID);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +139,7 @@ class _Email extends State<Email> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>  test(),
+        builder: (context) => test(),
       ),
     );
   }
