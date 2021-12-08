@@ -174,41 +174,46 @@ class _Home extends State<Home> {
                           // ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
+                            children: [ //40 height
+                            Container(
+                               height: 50,
+                               alignment: Alignment.center,
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                               child: const Text(
                                 "Average",
                                 style: TextStyle(
                                   fontSize: 24,
                                   color: Colors.white,
                                 ),
-                              ),
-                              SizedBox(width: 20),
-                              DropdownButton<String>(
-                                dropdownColor: Color(0xff381980),
-                                value: averagePeriod,
-                                items: <String>[
-                                  '1 week',
-                                  '1 month',
-                                  '6 months',
-                                  '1 year',
-                                  'All time'
-                                ].map((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(
-                                      value,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    averagePeriod = newValue!;
-                                  });
-                                },
-                              ),
+                              ),),
+                              //SizedBox(width: 20),
+                              // DropdownButton<String>(
+                              //   dropdownColor: Color(0xff381980),
+                              //   value: averagePeriod,
+                              //   items: <String>[
+                              //     '1 week',
+                              //     '1 month',
+                              //     '6 months',
+                              //     '1 year',
+                              //     'All time'
+                              //   ].map((String value) {
+                              //     return DropdownMenuItem<String>(
+                              //       value: value,
+                              //       child: Text(
+                              //         value,
+                              //         style: TextStyle(
+                              //           color: Colors.white,
+                              //         ),
+                              //       ),
+                              //     );
+                              //   }).toList(),
+                              //   onChanged: (String? newValue) {
+                              //     setState(() {
+                              //       averagePeriod = newValue!;
+                              //     });
+                              //   },
+                              // ),
                             ],
                           ),
                         ),
